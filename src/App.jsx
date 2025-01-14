@@ -44,39 +44,29 @@ function App() {
               <div className="w-full h-screen transition-all">
                 <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
                 <video
-                  className=" w-full h-full object-cover"
+                  className="hidden md:flex w-full h-full object-cover"
                   src={videoBG}
                   autoPlay
                   loop
                   muted
                   playsinline
-                >
-                  <source src="./assets/videobg.mp4" type="video/mp4" />
-                </video>
-                <div className=" md:hidden w-full h-screen relative">
-                  {/* <ReactPlayer
+                ></video> 
+                <div className="flex md:hidden w-full h-screen relative">
+                  <ReactPlayer
                     url="https://www.youtube.com/watch?v=u5CMtlBEx-I"
+                    className="absolute top-0 left-0 object-cover"
                     playing={true}
                     loop={true}
                     muted={true}
                     width="100%"
                     height="100%"
                     style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)", // จัดให้อยู่กึ่งกลาง
                       objectFit: "cover",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
                     }}
-                    config={{
-                      youtube: {
-                        playerVars: {
-                          modestbranding: 1, // ซ่อนโลโก้ YouTube
-                          rel: 0, // ปิดการแสดงวิดีโอที่เกี่ยวข้อง
-                        },
-                      },
-                    }}
-                  /> */}
+                  />
                   <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
                 </div>
                 <div className="text-center absolute h-full w-full flex top-0 flex-col justify-center items-center text-white">
