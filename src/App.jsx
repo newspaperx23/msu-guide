@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css';
-import 'aos/dist/aos.css';
-import Aos from 'aos';
-import videoBG from './assets/videobg.mp4';
-import Welcome from './welcome.jsx';
-import Footer from './Footer.jsx';
-import ImageSlider from './ImageSlider.jsx';
-import { Link } from 'react-scroll';
-import Student from './Student.jsx'; // ตัวอย่างหน้าอื่น
-import My3DScene from './My3DScene.jsx';
-import { useTranslation } from 'react-i18next';
-import './i18n.js';
-import NavigationBar from './NavigationBar.jsx';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./index.css";
+import "aos/dist/aos.css";
+import Aos from "aos";
+import videoBG from "./assets/videobg.mp4";
+import Welcome from "./welcome.jsx";
+import Footer from "./Footer.jsx";
+import ImageSlider from "./ImageSlider.jsx";
+import { Link } from "react-scroll";
+import Student from "./Student.jsx"; // ตัวอย่างหน้าอื่น
+import My3DScene from "./My3DScene.jsx";
+import { useTranslation } from "react-i18next";
+import "./i18n.js";
+import NavigationBar from "./NavigationBar.jsx";
+import ReactPlayer from "react-player";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -36,24 +37,43 @@ function App() {
           path="/"
           element={
             <div>
-              <div><NavigationBar/></div>
+              <div>
+                <NavigationBar />
+              </div>
               {/* วิดีโอพื้นหลัง */}
               <div className="w-full h-screen transition-all">
                 <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
                 <video
-                  className="w-full h-full object-cover"
+                  className="hidden md:flex w-full h-full object-cover"
                   src={videoBG}
                   autoPlay
                   loop
                   muted
                   playsinline
-                ></video>
+                ></video> 
+                <div className="flex md:hidden w-full h-screen relative">
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=u5CMtlBEx-I"
+                    className="absolute top-0 left-0 object-cover"
+                    playing={true}
+                    loop={true}
+                    muted={true}
+                    width="100%"
+                    height="100%"
+                    style={{
+                      objectFit: "cover",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                    }}
+                  />
+                  <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
+                </div>
                 <div className="text-center absolute h-full w-full flex top-0 flex-col justify-center items-center text-white">
-                  <p className="text-3xl opacity-70 mb-2">{t('welcome')}</p>
+                  <p className="text-3xl opacity-70 mb-2">{t("welcome")}</p>
                   <p className="text-4xl md:text-5xl drop-shadow-md font-medium">
                     Mahasarakham University
                   </p>
-                  
                 </div>
                 <div className="text-center absolute w-full flex top-24 h-screen flex-col justify-center items-center text-white">
                   <p className="text-3xl opacity-90 text-yellow-300 drop-shadow-md">
@@ -65,7 +85,7 @@ function App() {
               <div className="text-center absolute w-full flex top-56 h-screen flex-col justify-center items-center text-white">
                 <Link to="section1" smooth={true} duration={1000}>
                   <button className="rounded border-2 px-5 py-2 animate-bounce">
-                    {t('letstour')}
+                    {t("letstour")}
                   </button>
                 </Link>
               </div>
@@ -79,11 +99,13 @@ function App() {
               <div data-aos="fade-up">
                 <Footer />
               </div>
-              <div data-aos="fade-up" className='right-[20%] bottom-[15%] md:right-[10%] md:bottom-[25%] fixed '>
-                <My3DScene/>
+              <div
+                data-aos="fade-up"
+                className="right-[20%] bottom-[15%] md:right-[10%] md:bottom-[25%] fixed "
+              >
+                <My3DScene />
               </div>
             </div>
-            
           }
         />
 
