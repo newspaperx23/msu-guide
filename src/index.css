@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ทำให้สไลด์ที่ข้างๆ มีขนาดเล็กลง */
+.swiper-slide-next,
+.swiper-slide-prev {
+  transform: scale(0.9); /* ทำให้สไลด์ข้างๆ เล็กลง */
+  transition: transform 0.3s ease;
+}
+
+/* สไลด์ที่อยู่ตรงกลางจะมีขนาดใหญ่สุด */
+.swiper-slide-active {
+  transform: scale(1); /* สไลด์ที่อยู่ตรงกลางใหญ่ที่สุด */
+}
