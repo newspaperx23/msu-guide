@@ -10,8 +10,17 @@ import ImageSlider from './ImageSlider.jsx';
 import { Link } from 'react-scroll';
 import Student from './Student.jsx'; // ตัวอย่างหน้าอื่น
 import Navbar from './navbar.jsx';
+import My3DScene from './My3DScene.jsx';
+import { useTranslation } from 'react-i18next';
+import './i18n.js';
 
 function App() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng); // เปลี่ยนภาษา
+  };
+
   useEffect(() => {
     Aos.init({
       duration: 1000, // ตั้งค่าความเร็วแอนิเมชัน
@@ -39,10 +48,11 @@ function App() {
                   muted
                 ></video>
                 <div className="text-center absolute h-full w-full flex top-0 flex-col justify-center items-center text-white">
-                  <p className="text-3xl opacity-70 mb-2">Welcome to</p>
-                  <p className="text-5xl drop-shadow-md font-medium">
+                  <p className="text-3xl opacity-70 mb-2">{t('welcome')}</p>
+                  <p className="text-4xl md:text-5xl drop-shadow-md font-medium">
                     Mahasarakham University
                   </p>
+                  
                 </div>
                 <div className="text-center absolute w-full flex top-24 h-screen flex-col justify-center items-center text-white">
                   <p className="text-3xl opacity-90 text-yellow-300 drop-shadow-md">
@@ -54,7 +64,7 @@ function App() {
               <div className="text-center absolute w-full flex top-56 h-screen flex-col justify-center items-center text-white">
                 <Link to="section1" smooth={true} duration={1000}>
                   <button className="rounded border-2 px-5 py-2 animate-bounce">
-                    Let's Tour
+                    {t('letstour')}
                   </button>
                 </Link>
               </div>
@@ -67,6 +77,9 @@ function App() {
               {/* Footer */}
               <div data-aos="fade-up">
                 <Footer />
+              </div>
+              <div data-aos="fade-up" className='right-[20%] bottom-[15%] md:right-[10%] md:bottom-[25%] fixed '>
+                <My3DScene/>
               </div>
             </div>
             
