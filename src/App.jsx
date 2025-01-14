@@ -9,10 +9,10 @@ import Footer from './Footer.jsx';
 import ImageSlider from './ImageSlider.jsx';
 import { Link } from 'react-scroll';
 import Student from './Student.jsx'; // ตัวอย่างหน้าอื่น
-import Navbar from './navbar.jsx';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from 'react-i18next';
 import './i18n.js';
+import NavigationBar from './NavigationBar.jsx';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -36,7 +36,7 @@ function App() {
           path="/"
           element={
             <div>
-              <div><Navbar/></div>
+              <div><NavigationBar/></div>
               {/* วิดีโอพื้นหลัง */}
               <div className="w-full h-screen transition-all">
                 <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>

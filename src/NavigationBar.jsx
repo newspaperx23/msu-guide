@@ -3,7 +3,7 @@ import { TbLanguageKatakana } from "react-icons/tb";
 import { US, CN, TH } from "country-flag-icons/react/3x2";
 import i18n from "./i18n"; // นำเข้า i18n ที่ตั้งค่าไว้
 
-const Navbar = () => {
+const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("en"); // state สำหรับเก็บภาษาที่เลือก
 
@@ -94,4 +94,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavigationBar;
