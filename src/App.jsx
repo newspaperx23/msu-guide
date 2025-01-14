@@ -46,6 +46,7 @@ function App() {
                   autoPlay
                   loop
                   muted
+                  playsinline
                 ></video>
                 <div className="text-center absolute h-full w-full flex top-0 flex-col justify-center items-center text-white">
                   <p className="text-3xl opacity-70 mb-2">{t('welcome')}</p>
