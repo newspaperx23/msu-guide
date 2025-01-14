@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/three";
-import model3d from "./assets/bingdundun.glb";
+import model3d from "./assets/msuguider2.glb";
 import Typewriter from "typewriter-effect";
-import { useTranslation } from 'react-i18next';
-import './i18n.js';
+import { useTranslation } from "react-i18next";
+import "./i18n.js";
 
 const AnimatedModel = () => {
   const { scene } = useGLTF(model3d);
@@ -26,7 +26,7 @@ const AnimatedModel = () => {
   return (
     <a.primitive
       object={scene}
-      scale={5}
+      scale={1}
       position-y={positionY}
       position-x={positionX}
     />
@@ -66,11 +66,11 @@ const My3DScene = () => {
           <div className="text-center">
             <div
               data-aos="fade-left"
-              className="text-white shadown-sm text-xl font-light p-3 rounded mb-4 absolute bg-black/70 backdrop-blur-sm right-16 w-[150px] bottom-8h"
+              className="text-white shadown-sm text-xl font-light p-3 rounded mb-4 absolute bg-black/70 backdrop-blur-sm right-20 w-[150px] bottom-8้"
             >
               <Typewriter
                 options={{
-                  strings: [t("welcomemsu"), t('wheretogo')],
+                  strings: [t("welcomemsu"), t("wheretogo")],
                   autoStart: true,
                   loop: true,
                   delay: 100,
@@ -78,10 +78,15 @@ const My3DScene = () => {
               />
             </div>
             <div className="w-[250px] h-[250px] md:w-[500px] md:h-[500px]">
-              <Canvas>
-                <ambientLight intensity={1} />
-                <directionalLight position={[5, 5, 5]} />
-                <OrbitControls enableZoom={false} />
+              <Canvas camera={{ position: [2, 2, 5], fov: 50 }}>
+                <ambientLight intensity={0.8} />
+                <directionalLight position={[2, 2, 4]} />
+                <OrbitControls
+                  enableZoom={false}
+                  target={[0, 1, 0]} // จุดที่กล้องจะโฟกัส
+                  minPolarAngle={Math.PI / 4} // มุมต่ำสุด
+                  maxPolarAngle={Math.PI / 2} // มุมสูงสุด
+                />
                 <AnimatedModel />
               </Canvas>
             </div>

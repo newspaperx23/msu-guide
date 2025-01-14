@@ -23,7 +23,11 @@ i18n
           letstour: "Let's Tour",
           places: 'Places',
           welcomemsu: 'Hello, Welcome to MSU Guide',
-          wheretogo: 'Where you wanna go?'
+          wheretogo: 'Where you wanna go?',
+          place1: 'Academic Resources Office ',
+          place1Detail: 'Academic Resources Office There is a main business in operation. Operations and Research Focused on developing and promoting Maha Sarakham University Graduate Research Academic Services',
+          place2: 'Division of Registration',
+          place2Detail: 'Responsibilities regarding registration management This includes registration. Checking and recording information Document storage issuance of certificate or identification card and maintaining related databases',
         },
       },
       th: {
@@ -33,7 +37,11 @@ i18n
           letstour: 'เริ่มสำรวจ',
           places: 'สถานที่',
           welcomemsu: 'สวัสดี, ยินดีต้อนรับสู่ไกด์มหาวิทยาลัยมหาสารคาม',
-          wheretogo: 'คุณต้องการไปที่ไหน?'
+          wheretogo: 'คุณต้องการไปที่ไหน?',
+          place1: 'สำนักวิทยบริการ',
+          place2: 'กองทะเบียนและประมวลผล',
+          place1Detail: 'สำนักวิทยบริการ มีกิจการหลักในการดำเนินการ การดำเนินการและการวิจัย มุ่งพัฒนาและส่งเสริมใ ห้มหาวิทยาลัมหาสารคาม บัณฑิตวิจัยการบริการวิชาการ',
+          place2Detail: 'ความรับผิดชอบเกี่ยวกับการจัดการการลงทะเบียน ซึ่งรวมถึงการลงทะเบียนด้วย ตรวจสอบและบันทึกข้อมูล จัดเก็บเอกสาร การออกใบรับรองหรือบัตรประจำตัวประชาชน และดูแลรักษาฐานข้อมูลที่เกี่ยวข้อง',
         },
       },
       zh: {
@@ -43,7 +51,11 @@ i18n
           letstour: '让你的',
           places: '地方',
           welcomemsu: '您好，欢迎来到密歇根州立大学指南',
-          wheretogo: '你想去哪里?'
+          wheretogo: '你想去哪里?',
+          place1: '学术资源办公室',
+          place2: '注册处',
+          place1Detail: '学术资源办公室有主营业务在经营。运营与研究专注于开发和推广玛哈沙拉堪大学研究生研究学术服务',
+          place2Detail: '登记管理职责这包括注册。检查并记录信息存放文件颁发证书或身份证并维护相关数据库',
         },
       },
     },
