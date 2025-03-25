@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/three";
-import model3d from "./assets/msuguider2.glb";
+import model3d from "./assets/msuguider3.glb";
 import Typewriter from "typewriter-effect";
 import { useTranslation } from "react-i18next";
 import "./i18n.js";
