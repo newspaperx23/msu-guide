@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, Wifi, Car, Accessibility } from 'lucide-react';
 import NavigationBar from './NavigationBar';
+import My3DScene from './My3DScene.jsx';
+import { useTranslation } from "react-i18next";
 
 
 const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
+  const { t } = useTranslation();
 
   const recommendedPlaces = [
     {
       id: 1,
-      name: "สำนักวิทยบริการ",
-      nameEn: "Academic Resources Center",
+      name: "สำนักคอมพิวเตอร์",
+      nameEn: "Computer Center",
       description: "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
       descriptionEn: "Learning resource center with books, journals, and online databases",
       detailedDescription: "สำนักวิทยบริการเป็นหัวใจสำคัญของการเรียนรู้ในมหาวิทยาลัย มีหนังสือกว่า 50,000 เล่ม วารสารทั้งในและต่างประเทศ ห้องศึกษาค้นคว้าส่วนบุคคล ห้องสัมมนากลุ่มย่อย และระบบฐานข้อมูลออนไลน์ที่ทันสมัย พร้อมบรรณารักษ์ผู้เชี่ยวชาญให้คำปรึกษา",
@@ -213,11 +216,16 @@ const Places = () => {
             สถานที่แนะนำ
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            ค้นพบสถานที่สำคัญในมหาวิทยาลัยที่จะช่วยให้การศึกษาและชีวิตในรั้วมหาวิทยาลัยของคุณสมบูรณ์แบบ
+            พาทัวร์มหาวิทยาลัยมหาสารคาม แนะนำสถานที่เรียน กิน เที่ยว และพักผ่อนในรั้ว มหาวิทยาลัยมหาสารคาม
           </p>
         </div>
 
         {/* Places Grid */}
+        <div
+                        className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[999]"
+                      >
+                        <My3DScene />
+                      </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recommendedPlaces.map((place) => (
             <div

@@ -43,7 +43,7 @@ const NavigationBar = () => {
           Apply
         </a>
         <a href="#" className="hidden md:flex text-white text-lg font-thin hover:scale-110 transition-all">
-          Calendar
+          EV Time
         </a>
 
         <div className="relative flex justify-center items-center">

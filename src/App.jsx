@@ -87,8 +87,7 @@ function App() {
 
               {/* 3D Scene */}
               <div
-                data-aos="fade-up"
-                className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed "
+                className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed"
               >
                 <My3DScene />
               </div>

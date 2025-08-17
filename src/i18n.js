@@ -16,49 +16,49 @@ i18n
       escapeValue: false, // ปิดการ escape string เพื่อไม่ให้เกิดปัญหากับ React
     },
     resources: {
-      en: {
-        translation: {
-          welcome: 'Welcome',
-          description: 'This is a React app with i18n!',
-          letstour: "Let's Tour",
-          places: 'Places',
-          welcomemsu: 'Hello, Welcome to MSU Guide',
-          wheretogo: 'Where you wanna go?',
-          place1: 'Academic Resources Office ',
-          place1Detail: 'Academic Resources Office There is a main business in operation. Operations and Research Focused on developing and promoting Maha Sarakham University Graduate Research Academic Services',
-          place2: 'Division of Registration',
-          place2Detail: 'Responsibilities regarding registration management This includes registration. Checking and recording information Document storage issuance of certificate or identification card and maintaining related databases',
-        },
-      },
-      th: {
-        translation: {
-          welcome: 'ยินดีต้อนรับ',
-          description: 'นี่คือแอป React ที่ใช้งาน i18n!',
-          letstour: 'เริ่มสำรวจ',
-          places: 'สถานที่',
-          welcomemsu: 'สวัสดี, ยินดีต้อนรับสู่ไกด์มหาวิทยาลัยมหาสารคาม',
-          wheretogo: 'คุณต้องการไปที่ไหน?',
-          place1: 'สำนักวิทยบริการ',
-          place2: 'กองทะเบียนและประมวลผล',
-          place1Detail: 'สำนักวิทยบริการ มีกิจการหลักในการดำเนินการ การดำเนินการและการวิจัย มุ่งพัฒนาและส่งเสริมใ ห้มหาวิทยาลัมหาสารคาม บัณฑิตวิจัยการบริการวิชาการ',
-          place2Detail: 'ความรับผิดชอบเกี่ยวกับการจัดการการลงทะเบียน ซึ่งรวมถึงการลงทะเบียนด้วย ตรวจสอบและบันทึกข้อมูล จัดเก็บเอกสาร การออกใบรับรองหรือบัตรประจำตัวประชาชน และดูแลรักษาฐานข้อมูลที่เกี่ยวข้อง',
-        },
-      },
-      zh: {
-        translation: {
-          welcome: '欢迎',
-          description: '这是一个使用i18n的React应用程序！',
-          letstour: '让你的',
-          places: '地方',
-          welcomemsu: '您好，欢迎来到密歇根州立大学指南',
-          wheretogo: '你想去哪里?',
-          place1: '学术资源办公室',
-          place2: '注册处',
-          place1Detail: '学术资源办公室有主营业务在经营。运营与研究专注于开发和推广玛哈沙拉堪大学研究生研究学术服务',
-          place2Detail: '登记管理职责这包括注册。检查并记录信息存放文件颁发证书或身份证并维护相关数据库',
-        },
-      },
-    },
+  en: {
+    translation: {
+      welcome: "Welcome to MSU – A Place of Knowledge and Inspiration",
+      welcome2: "Take a Tour Around Mahasarakham University",
+      letstour: "Let's Tour",
+      // ... ข้อความอื่น
+      placesPage: {
+        header: "Recommended Places",
+        description: "Tour Mahasarakham University: learn, eat, travel, and relax around campus.",
+        moreinfo: "Want more information?",
+        contact: "Contact us"
+      }
+    }
+  },
+  th: {
+    translation: {
+      welcome: "รั้วเทาเหลืองแห่งการเรียนรู้และแรงบันดาลใจ — มมส",
+      welcome2: "พาเที่ยว มมส ครบทุกมุม",
+      letstour: "เริ่มทัวร์กันเลย",
+      // ... ข้อความอื่น
+      placesPage: {
+        header: "สถานที่แนะนำ",
+        description: "พาทัวร์มหาวิทยาลัยมหาสารคาม แนะนำสถานที่เรียน กิน เที่ยว และพักผ่อน",
+        moreinfo: "ต้องการข้อมูลเพิ่มเติม?",
+        contact: "ติดต่อเรา"
+      }
+    }
+  },
+  zh: {
+    translation: {
+      welcome: "欢迎来到玛哈沙拉堪大学，智慧与灵感的家园",
+      welcome2: "带你走遍玛哈沙拉堪大学的每个角落",
+      letstour: "一起去参观吧",
+      // ... ข้อความอื่น
+      placesPage: {
+        header: "推荐地点",
+        description: "游览玛哈沙拉堪大学：学习、美食、旅行和放松。",
+        moreinfo: "需要更多信息吗？",
+        contact: "联系我们"
+      }
+    }
+  }
+},
   });
 
 export default i18n;
