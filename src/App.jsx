@@ -1,104 +1,91 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import "aos/dist/aos.css";
 import Aos from "aos";
-import videoBG from "./assets/videobg.mp4";
 import Welcome from "./welcome.jsx";
 import Footer from "./Footer.jsx";
-import ImageSlider from "./ImageSlider.jsx";
-import { Link } from "react-scroll";
-import Student from "./Student.jsx"; // ตัวอย่างหน้าอื่น
+import Student from "./Student.jsx";
+import Places from "./Places.jsx";
 import My3DScene from "./My3DScene.jsx";
 import { useTranslation } from "react-i18next";
 import "./i18n.js";
 import NavigationBar from "./NavigationBar.jsx";
-import ReactPlayer from "react-player";
+
+// ✅ Scroll Controller (ล็อก scroll หน้าแรก)
+function ScrollController() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [location]);
+
+  return null;
+}
 
 function App() {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng); // เปลี่ยนภาษา
+    i18n.changeLanguage(lng);
   };
 
   useEffect(() => {
     Aos.init({
-      duration: 1000, // ตั้งค่าความเร็วแอนิเมชัน
-      once: true, // ให้เล่นแอนิเมชันเพียงครั้งเดียว
+      duration: 1000,
+      once: true,
     });
   }, []);
 
   return (
     <Router>
+      <ScrollController />
       <Routes>
-        {/* เส้นทางหน้าหลัก */}
+        {/* ✅ หน้าแรก */}
         <Route
           path="/"
           element={
             <div>
-              <div>
-                <NavigationBar />
-              </div>
-              {/* วิดีโอพื้นหลัง */}
-              <div className="w-full h-screen transition-all">
-                <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
-                <video
-                  className="hidden md:flex w-full h-full object-cover"
-                  src={videoBG}
-                  autoPlay
-                  loop
-                  muted
-                  playsinline
-                ></video> 
-                <div className="flex md:hidden w-full h-screen relative">
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=u5CMtlBEx-I"
-                    className="absolute top-0 left-0 object-cover"
-                    playing={true}
-                    loop={true}
-                    muted={true}
-                    width="100%"
-                    height="100%"
-                    style={{
-                      objectFit: "cover",
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
-                </div>
-                <div className="text-center absolute h-full w-full flex top-0 flex-col justify-center items-center text-white">
+              <NavigationBar />
+
+              {/* Gradient Background */}
+              <div className="w-full h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-yellow-400 flex items-center justify-center text-white relative">
+                <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
+
+                {/* ข้อความกลางจอ */}
+                <div className="relative text-center">
                   <p className="text-3xl opacity-70 mb-2">{t("welcome")}</p>
                   <p className="text-4xl md:text-5xl drop-shadow-md font-medium">
                     Mahasarakham University
                   </p>
-                </div>
-                <div className="text-center absolute w-full flex top-24 h-screen flex-col justify-center items-center text-white">
-                  <p className="text-3xl opacity-90 text-yellow-300 drop-shadow-md">
+                  <p className="text-2xl text-yellow-200 mt-4 drop-shadow-md">
                     <Welcome />
                   </p>
-                </div>
-              </div>
-              {/* ปุ่มเลื่อนไปยัง Section */}
-              <div className="text-center absolute w-full flex top-56 h-screen flex-col justify-center items-center text-white">
-                <Link to="section1" smooth={true} duration={1000}>
-                  <button className="rounded border-2 px-5 py-2 animate-bounce">
-                    {t("letstour")}
-                  </button>
-                </Link>
-              </div>
 
-              {/* Section ImageSlider */}
-              <div data-aos="fade-right">
-                <ImageSlider />
+                  {/* ✅ ปุ่มไปหน้า /places */}
+                  <div className="mt-8">
+                    <a href="/places">
+                      <button className="rounded border-2 px-5 py-2 animate-bounce bg-black/30 hover:bg-black/50 transition">
+                        {t("letstour")}
+                      </button>
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Footer */}
               <div data-aos="fade-up">
                 <Footer />
               </div>
+
+              {/* 3D Scene */}
               <div
                 data-aos="fade-up"
                 className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed "
@@ -109,8 +96,9 @@ function App() {
           }
         />
 
-        {/* เส้นทางสำหรับหน้า Student */}
+        {/* ✅ เส้นทางอื่น */}
         <Route path="/student" element={<Student />} />
+        <Route path="/places" element= {<Places />} />
       </Routes>
     </Router>
   );

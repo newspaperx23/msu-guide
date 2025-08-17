@@ -18,9 +18,9 @@ const AnimatedModel = () => {
   });
 
   const { positionX } = useSpring({
-    from: { positionX: 5 }, // เริ่มต้นจากด้านขวา (ค่า X บวก)
-    to: { positionX: 0 }, // เลื่อนไปที่ตำแหน่งศูนย์กลาง
-    config: { duration: 1000 }, // ความเร็วในการเคลื่อนที่
+    from: { positionX: 5 },
+    to: { positionX: 0 },
+    config: { duration: 1000 },
   });
 
   return (
@@ -34,65 +34,44 @@ const AnimatedModel = () => {
 };
 
 const My3DScene = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // แสดงหน้าทั้งหมดเมื่อ scrollY > 0
-      if (window.scrollY > 0) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng); // เปลี่ยนภาษา
+    i18n.changeLanguage(lng);
   };
 
   return (
     <div className="relative">
-      {isVisible && (
-        <div className="fixed inset-0 bg-white z-10 flex items-center justify-center">
-          <div className="text-center">
-            <div
-              data-aos="fade-left"
-              className="text-white shadown-sm text-xl font-light p-3 rounded mb-4 absolute bg-black/70 backdrop-blur-sm right-20 w-[150px] bottom-8้"
-            >
-              <Typewriter
-                options={{
-                  strings: [t("welcomemsu"), t("wheretogo")],
-                  autoStart: true,
-                  loop: true,
-                  delay: 100,
-                }}
+      <div className="fixed inset-0 bg-white z-10 flex items-center justify-center">
+        <div className="text-center">
+          <div
+            data-aos="fade-left"
+            className="text-white shadown-sm text-xl font-light p-3 rounded mb-4 absolute bg-black/70 backdrop-blur-sm right-20 w-[150px] bottom-8้"
+          >
+            <Typewriter
+              options={{
+                strings: [t("welcomemsu"), t("wheretogo")],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+              }}
+            />
+          </div>
+          <div className="w-[250px] h-[250px] md:w-[500px] md:h-[500px]">
+            <Canvas camera={{ position: [2, 2, 5], fov: 50 }}>
+              <ambientLight intensity={0.8} />
+              <directionalLight position={[2, 2, 4]} />
+              <OrbitControls
+                enableZoom={false}
+                target={[0, 1, 0]}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2}
               />
-            </div>
-            <div className="w-[250px] h-[250px] md:w-[500px] md:h-[500px]">
-              <Canvas camera={{ position: [2, 2, 5], fov: 50 }}>
-                <ambientLight intensity={0.8} />
-                <directionalLight position={[2, 2, 4]} />
-                <OrbitControls
-                  enableZoom={false}
-                  target={[0, 1, 0]} // จุดที่กล้องจะโฟกัส
-                  minPolarAngle={Math.PI / 4} // มุมต่ำสุด
-                  maxPolarAngle={Math.PI / 2} // มุมสูงสุด
-                />
-                <AnimatedModel />
-              </Canvas>
-            </div>
+              <AnimatedModel />
+            </Canvas>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

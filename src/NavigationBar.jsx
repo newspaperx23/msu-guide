@@ -32,10 +32,11 @@ const NavigationBar = () => {
   return (
     <div className="rounded-2xl h-12 fixed top-4 left-1/2 transform -translate-x-1/2 justify-center items-center bg-black/40 backdrop-blur-md w-[90%] md:w-[70%] z-20">
       <div className="flex justify-center items-center w-full h-full gap-5">
-        <a href="#" className="text-white text-lg font-thin hover:scale-110 transition-all">
+        <a href="/" className="text-white text-lg font-thin hover:scale-110 transition-all">
           MSU
         </a>
-        <a href="#" className="text-white text-lg font-thin hover:scale-110 transition-all">
+        {/* แก้ไข: เปลี่ยน href ให้ไปยังหน้า Places */}
+        <a href="/places" className="text-white text-lg font-thin hover:scale-110 transition-all">
           Places
         </a>
         <a href="#" className="text-white text-lg font-thin hover:scale-110 transition-all">

@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.no-scroll {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
 /* ทำให้สไลด์ที่ข้างๆ มีขนาดเล็กลง */
 .swiper-slide-next,
 .swiper-slide-prev {
