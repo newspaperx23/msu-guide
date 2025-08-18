@@ -38,7 +38,7 @@ export default function My3DScene() {
     <div className="fixed bottom-[-15%] right-[-5%] z-10">
       <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
         {/* กล่องข้อความทับมุมซ้ายบนของโมเดล */}
-        <div className="absolute top-[-25%] left-[-25%] text-white shadow-sm text-sm md:text-base font-light p-2 md:p-3 rounded bg-black/70 backdrop-blur-sm w-[180px] md:w-[220px]">
+        <div className="absolute top-[40%] left-[-30%] text-white shadow-sm text-sm md:text-base font-light p-2 md:p-3 rounded bg-black/70 backdrop-blur-sm w-[180px] md:w-[220px] z-[9999]">
           <Typewriter
             options={{
               strings: messages,
