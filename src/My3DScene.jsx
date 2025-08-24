@@ -1,6 +1,13 @@
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Html, AdaptiveDpr, AdaptiveEvents, Preload } from "@react-three/drei";
+import {
+  OrbitControls,
+  useGLTF,
+  Html,
+  AdaptiveDpr,
+  AdaptiveEvents,
+  Preload,
+} from "@react-three/drei";
 import { useTranslation } from "react-i18next";
 import Typewriter from "typewriter-effect";
 import model3d from "./assets/msuguiderv2.glb";
@@ -22,7 +29,9 @@ function AnimatedModel() {
     ref.current.rotation.y = sway;
   });
 
-  return <primitive ref={ref} object={cloned} scale={1.35} position={[0, -1.5, 0]} />;
+  return (
+    <primitive ref={ref} object={cloned} scale={1.35} position={[0, -1.5, 0]} />
+  );
 }
 
 useGLTF.preload(model3d);
@@ -35,7 +44,7 @@ export default function My3DScene() {
       : [t("welcome"), t("welcome2")];
 
   return (
-    <div className="fixed bottom-[-15%] right-[-5%] z-10">
+    <div className="fixed bottom-[-10%] right-[0%] z-10">
       <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
         {/* กล่องข้อความทับมุมซ้ายบนของโมเดล */}
         <div className="absolute top-[40%] left-[-30%] text-white shadow-sm text-sm md:text-base font-light p-2 md:p-3 rounded bg-black/70 backdrop-blur-sm w-[180px] md:w-[220px] z-[9999]">

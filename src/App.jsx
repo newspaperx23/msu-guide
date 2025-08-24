@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import "./index.css";
 import "aos/dist/aos.css";
 import Aos from "aos";
@@ -11,6 +17,7 @@ import My3DScene from "./My3DScene.jsx";
 import { useTranslation } from "react-i18next";
 import "./i18n.js";
 import NavigationBar from "./NavigationBar.jsx";
+import bgImage from "./assets/homepage.jpg";
 
 // ✅ Scroll Controller (ล็อก scroll หน้าแรก)
 function ScrollController() {
@@ -56,7 +63,14 @@ function App() {
               <NavigationBar />
 
               {/* Gradient Background */}
-              <div className="w-full h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-yellow-400 flex items-center justify-center text-white relative">
+              <div
+                className="w-full h-screen flex items-center justify-center text-white relative"
+                style={{
+                  backgroundImage: `url(${bgImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center 75%",
+                }}
+              >
                 <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
 
                 {/* ข้อความกลางจอ */}
@@ -86,9 +100,7 @@ function App() {
               </div>
 
               {/* 3D Scene */}
-              <div
-                className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed"
-              >
+              <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed">
                 <My3DScene />
               </div>
             </div>
@@ -97,7 +109,7 @@ function App() {
 
         {/* ✅ เส้นทางอื่น */}
         <Route path="/student" element={<Student />} />
-        <Route path="/places" element= {<Places />} />
+        <Route path="/places" element={<Places />} />
       </Routes>
     </Router>
   );

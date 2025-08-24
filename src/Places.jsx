@@ -3,6 +3,19 @@ import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, User
 import NavigationBar from './NavigationBar';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from "react-i18next";
+import place1a from './assets/place1-1.jpg';
+import place1b from './assets/place1-2.jpg';
+import place1c from './assets/place1-3.jpg';
+import place1d from './assets/place1-4.jpg';
+import place1e from './assets/place1-5.jpg';
+import place2a from './assets/place2-1.jpg';
+import place2b from './assets/place2-2.jpg';
+import place2c from './assets/place2-3.jpg';
+import place2d from './assets/place2-4.jpg';
+import place3a from './assets/place3-1.jpg';
+import place3b from './assets/place3-2.jpg';
+import place3c from './assets/place3-3.jpg';
+import place3d from './assets/place3-4.jpg';
 
 
 const Places = () => {
@@ -19,7 +32,7 @@ const Places = () => {
       description: "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
       descriptionEn: "Learning resource center with books, journals, and online databases",
       detailedDescription: "สำนักวิทยบริการเป็นหัวใจสำคัญของการเรียนรู้ในมหาวิทยาลัย มีหนังสือกว่า 50,000 เล่ม วารสารทั้งในและต่างประเทศ ห้องศึกษาค้นคว้าส่วนบุคคล ห้องสัมมนากลุ่มย่อย และระบบฐานข้อมูลออนไลน์ที่ทันสมัย พร้อมบรรณารักษ์ผู้เชี่ยวชาญให้คำปรึกษา",
-      image: "/api/placeholder/400/250",
+      image: place1a,
       category: "Academic",
       openHours: "08:00 - 20:00",
       location: "อาคาร A ชั้น 1-3",
@@ -29,10 +42,11 @@ const Places = () => {
       highlights: ["ห้องสมุด", "ห้องศึกษาค้นคว้า", "คอมพิวเตอร์", "Wi-Fi ฟรี"],
       facilities: ["Wi-Fi ฟรี", "ปรับอากาศ", "ที่จอดรถ", "เข้าถึงได้สำหรับผู้พิการ"],
       images: [
-        { url: "/api/placeholder/600/400", caption: "ห้องสมุดหลัก", type: "interior" },
-        { url: "/api/placeholder/600/400", caption: "ห้องศึกษาค้นคว้า", type: "study_room" },
-        { url: "/api/placeholder/600/400", caption: "มุมอ่านหนังสือ", type: "reading_area" },
-        { url: "/api/placeholder/600/400", caption: "ห้องคอมพิวเตอร์", type: "computer_lab" }
+        { url: place1a, caption: "ห้องสมุดหลัก", type: "interior" },
+        { url: place1b, caption: "ห้องศึกษาค้นคว้า", type: "study_room" },
+        { url: place1c, caption: "มุมอ่านหนังสือ", type: "reading_area" },
+        { url: place1d, caption: "ห้องคอมพิวเตอร์", type: "computer_lab" },
+        { url: place1e, caption: "คาราโอเกะ", type: "lounge" },
       ],
       virtualTour: "/virtual-tour/library",
       capacity: "500 คน",
@@ -44,8 +58,8 @@ const Places = () => {
       nameEn: "Registrar Office",
       description: "บริการด้านทะเบียนนิสิต การลงทะเบียน และเอกสารทางการศึกษา",
       descriptionEn: "Student registration services and academic documents",
-      detailedDescription: "กองทะเบียนและประมวลผลให้บริการด้านการลงทะเบียนเรียน การออกเอกสารทางการศึกษา การจัดสอบ และการประมวลผลการเรียน พร้อมระบบออนไลน์ที่สะดวกรวดเร็ว มีเจ้าหนาที่ผู้เชี่ยวชาญให้คำปรึกษาตลอดเวลาทำการ",
-      image: "/api/placeholder/400/250",
+      detailedDescription: "กองทะเบียนและประมวลผลให้บริการด้านการลงทะเบียนเรียน การออกเอกสารทางการศึกษา การจัดสอบ และการประมวลผลการเรียน พร้อมระบบออนไลน์ที่สะดวกรวดเร็ว มีเจ้าหน้าที่ผู้เชี่ยวชาญให้คำปรึกษาตลอดเวลาทำการ",
+      image: place2a,
       category: "Administrative",
       openHours: "08:30 - 16:30",
       location: "อาคารอำนวยการ ชั้น 1",
@@ -55,10 +69,10 @@ const Places = () => {
       highlights: ["ลงทะเบียนเรียน", "ใบรับรองการศึกษา", "ใบแสดงผลการเรียน", "เปลี่ยนแปลงข้อมูล"],
       facilities: ["ระบบคิวออนไลน์", "ปรับอากาศ", "ที่นั่งรอ", "เข้าถึงได้สำหรับผู้พิการ"],
       images: [
-        { url: "/api/placeholder/600/400", caption: "จุดให้บริการหลัก", type: "service_counter" },
-        { url: "/api/placeholder/600/400", caption: "ห้องรอรับบริการ", type: "waiting_area" },
-        { url: "/api/placeholder/600/400", caption: "จุดยื่นเอกสาร", type: "document_submission" },
-        { url: "/api/placeholder/600/400", caption: "ระบบคิวอิเล็กทรอนิกส์", type: "queue_system" }
+        { url: place2a, caption: "ป้ายหน้าตึก", type: "entrance1" },
+        { url: place2b, caption: "ทางเดินเข้า", type: "entrance2" },
+        { url: place2d, caption: "ห้องรอรับบริการ", type: "waiting_area" },
+        { url: place2c, caption: "จุดยื่นเอกสาร", type: "document_submission" },
       ],
       virtualTour: "/virtual-tour/registrar",
       capacity: "100 คน",
@@ -66,6 +80,32 @@ const Places = () => {
     },
     {
       id: 3,
+      name: "กองกิจการนิสิต",
+      nameEn: "Student Affairs Division",
+      description: "บริการด้านกิจกรรมนิสิต ทุนการศึกษา และสวัสดิการนิสิต",
+      descriptionEn: "Student activities, scholarships, and student welfare services",
+      detailedDescription: "กองกิจการนิสิตเป็นศูนย์กลางการดูแลนิสิตนอกห้องเรียน จัดกิจกรรมพัฒนาทักษะชีวิต ให้ทุนการศึกษา บริการสวัสดิการ คำปรึกษาส่วนบุคคล และสนับสนุนชมรมนิสิต มีที่ปรึกษาผู้เชี่ยวชาญพร้อมช่วยเหลือนิสิตในทุกด้าน",
+      image: place3b,
+      category: "Student Services",
+      openHours: "08:30 - 16:30",
+      location: "อาคารกิจการนิสิต ชั้น 1",
+      coordinates: { lat: 17.3638, lng: 102.8188 },
+      phone: "042-123-459",
+      email: "studentaffairs@msu.ac.th",
+      highlights: ["ทุนการศึกษา", "กิจกรรมนิสิต", "สวัสดิการ", "คำปรึกษา"],
+      facilities: ["ห้องให้คำปรึกษา", "ห้องประชุมชมรม", "พื้นที่จัดกิจกรรม", "Wi-Fi ฟรี"],
+      images: [
+        { url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" },
+        { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" },
+        { url: place3c, caption: "ห้องประชุมชมรม", type: "club_meeting_room" },
+        { url: place3d, caption: "พื้นที่จัดกิจกรรม", type: "activity_space" }
+      ],
+      virtualTour: "/virtual-tour/studentaffairs",
+      capacity: "150 คน",
+      services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"]
+    },
+      {
+      id: 4,
       name: "สำนักศึกษาทั่วไป",
       nameEn: "General Education Center",
       description: "หน่วยงานที่รับผิดชอบการจัดการเรียนการสอนวิชาศึกษาทั่วไป",
@@ -89,32 +129,6 @@ const Places = () => {
       virtualTour: "/virtual-tour/gened",
       capacity: "300 คน",
       services: ["การเรียนการสอน", "ปรึกษาวิชาเรียน", "จองห้องเรียน", "กิจกรรมพิเศษ", "สัมมนาวิชาการ"]
-    },
-    {
-      id: 4,
-      name: "กองกิจการนิสิต",
-      nameEn: "Student Affairs Division",
-      description: "บริการด้านกิจกรรมนิสิต ทุนการศึกษา และสวัสดิการนิสิต",
-      descriptionEn: "Student activities, scholarships, and student welfare services",
-      detailedDescription: "กองกิจการนิสิตเป็นศูนย์กลางการดูแลนิสิตนอกห้องเรียน จัดกิจกรรมพัฒนาทักษะชีวิต ให้ทุนการศึกษา บริการสวัสดิการ คำปรึกษาส่วนบุคคล และสนับสนุนชมรมนิสิต มีที่ปรึกษาผู้เชี่ยวชาญพร้อมช่วยเหลือนิสิตในทุกด้าน",
-      image: "/api/placeholder/400/250",
-      category: "Student Services",
-      openHours: "08:30 - 16:30",
-      location: "อาคารกิจการนิสิต ชั้น 1",
-      coordinates: { lat: 17.3638, lng: 102.8188 },
-      phone: "042-123-459",
-      email: "studentaffairs@msu.ac.th",
-      highlights: ["ทุนการศึกษา", "กิจกรรมนิสิต", "สวัสดิการ", "คำปรึกษา"],
-      facilities: ["ห้องให้คำปรึกษา", "ห้องประชุมชมรม", "พื้นที่จัดกิจกรรม", "Wi-Fi ฟรี"],
-      images: [
-        { url: "/api/placeholder/600/400", caption: "จุดให้บริการหลัก", type: "service_area" },
-        { url: "/api/placeholder/600/400", caption: "ห้องให้คำปรึกษา", type: "counseling_room" },
-        { url: "/api/placeholder/600/400", caption: "ห้องประชุมชมรม", type: "club_meeting_room" },
-        { url: "/api/placeholder/600/400", caption: "พื้นที่จัดกิจกรรม", type: "activity_space" }
-      ],
-      virtualTour: "/virtual-tour/studentaffairs",
-      capacity: "150 คน",
-      services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"]
     },
     {
       id: 5,
@@ -235,6 +249,12 @@ const Places = () => {
             >
               {/* Image */}
               <div className="relative h-48 bg-gradient-to-r from-blue-400 to-purple-500">
+                {/* เพิ่มรูปปก */}
+                <img
+                  src={place.image}
+                  alt={place.name}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
                 <div className="absolute top-4 left-4">
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(place.category)}`}>
