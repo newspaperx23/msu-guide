@@ -22,7 +22,27 @@ const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
-  const { t } = useTranslation();
+  const [currentAudioPlace, setCurrentAudioPlace] = useState(null); // เพิ่มสำหรับ audio control
+  const { t, i18n } = useTranslation();
+
+  // Audio transcript data
+  const audioTranscripts = {
+    1: {
+      th: "สวัสดีครับทุกคน ตอนนี้เรากำลังอยู่ที่ **สำนักคอมพิวเตอร์ มหาวิทยาลัยมหาสารคาม** ที่นี่ถือเป็นศูนย์กลางด้านเทคโนโลยีสารสนเทศ และยังเป็นพื้นที่การเรียนรู้สำคัญของนิสิตทุกคณะ\nภายในอาคารมีทั้ง **ห้องสมุดหลัก** ที่เต็มไปด้วยหนังสือและวารสารมากมาย, **ห้องศึกษาค้นคว้า**, **ห้องคอมพิวเตอร์** พร้อมอินเทอร์เน็ตความเร็วสูง และ **มุมอ่านหนังสือ** ที่บรรยากาศผ่อนคลาย\nที่พิเศษสุด ๆ คือมี **ห้องคาราโอเกะ** ไว้สำหรับร้องเพลงกับเพื่อน ๆ หรือผ่อนคลายหลังจากเรียนมาทั้งวัน ที่นี่สามารถรองรับนิสิตได้มากกว่า 500 คนต่อวัน ถือเป็นทั้งแหล่งความรู้และพื้นที่ผ่อนคลายครบวงจรเลยครับ",
+      en: "Hi everyone! Welcome to the **Computer Center at Mahasarakham University**. This is the hub of information technology and one of the most important learning spaces for all students.\nInside, you'll find the **main library**, **study rooms**, a **computer lab** with high-speed internet, and cozy **reading corners**.\nBut here's something unique — the Computer Center also has a **karaoke room**! It's the perfect place to sing with friends and unwind after classes. With a capacity of over 500 students daily, this place is truly both a learning hub and a fun spot to recharge.",
+      zh: "大家好！欢迎来到 **玛哈沙拉堪大学的计算机中心**。 这里不仅是信息技术的核心，也是学生们的重要学习空间。\n里面有 **主图书馆**、**自习室**、高速网络的 **计算机实验室**，还有舒适的 **阅读角落**。\n更特别的是，这里竟然还有 **卡拉OK室**！学习之余，可以和朋友一起唱歌放松。每天可容纳超过 500 名学生，是一个结合学习与娱乐的好地方。"
+    },
+    2: {
+      th: "ต่อไปคือ **งานทะเบียนและประมวลผล** หรือที่เรามักเรียกกันสั้น ๆ ว่า \"ทะเบียนกลาง\" ครับ ที่นี่เปรียบเสมือนศูนย์กลางด้านเอกสารและข้อมูลการศึกษา ไม่ว่าน้อง ๆ จะลงทะเบียนเรียน ขอใบรับรอง หรือทำเรื่องสำเร็จการศึกษา ก็ต้องมาที่นี่\nภายในมี **ห้องรอรับบริการที่สะดวกสบาย**, **จุดยื่นเอกสารที่เป็นระเบียบ** และเจ้าหน้าที่ที่พร้อมให้คำแนะนำเสมอ ถึงแม้จะเป็นงานด้านเอกสาร แต่บรรยากาศไม่ตึงเครียดเลยครับ",
+      en: "Next up is the **Registrar Office**, often called the \"central registration.\" This is where all academic records and documents are managed. Whether you need to register for classes, request transcripts, or process graduation documents, this is the place.\nThe office features a **comfortable waiting area**, **organized service counters**, and helpful staff who are always ready to assist.",
+      zh: "接下来是 **教务注册办公室**。 这里是学生学籍与文件的管理中心。不论是选课、申请成绩单，还是办理毕业手续，都需要到这里来。\n办公室里有 **舒适的等候区**、**整齐的服务窗口**，还有亲切的工作人员为大家提供帮助。"
+    },
+    3: {
+      th: "มาถึงที่ **กองกิจการนิสิต** กันบ้างครับ ที่นี่คือพื้นที่ดูแลชีวิตความเป็นอยู่และกิจกรรมนอกห้องเรียนของนิสิต\nมีทั้ง **ห้องให้คำปรึกษา** สำหรับเรื่องเรียนหรือชีวิตส่วนตัว, **ห้องประชุมชมรม**, และ **พื้นที่จัดกิจกรรมต่าง ๆ** ที่นี่เหมือนบ้านหลังที่สองของนิสิต ที่ทุกคนสามารถมาเจอเพื่อน ทำกิจกรรม และพัฒนาตัวเองไปพร้อมกัน",
+      en: "Now we're at the **Student Affairs Office**. This place supports student life beyond academics. There are **counseling rooms**, **club meeting rooms**, and **spaces for activities and events**.\nIt feels like a second home where students can grow, connect with friends, and explore their passions.",
+      zh: "现在我们来到 **学生事务处**。 这里主要负责学生的课外生活与活动。设有 **咨询室**、**社团会议室**，以及 **活动空间**。\n这里就像学生的第二个家，大家可以在这里交朋友、办活动、同时提升自己。"
+    }
+  };
 
   const recommendedPlaces = [
     {
@@ -50,7 +70,13 @@ const Places = () => {
       ],
       virtualTour: "/virtual-tour/library",
       capacity: "500 คน",
-      services: ["ยืม-คืนหนังสือ", "สืบค้นฐานข้อมูล", "ถ่ายเอกสาร", "พิมพ์เอกสาร", "ห้องสัมมนา"]
+      services: ["ยืม-คืนหนังสือ", "สืบค้นฐานข้อมูล", "ถ่ายเอกสาร", "พิมพ์เอกสาร", "ห้องสัมมนา"],
+      // เพิ่ม audio data
+      audioUrls: {
+        th: "/assets/audio/th/place1-audio.wav",
+        en: "/assets/audio/en/place1-audio.wav",
+        zh: "/assets/audio/zh/place1-audio.wav"
+      }
     },
     {
       id: 2,
@@ -76,7 +102,13 @@ const Places = () => {
       ],
       virtualTour: "/virtual-tour/registrar",
       capacity: "100 คน",
-      services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ชำระเงิน", "ปรึกษาการเรียน"]
+      services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ชำระเงิน", "ปรึกษาการเรียน"],
+      // เพิ่ม audio data
+      audioUrls: {
+        th: "/assets/audio/th/place2-audio.wav",
+        en: "/assets/audio/en/place2-audio.wav",
+        zh: "/assets/audio/zh/place2-audio.wav"
+      }
     },
     {
       id: 3,
@@ -102,7 +134,13 @@ const Places = () => {
       ],
       virtualTour: "/virtual-tour/studentaffairs",
       capacity: "150 คน",
-      services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"]
+      services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"],
+      // เพิ่ม audio data
+      audioUrls: {
+        th: "/assets/audio/th/place3-audio.wav",
+        en: "/assets/audio/en/place3-audio.wav",
+        zh: "/assets/audio/zh/place3-audio.wav"
+      }
     },
       {
       id: 4,
@@ -220,6 +258,20 @@ const Places = () => {
     return colors[category] || 'bg-gray-100 text-gray-800';
   };
 
+  // Handle place selection and start audio
+  const handlePlaceSelect = (place) => {
+    setSelectedPlace(place);
+    // เริ่มเล่นเสียงทันทีเมื่อเลือกสถานที่
+    if (place.audioUrls) {
+      setCurrentAudioPlace(place);
+    }
+  };
+
+  // Handle audio state changes from 3D Scene
+  const handleAudioStateChange = (audioPlace) => {
+    setCurrentAudioPlace(audioPlace);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-20">
       {/* Header Section */}
@@ -235,17 +287,23 @@ const Places = () => {
         </div>
 
         {/* Places Grid */}
-        <div
-                        className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[999]"
-                      >
-                        <My3DScene />
-                      </div>
+        <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[999]">
+          <My3DScene 
+            selectedPlace={currentAudioPlace}
+            audioTranscripts={audioTranscripts}
+            onAudioStateChange={handleAudioStateChange}
+            currentLanguage={i18n.language}
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recommendedPlaces.map((place) => (
             <div
               key={place.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer"
-              onClick={() => setSelectedPlace(place)}
+              className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer ${
+                currentAudioPlace?.id === place.id ? 'ring-2 ring-blue-500 bg-blue-50' : ''
+              }`}
+              onClick={() => handlePlaceSelect(place)}
             >
               {/* Image */}
               <div className="relative h-48 bg-gradient-to-r from-blue-400 to-purple-500">
@@ -266,6 +324,15 @@ const Places = () => {
                     <ArrowRight className="w-5 h-5 text-gray-700 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
+                {/* Audio indicator */}
+                {currentAudioPlace?.id === place.id && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center gap-1">
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                      กำลังเล่น
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -308,6 +375,16 @@ const Places = () => {
                     </span>
                   )}
                 </div>
+
+                {/* Audio availability indicator */}
+                {place.audioUrls && (
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <div className="flex items-center text-xs text-blue-600">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                      <span>มีเสียงแนะนำสถานที่</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
