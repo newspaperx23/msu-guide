@@ -22,9 +22,8 @@ function AnimatedModel() {
   useFrame((state) => {
     if (!ref.current) return;
     const t = state.clock.getElapsedTime();
-    // โมเดลเลื่อนลง 150px (ประมาณ 1.5 หน่วยใน 3D)
     const baseY = -1.5;
-    const bob = Math.sin(t * 1.2) * 0.1; // ขยับขึ้นลงตลอดเวลา
+    const bob = Math.sin(t * 1.2) * 0.1;
     const sway = Math.sin(t * 0.5) * 0.05;
     ref.current.position.y = baseY + bob;
     ref.current.rotation.y = sway;
@@ -35,100 +34,126 @@ function AnimatedModel() {
   );
 }
 
-// Audio Controller Component
-function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, currentLanguage }) {
+// Audio Controller Component - Simplified
+function AudioController({ selectedPlace, currentLanguage, onAudioStateChange }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState(null);
-  const [typewriterKey, setTypewriterKey] = useState(0); // Force re-render typewriter
   const [audioProgress, setAudioProgress] = useState(0);
-  const typewriterRef = useRef(null);
 
-  // Audio controls
+  // Debug logging
+  console.log('AudioController render:', { 
+    selectedPlace: selectedPlace?.id, 
+    currentLanguage, 
+    hasAudio: !!audio,
+    isPlaying 
+  });
+
+  const cleanupAudio = () => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      setAudio(null);
+      setIsPlaying(false);
+      setAudioProgress(0);
+      setError(null);
+      setIsLoading(false);
+    }
+  };
+
   const playAudio = async () => {
-    if (!selectedPlace?.audioUrls || !currentLanguage) return;
+    if (!selectedPlace?.audioUrls) {
+      console.log('No audio URLs available');
+      return;
+    }
 
     try {
       setIsLoading(true);
       setError(null);
       
-      // หยุดเสียงเก่าก่อน (ถ้ามี)
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
+      // Clean up previous audio
+      cleanupAudio();
 
-      // สร้าง audio object ใหม่
-      const audioUrl = selectedPlace.audioUrls[currentLanguage];
-      if (!audioUrl) {
-        // fallback to other languages
-        const fallbackUrl = selectedPlace.audioUrls.th || selectedPlace.audioUrls.en || selectedPlace.audioUrls.zh;
-        if (!fallbackUrl) {
-          setError('ไม่พบไฟล์เสียงสำหรับภาษานี้');
-          return;
-        }
-      }
-
-      const newAudio = new Audio(audioUrl || selectedPlace.audioUrls.th);
+      const audioUrl = selectedPlace.audioUrls[currentLanguage] || 
+                      selectedPlace.audioUrls.th || 
+                      selectedPlace.audioUrls.en;
       
-      // Audio event listeners
-      newAudio.addEventListener('loadstart', () => {
-        setIsLoading(true);
-      });
-
-      newAudio.addEventListener('canplay', () => {
+      console.log('Attempting to play audio:', audioUrl);
+      
+      if (!audioUrl) {
+        setError('ไม่มีไฟล์เสียงสำหรับภาษานี้');
         setIsLoading(false);
-      });
+        return;
+      }
 
-      newAudio.addEventListener('play', () => {
-        setIsPlaying(true);
-      });
-
-      newAudio.addEventListener('pause', () => {
-        setIsPlaying(false);
-      });
-
-      newAudio.addEventListener('ended', () => {
+      const newAudio = new Audio(audioUrl);
+      
+      // Set up event listeners
+      const handleCanPlay = () => setIsLoading(false);
+      const handlePlay = () => setIsPlaying(true);
+      const handlePause = () => setIsPlaying(false);
+      const handleEnded = () => {
         setIsPlaying(false);
         setAudioProgress(0);
-      });
-
-      newAudio.addEventListener('timeupdate', () => {
+      };
+      const handleTimeUpdate = () => {
         if (newAudio.duration) {
           setAudioProgress((newAudio.currentTime / newAudio.duration) * 100);
         }
-      });
-
-      newAudio.addEventListener('error', (e) => {
-        setError('ไม่สามารถโหลดไฟล์เสียงได้');
+      };
+      const handleError = () => {
+        setError('ไม่สามารถเล่นไฟล์เสียงได้');
         setIsLoading(false);
         setIsPlaying(false);
-      });
+      };
+
+      newAudio.addEventListener('canplay', handleCanPlay);
+      newAudio.addEventListener('play', handlePlay);
+      newAudio.addEventListener('pause', handlePause);
+      newAudio.addEventListener('ended', handleEnded);
+      newAudio.addEventListener('timeupdate', handleTimeUpdate);
+      newAudio.addEventListener('error', handleError);
 
       setAudio(newAudio);
       
-      // เล่นเสียง
-      await newAudio.play();
-      
-      // Force restart typewriter
-      setTypewriterKey(prev => prev + 1);
+      // Try to play
+      try {
+        await newAudio.play();
+        console.log('Audio playing successfully');
+      } catch (playError) {
+        console.log('Autoplay blocked, user needs to interact:', playError);
+        setError('กดปุ่มเล่นเพื่อฟังเสียงแนะนำ');
+        setIsLoading(false);
+      }
 
     } catch (error) {
-      console.error('Audio play error:', error);
-      setError('ไม่สามารถเล่นเสียงได้');
+      console.error('Audio setup error:', error);
+      setError('เกิดข้อผิดพลาดในการเล่นเสียง');
       setIsLoading(false);
     }
   };
 
-  const pauseAudio = () => {
-    if (audio) {
+  const handlePlayPause = async () => {
+    if (!audio) {
+      await playAudio();
+      return;
+    }
+
+    if (isPlaying) {
       audio.pause();
+    } else {
+      try {
+        await audio.play();
+      } catch (error) {
+        console.error('Play error:', error);
+        setError('ไม่สามารถเล่นเสียงได้');
+      }
     }
   };
 
-  const stopAudio = () => {
+  const handleStop = () => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -136,66 +161,72 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
     }
   };
 
-  const toggleMute = () => {
+  const handleReplay = async () => {
+    if (audio) {
+      audio.currentTime = 0;
+      if (!isPlaying) {
+        try {
+          await audio.play();
+        } catch (error) {
+          console.error('Replay error:', error);
+        }
+      }
+    }
+  };
+
+  const handleMute = () => {
     if (audio) {
       audio.muted = !audio.muted;
       setIsMuted(audio.muted);
     }
   };
 
-  const replayAudio = () => {
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play();
-      setTypewriterKey(prev => prev + 1); // Restart typewriter
-    }
-  };
-
-  // Effect สำหรับเปลี่ยนสถานที่
+  // Effect when selectedPlace changes
   useEffect(() => {
-    if (selectedPlace) {
+    console.log('Selected place changed:', selectedPlace?.id);
+    
+    if (selectedPlace?.audioUrls) {
+      // Auto-play attempt (will fail on PC but that's ok)
       playAudio();
     } else {
-      // ถ้าไม่มีสถานที่เลือก ให้หยุดเสียง
-      if (audio) {
-        audio.pause();
-        setIsPlaying(false);
-      }
+      cleanupAudio();
     }
 
-    // Cleanup เมื่อ component unmount
+    // Cleanup on unmount or place change
     return () => {
       if (audio) {
-        audio.pause();
-        audio.removeEventListener('loadstart', () => {});
-        audio.removeEventListener('canplay', () => {});
-        audio.removeEventListener('play', () => {});
-        audio.removeEventListener('pause', () => {});
-        audio.removeEventListener('ended', () => {});
-        audio.removeEventListener('timeupdate', () => {});
-        audio.removeEventListener('error', () => {});
+        cleanupAudio();
       }
     };
-  }, [selectedPlace, currentLanguage]);
+  }, [selectedPlace?.id, currentLanguage]);
 
-  // Effect สำหรับแจ้ง parent component
+  // Notify parent about audio state
   useEffect(() => {
     if (onAudioStateChange) {
       onAudioStateChange(isPlaying ? selectedPlace : null);
     }
   }, [isPlaying, selectedPlace, onAudioStateChange]);
 
-  // ไม่แสดงอะไรถ้าไม่มีสถานที่เลือก
-  if (!selectedPlace) return null;
+  // Force show controller when selectedPlace exists
+  if (!selectedPlace) {
+    console.log('No selected place, hiding controller');
+    return null;
+  }
+
+  console.log('Rendering AudioController for place:', selectedPlace.id);
 
   return (
-    <div className="absolute top-[-5%] left-[-40%] z-[9999]">
-      {/* Audio Controls */}
+    <div className="absolute top-[10%] left-[-40%] z-[9999]">
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 mb-4 border border-white/20">
+        {/* Debug Info */}
+        <div className="text-xs text-gray-500 mb-2">
+          Place: {selectedPlace.name} | Audio: {audio ? 'loaded' : 'none'}
+        </div>
+        
         <div className="flex items-center gap-3">
           {/* Play/Pause Button */}
           <button
-            onClick={isPlaying ? pauseAudio : playAudio}
+            onClick={handlePlayPause}
             disabled={isLoading}
             className={`flex items-center justify-center w-12 h-12 rounded-full transition-all ${
               isLoading
@@ -216,7 +247,7 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
 
           {/* Stop Button */}
           <button
-            onClick={stopAudio}
+            onClick={handleStop}
             disabled={!audio}
             className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-500 hover:bg-gray-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
           >
@@ -225,7 +256,7 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
 
           {/* Replay Button */}
           <button
-            onClick={replayAudio}
+            onClick={handleReplay}
             disabled={!audio}
             className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
           >
@@ -234,9 +265,9 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
 
           {/* Mute Button */}
           <button
-            onClick={toggleMute}
+            onClick={handleMute}
             disabled={!audio}
-            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all disabled:cursor-not-allowed ${
+            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all disabled:bg-gray-300 disabled:cursor-not-allowed ${
               isMuted
                 ? 'bg-red-500 hover:bg-red-600 text-white'
                 : 'bg-gray-500 hover:bg-gray-600 text-white'
@@ -260,17 +291,16 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
 
         {/* Status Text */}
         <div className="mt-2 text-center">
-          {isLoading && (
-            <p className="text-xs text-gray-600">กำลังโหลด...</p>
-          )}
-          {error && (
-            <p className="text-xs text-red-500">{error}</p>
-          )}
+          {isLoading && <p className="text-xs text-gray-600">กำลังโหลด...</p>}
+          {error && <p className="text-xs text-red-500">{error}</p>}
           {isPlaying && !error && !isLoading && (
             <p className="text-xs text-green-600 flex items-center justify-center gap-1">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               กำลังเล่นเสียงแนะนำ
             </p>
+          )}
+          {!isPlaying && !error && !isLoading && audio && (
+            <p className="text-xs text-gray-600">พร้อมเล่นเสียงแนะนำ</p>
           )}
         </div>
 
@@ -291,22 +321,28 @@ useGLTF.preload(model3d);
 
 export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStateChange, currentLanguage }) {
   const { t, i18n } = useTranslation();
+  const [typewriterKey, setTypewriterKey] = useState(0);
   
   // ใช้ภาษาจาก props หรือ fallback ไป i18n
   const activeLanguage = currentLanguage || i18n.language;
   
+  // Debug logging
+  console.log('My3DScene render:', { 
+    selectedPlaceId: selectedPlace?.id, 
+    activeLanguage,
+    typewriterKey 
+  });
+
   // กำหนด messages สำหรับ Typewriter
   const getTypewriterMessages = () => {
     if (selectedPlace && audioTranscripts[selectedPlace.id]) {
-      // ถ้ามีสถานที่เลือกและมี transcript ให้ใช้ transcript นั้น
       const transcript = audioTranscripts[selectedPlace.id][activeLanguage];
       if (transcript) {
-        // แบ่ง transcript เป็นประโยคสั้นๆ (แยกด้วย \n หรือ . )
         return transcript.split('\n').filter(line => line.trim().length > 0);
       }
     }
     
-    // Fallback ไปใช้ messages เดิม
+    // Fallback messages
     return location.pathname === "/places"
       ? [t("placesPage.header"), t("placesPage.description")]
       : [t("welcome"), t("welcome2")];
@@ -314,14 +350,13 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
 
   const messages = getTypewriterMessages();
 
-  // คำนวณความเร็ว Typewriter ให้ sync กับเสียง (ประมาณ)
+  // คำนวณความเร็ว Typewriter
   const getTypewriterSpeed = () => {
     if (selectedPlace && audioTranscripts[selectedPlace.id]) {
       const transcript = audioTranscripts[selectedPlace.id][activeLanguage];
       if (transcript) {
         const totalChars = transcript.length;
-        const estimatedDuration = 45; // ประมาณ 45 วินาที (average)
-        // คำนวณ delay ให้ character ต่อวินาที
+        const estimatedDuration = 45;
         const delay = Math.max(10, Math.min(100, (estimatedDuration * 1000) / totalChars));
         return {
           delay: delay,
@@ -331,7 +366,6 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
       }
     }
     
-    // Default speed สำหรับ messages ปกติ
     return {
       delay: 50,
       deleteSpeed: 30,
@@ -341,30 +375,36 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
 
   const typewriterSpeed = getTypewriterSpeed();
 
+  // Force typewriter update when selectedPlace or language changes
+  useEffect(() => {
+    console.log('Updating typewriter key due to place/language change');
+    setTypewriterKey(prev => prev + 1);
+  }, [selectedPlace?.id, activeLanguage]);
+
   return (
     <div className="fixed bottom-[-10%] right-[0%] z-10">
       <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
-        {/* กล่องข้อความทับมุมซ้ายบนของโมเดล */}
+        {/* กล่องข้อความ - Force re-render with key */}
         <div className="absolute top-[40%] left-[-30%] text-white shadow-sm text-sm md:text-base font-light p-2 md:p-3 rounded bg-black/70 backdrop-blur-sm w-[180px] md:w-[220px] z-[9999]">
-          <Typewriter
-            key={`${selectedPlace?.id || 'default'}-${activeLanguage}-${Date.now()}`}
-            options={{
-              strings: messages,
-              autoStart: true,
-              loop: selectedPlace ? false : true, // ถ้าเล่นเสียงแล้วไม่ loop, ถ้าไม่มีเสียงให้ loop
-              delay: typewriterSpeed.delay,
-              deleteSpeed: typewriterSpeed.deleteSpeed,
-              pauseFor: typewriterSpeed.pauseFor,
-            }}
-          />
+          <div key={typewriterKey}>
+            <Typewriter
+              options={{
+                strings: messages,
+                autoStart: true,
+                loop: selectedPlace ? false : true,
+                delay: typewriterSpeed.delay,
+                deleteSpeed: typewriterSpeed.deleteSpeed,
+                pauseFor: typewriterSpeed.pauseFor,
+              }}
+            />
+          </div>
         </div>
 
         {/* Audio Controller */}
         <AudioController
           selectedPlace={selectedPlace}
-          audioTranscripts={audioTranscripts}
-          onAudioStateChange={onAudioStateChange}
           currentLanguage={activeLanguage}
+          onAudioStateChange={onAudioStateChange}
         />
 
         {/* โมเดล 3D */}

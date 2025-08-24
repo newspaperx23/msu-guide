@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbLanguageKatakana } from "react-icons/tb";
 import { US, CN, TH } from "country-flag-icons/react/3x2";
-import i18n from "./i18n"; // นำเข้า i18n ที่ตั้งค่าไว้
+import { useTranslation } from "react-i18next";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("en"); // state สำหรับเก็บภาษาที่เลือก
+  const { i18n } = useTranslation();
+  const [selectedLang, setSelectedLang] = useState(i18n.language || "th");
+
+  // Sync selectedLang กับ i18n.language เมื่อภาษาเปลี่ยน
+  useEffect(() => {
+    const handleLanguageChanged = (lng) => {
+      setSelectedLang(lng);
+      console.log('Language changed to:', lng); // Debug log
+    };
+
+    i18n.on('languageChanged', handleLanguageChanged);
+
+    // Set initial language
+    setSelectedLang(i18n.language || "th");
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChanged);
+    };
+  }, [i18n]);
 
   const changeLanguage = (lang) => {
+    console.log('Changing language to:', lang); // Debug log
     i18n.changeLanguage(lang); // เปลี่ยนภาษา
     setSelectedLang(lang); // อัพเดทภาษาที่เลือก
     toggleMenu(); // ปิดเมนูหลังจากเปลี่ยนภาษา
@@ -25,7 +44,7 @@ const NavigationBar = () => {
       case "th":
         return <TH title="Thailand" className="size-5" />;
       default:
-        return null;
+        return <TH title="Thailand" className="size-5" />;
     }
   };
 
@@ -35,7 +54,6 @@ const NavigationBar = () => {
         <a href="/" className="text-white text-lg font-thin hover:scale-110 transition-all">
           MSU
         </a>
-        {/* แก้ไข: เปลี่ยน href ให้ไปยังหน้า Places */}
         <a href="/places" className="text-white text-lg font-thin hover:scale-110 transition-all">
           Places
         </a>
@@ -55,9 +73,9 @@ const NavigationBar = () => {
             <TbLanguageKatakana className="text-white size-5" />
           </button>
           {/* แสดงธงข้างปุ่ม */}
-        <div className="">
-          {getFlagIcon()}
-        </div>
+          <div className="ml-2">
+            {getFlagIcon()}
+          </div>
 
           {/* Dropdown Menu */}
           {isMenuOpen && (
@@ -65,21 +83,27 @@ const NavigationBar = () => {
               <ul className="py-0">
                 <li
                   onClick={() => changeLanguage("en")}
-                  className="rounded px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between"
+                  className={`rounded-t px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between ${
+                    selectedLang === "en" ? "bg-gray-200 font-semibold" : ""
+                  }`}
                 >
                   English
                   <US title="United States" className="size-5" />
                 </li>
                 <li
                   onClick={() => changeLanguage("zh")}
-                  className=" px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between"
+                  className={`px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between ${
+                    selectedLang === "zh" ? "bg-gray-200 font-semibold" : ""
+                  }`}
                 >
                   中文
                   <CN title="China" className="size-5" />
                 </li>
                 <li
                   onClick={() => changeLanguage("th")}
-                  className="rounded px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between"
+                  className={`rounded-b px-4 py-2 hover:bg-gray-300 cursor-pointer flex items-center gap-3 justify-between ${
+                    selectedLang === "th" ? "bg-gray-200 font-semibold" : ""
+                  }`}
                 >
                   ไทย
                   <TH title="Thailand" className="size-5" />
@@ -88,8 +112,6 @@ const NavigationBar = () => {
             </div>
           )}
         </div>
-
-        
       </div>
     </div>
   );
