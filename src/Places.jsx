@@ -16,6 +16,17 @@ import place3a from './assets/place3-1.jpg';
 import place3b from './assets/place3-2.jpg';
 import place3c from './assets/place3-3.jpg';
 import place3d from './assets/place3-4.jpg';
+import audio1a from './assets/audio/th/place1-audio.wav';
+import audio1b from './assets/audio/en/place1-audio.wav';
+import audio1c from './assets/audio/zh/place1-audio.wav';
+import audio2a from './assets/audio/th/place2-audio.wav';
+import audio2b from './assets/audio/en/place2-audio.wav';
+import audio2c from './assets/audio/zh/place2-audio.wav';
+import audio3a from './assets/audio/th/place3-audio.wav';
+import audio3b from './assets/audio/en/place3-audio.wav';
+import audio3c from './assets/audio/zh/place3-audio.wav';
+import { a } from '@react-spring/three';
+
 
 
 const Places = () => {
@@ -73,9 +84,9 @@ const Places = () => {
       services: ["ยืม-คืนหนังสือ", "สืบค้นฐานข้อมูล", "ถ่ายเอกสาร", "พิมพ์เอกสาร", "ห้องสัมมนา"],
       // เพิ่ม audio data
       audioUrls: {
-        th: "/assets/audio/th/place1-audio.wav",
-        en: "/assets/audio/en/place1-audio.wav",
-        zh: "/assets/audio/zh/place1-audio.wav"
+        th: audio1a,
+        en: audio1b,
+        zh: audio1c,
       }
     },
     {
@@ -105,9 +116,9 @@ const Places = () => {
       services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ชำระเงิน", "ปรึกษาการเรียน"],
       // เพิ่ม audio data
       audioUrls: {
-        th: "/assets/audio/th/place2-audio.wav",
-        en: "/assets/audio/en/place2-audio.wav",
-        zh: "/assets/audio/zh/place2-audio.wav"
+        th: audio2a,
+        en: audio2b,
+        zh: audio2c
       }
     },
     {
@@ -137,9 +148,9 @@ const Places = () => {
       services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"],
       // เพิ่ม audio data
       audioUrls: {
-        th: "/assets/audio/th/place3-audio.wav",
-        en: "/assets/audio/en/place3-audio.wav",
-        zh: "/assets/audio/zh/place3-audio.wav"
+        th: audio3a,
+        en: audio3b,
+        zh: audio3c
       }
     },
       {
