@@ -210,13 +210,13 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
   console.log('Rendering AudioController for place:', selectedPlace.id);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999]">
+    <div className="fixed bottom-6 right-2 md:right-6 z-[9999]">
       <div className="flex flex-col gap-3">
         {/* Play/Pause Button */}
         <button
           onClick={handlePlayPause}
           disabled={isLoading}
-          className={`flex items-center justify-center w-14 h-14 rounded-full transition-all shadow-lg ${
+          className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-full transition-all shadow-lg ${
             isLoading
               ? 'bg-gray-300 cursor-not-allowed'
               : isPlaying
@@ -226,11 +226,11 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
           title={isPlaying ? 'หยุดเสียง' : 'เล่นเสียง'}
         >
           {isLoading ? (
-            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
           ) : isPlaying ? (
-            <Pause className="w-6 h-6" />
+            <Pause className="w-5 h-5 md:w-6 md:h-6" />
           ) : (
-            <Play className="w-6 h-6 ml-0.5" />
+            <Play className="w-5 h-5 md:w-6 md:h-6 ml-0.5" />
           )}
         </button>
 
@@ -238,14 +238,14 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
         <button
           onClick={handleMute}
           disabled={!audio}
-          className={`flex items-center justify-center w-14 h-14 rounded-full transition-all shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed ${
+          className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-full transition-all shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed ${
             isMuted
               ? 'bg-red-500 hover:bg-red-600 text-white'
               : 'bg-gray-600 hover:bg-gray-700 text-white'
           }`}
           title={isMuted ? 'เปิดเสียง' : 'ปิดเสียง'}
         >
-          {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+          {isMuted ? <VolumeX className="w-5 h-5 md:w-6 md:h-6" /> : <Volume2 className="w-5 h-5 md:w-6 md:h-6" />}
         </button>
       </div>
       
@@ -351,10 +351,10 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
       />
       
       {/* 3D Scene Container */}
-      <div className="fixed bottom-[-15%] right-[0%] z-10">
+      <div className="fixed bottom-[-15%] right-[-10%] md:right-[0%] z-10 ">
         <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
           {/* กล่องข้อความ - Enhanced with audio integration */}
-          <div className="absolute top-[20%] left-[-40%] text-white shadow-lg text-sm md:text-base font-light p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm w-[200px] md:w-[240px] z-[9999] border border-white/20">
+          <div className="absolute top-[20%] left-[-50%]  text-white shadow-lg text-sm md:text-base font-light p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm w-[200px] md:w-[240px] z-[9999] border border-white/20">
             <div key={typewriterKey} className="min-h-[60px]">
               <Typewriter
                 options={{
