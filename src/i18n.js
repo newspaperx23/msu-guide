@@ -19,6 +19,7 @@ i18n
           welcome: "Welcome to MSU – A Place of Knowledge and Inspiration",
           welcome2: "Take a Tour Around Mahasarakham University",
           letstour: "Let's Tour",
+          loading: "Loading...",
           placesPage: {
             header: "Recommended Places",
             description: "Tour Mahasarakham University: learn, eat, travel, and relax around campus.",
@@ -30,26 +31,26 @@ i18n
               computerCenter: {
                 name: "Computer Center",
                 description: "Learning resource center with books, journals, and online databases",
-                detailedDescription: "The Academic Resource Center is the heart of university learning, featuring over 50,000 books, domestic and international journals, private study rooms, small group seminar rooms, and modern online database systems with expert librarians providing consultation.",
-                highlights: ["Library", "Study rooms", "Computers", "Free Wi-Fi"],
+                detailedDescription: "The Computer Center is the technological heart of Mahasarakham University, providing comprehensive IT services and resources to support academic excellence. With state-of-the-art computer laboratories, high-speed internet connectivity, and expert technical support staff, the center serves as a crucial hub for digital learning and research activities. Students and faculty have access to modern software applications, online databases, and multimedia resources that enhance their educational experience.",
+                highlights: ["Computer labs", "IT support", "Software access", "Free Wi-Fi"],
                 facilities: ["Free Wi-Fi", "Air conditioning", "Parking", "Wheelchair accessible"],
-                services: ["Book lending", "Database search", "Document copying", "Document printing", "Seminar rooms"]
+                services: ["Computer access", "Technical support", "Software training", "Digital resources", "IT consultation"]
               },
               registrar: {
                 name: "Registrar Office",
                 description: "Student registration services and academic documents",
-                detailedDescription: "The Registrar and Academic Processing Office provides course registration services, academic document issuance, examination arrangements, and academic result processing with a convenient and fast online system, staffed by expert personnel providing consultation during office hours.",
-                highlights: ["Course registration", "Academic certificates", "Transcripts", "Data changes"],
+                detailedDescription: "The Registrar Office serves as the central administrative hub for all student academic affairs at Mahasarakham University. Our dedicated staff provides comprehensive services including course registration, academic transcript management, degree verification, and student record maintenance. With modern digital systems and streamlined processes, we ensure efficient and accurate handling of all academic documentation while maintaining the highest standards of confidentiality and service quality.",
+                highlights: ["Course registration", "Academic certificates", "Transcripts", "Data management"],
                 facilities: ["Online queue system", "Air conditioning", "Waiting area", "Wheelchair accessible"],
-                services: ["Course registration", "Certificate issuance", "Data modification", "Payment", "Academic consultation"]
+                services: ["Course registration", "Certificate issuance", "Data modification", "Payment processing", "Academic consultation"]
               },
               studentAffairs: {
                 name: "Student Affairs Division",
                 description: "Student activities, scholarships, and student welfare services",
-                detailedDescription: "The Student Affairs Division is the central hub for student care outside the classroom, organizing life skills development activities, providing scholarships, welfare services, personal counseling, and supporting student clubs with expert advisors ready to assist students in all aspects.",
-                highlights: ["Scholarships", "Student activities", "Welfare", "Counseling"],
-                facilities: ["Counseling rooms", "Club meeting rooms", "Activity spaces", "Free Wi-Fi"],
-                services: ["Scholarships", "Counseling", "Activity organization", "Welfare", "Club support"]
+                detailedDescription: "The Student Affairs Division is dedicated to enhancing student life beyond the classroom through comprehensive support services and enriching programs. We coordinate student activities, manage scholarship programs, provide counseling services, and facilitate student organization development. Our team of experienced counselors and activity coordinators work tirelessly to create a supportive environment where students can develop leadership skills, build lasting friendships, and achieve personal growth throughout their university journey.",
+                highlights: ["Scholarships", "Student activities", "Counseling", "Leadership development"],
+                facilities: ["Counseling rooms", "Activity spaces", "Meeting rooms", "Free Wi-Fi"],
+                services: ["Scholarship management", "Personal counseling", "Activity coordination", "Student welfare", "Organization support"]
               },
               generalEducation: {
                 name: "General Education Center",
@@ -135,6 +136,7 @@ i18n
           welcome: "รั้วเทาเหลืองแห่งการเรียนรู้และแรงบันดาลใจ — มมส",
           welcome2: "พาเที่ยว มมส ครบทุกมุม",
           letstour: "เริ่มทัวร์กันเลย",
+          loading: "กำลังโหลด...",
           placesPage: {
             header: "สถานที่แนะนำ",
             description: "พาทัวร์มหาวิทยาลัยมหาสารคาม แนะนำสถานที่เรียน กิน เที่ยว และพักผ่อนในรั้ว มหาวิทยาลัยมหาสารคาม",
@@ -145,27 +147,27 @@ i18n
             places: {
               computerCenter: {
                 name: "สำนักคอมพิวเตอร์",
-                description: "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
-                detailedDescription: "สำนักวิทยบริการเป็นหัวใจสำคัญของการเรียนรู้ในมหาวิทยาลัย มีหนังสือกว่า 50,000 เล่ม วารสารทั้งในและต่างประเทศ ห้องศึกษาค้นคว้าส่วนบุคคล ห้องสัมมนากลุ่มย่อย และระบบฐานข้อมูลออนไลน์ที่ทันสมัย พร้อมบรรณารักษ์ผู้เชี่ยวชาญให้คำปรึกษา",
-                highlights: ["ห้องสมุด", "ห้องศึกษาค้นคว้า", "คอมพิวเตอร์", "Wi-Fi ฟรี"],
+                description: "ศูนย์รวมเทคโนโลยีสารสนเทศและการบริการคอมพิวเตอร์",
+                detailedDescription: "สำนักคอมพิวเตอร์เป็นหัวใจสำคัญด้านเทคโนโลยีสารสนเทศของมหาวิทยาลัยมหาสารคาม ให้บริการด้านคอมพิวเตอร์และเทคโนโลยีสารสนเทศอย่างครอบคลุม เพื่อสนับสนุนการเรียนการสอนและการวิจัย มีห้องปฏิบัติการคอมพิวเตอร์ที่ทันสมัย ระบบอินเทอร์เน็ตความเร็วสูง และเจ้าหน้าที่ผู้เชี่ยวชาญพร้อมให้การสนับสนุนทางเทคนิค นิสิตและอาจารย์สามารถเข้าถึงโปรแกรมคอมพิวเตอร์สมัยใหม่ ฐานข้อมูลออนไลน์ และทรัพยากรมัลติมีเดียที่ช่วยเสริมประสบการณ์การเรียนรู้",
+                highlights: ["ห้องปฏิบัติการคอมพิวเตอร์", "สนับสนุนด้านไอที", "เข้าถึงซอฟต์แวร์", "Wi-Fi ฟรี"],
                 facilities: ["Wi-Fi ฟรี", "ปรับอากาศ", "ที่จอดรถ", "เข้าถึงได้สำหรับผู้พิการ"],
-                services: ["ยืม-คืนหนังสือ", "สืบค้นฐานข้อมูล", "ถ่ายเอกสาร", "พิมพ์เอกสาร", "ห้องสัมมนา"]
+                services: ["เข้าถึงคอมพิวเตอร์", "สนับสนุนทางเทคนิค", "อบรมซอฟต์แวร์", "ทรัพยากรดิจิทัล", "ปรึกษาด้านไอที"]
               },
               registrar: {
                 name: "กองทะเบียนและประมวลผล",
                 description: "บริการด้านทะเบียนนิสิต การลงทะเบียน และเอกสารทางการศึกษา",
-                detailedDescription: "กองทะเบียนและประมวลผลให้บริการด้านการลงทะเบียนเรียน การออกเอกสารทางการศึกษา การจัดสอบ และการประมวลผลการเรียน พร้อมระบบออนไลน์ที่สะดวกรวดเร็ว มีเจ้าหน้าที่ผู้เชี่ยวชาญให้คำปรึกษาตลอดเวลาทำการ",
-                highlights: ["ลงทะเบียนเรียน", "ใบรับรองการศึกษา", "ใบแสดงผลการเรียน", "เปลี่ยนแปลงข้อมูล"],
+                detailedDescription: "กองทะเบียนและประมวลผลทำหน้าที่เป็นศูนย์กลางการบริหารงานวิชาการของนิสิตทุกคนในมหาวิทยาลัยมหาสารคาม เจ้าหน้าที่ผู้ทุ่มเทของเราให้บริการอย่างครอบคลุม ตั้งแต่การลงทะเบียนเรียน การจัดการใบแสดงผลการเรียน การตรวจสอบปริญญา และการดูแลรักษาข้อมูลประวัตินิสิต ด้วยระบบดิจิทัลที่ทันสมัยและกระบวนการที่มีประสิทธิภาพ เรามั่นใจว่าจะจัดการเอกสารทางการศึกษาทุกประเภทได้อย่างรวดเร็วและแม่นยำ พร้อมรักษามาตรฐานสูงสุดในเรื่องความลับและคุณภาพการบริการ",
+                highlights: ["ลงทะเบียนเรียน", "ใบรับรองการศึกษา", "ใบแสดงผลการเรียน", "จัดการข้อมูล"],
                 facilities: ["ระบบคิวออนไลน์", "ปรับอากาศ", "ที่นั่งรอ", "เข้าถึงได้สำหรับผู้พิการ"],
-                services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ชำระเงิน", "ปรึกษาการเรียน"]
+                services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ประมวลผลการชำระเงิน", "ปรึกษาการเรียน"]
               },
               studentAffairs: {
                 name: "กองกิจการนิสิต",
                 description: "บริการด้านกิจกรรมนิสิต ทุนการศึกษา และสวัสดิการนิสิต",
-                detailedDescription: "กองกิจการนิสิตเป็นศูนย์กลางการดูแลนิสิตนอกห้องเรียน จัดกิจกรรมพัฒนาทักษะชีวิต ให้ทุนการศึกษา บริการสวัสดิการ คำปรึกษาส่วนบุคคล และสนับสนุนชมรมนิสิต มีที่ปรึกษาผู้เชี่ยวชาญพร้อมช่วยเหลือนิสิตในทุกด้าน",
-                highlights: ["ทุนการศึกษา", "กิจกรรมนิสิต", "สวัสดิการ", "คำปรึกษา"],
-                facilities: ["ห้องให้คำปรึกษา", "ห้องประชุมชมรม", "พื้นที่จัดกิจกรรม", "Wi-Fi ฟรี"],
-                services: ["ทุนการศึกษา", "คำปรึกษา", "จัดกิจกรรม", "สวัสดิการ", "สนับสนุนชมรม"]
+                detailedDescription: "กองกิจการนิสิตทุ่มเทเพื่อส่งเสริมชีวิtการเรียนของนิสิตนอกเหนือจากห้องเรียน ผ่านบริการสนับสนุนที่ครอบคลุมและโปรแกรมที่เสริมสร้างประสบการณ์ เราประสานงานกิจกรรมนิสิต บริหารโปรแกรมทุนการศึกษา ให้บริการให้คำปรึกษา และสนับสนุนการพัฒนาองค์กรนิสิต ทีมที่ปรึกษาและผู้ประสานงานกิจกรรมที่มีประสบการณ์ของเราทำงานอย่างไม่รู้จักเหน็ดเหนื่อยเพื่อสร้างสภาพแวดล้อมที่สนับสนุน ที่ซึ่งนิสิตสามารถพัฒนาทักษะความเป็นผู้นำ สร้างมิตรภาพที่ยั่งยืน และบรรลุการเติบโตส่วนบุคคลตลอดการเดินทางในมหาวิทยาลัย",
+                highlights: ["ทุนการศึกษา", "กิจกรรมนิสิต", "คำปรึกษา", "พัฒนาความเป็นผู้นำ"],
+                facilities: ["ห้องให้คำปรึกษา", "พื้นที่จัดกิจกรรม", "ห้องประชุม", "Wi-Fi ฟรี"],
+                services: ["บริหารทุนการศึกษา", "คำปรึกษาส่วนบุคคล", "ประสานงานกิจกรรม", "สวัสดิการนิสิต", "สนับสนุนองค์กร"]
               },
               generalEducation: {
                 name: "สำนักศึกษาทั่วไป",
@@ -236,6 +238,7 @@ i18n
           welcome: "欢迎来到玛哈沙拉堪大学，智慧与灵感的家园",
           welcome2: "带你走遍玛哈沙拉堪大学的每个角落",
           letstour: "一起去参观吧",
+          loading: "加载中...",
           placesPage: {
             header: "推荐地点",
             description: "游览玛哈沙拉堪大学：学习、美食、旅行和校园内的休闲放松场所。",
@@ -246,27 +249,27 @@ i18n
             places: {
               computerCenter: {
                 name: "计算机中心",
-                description: "学习资源中心，提供图书、期刊和在线数据库",
-                detailedDescription: "学术资源中心是大学学习的核心，拥有超过50,000本图书、国内外期刊、私人学习室、小组研讨室和现代在线数据库系统，配有专业图书管理员提供咨询服务。",
-                highlights: ["图书馆", "学习室", "计算机", "免费Wi-Fi"],
+                description: "信息技术和计算机服务的综合中心",
+                detailedDescription: "计算机中心是玛哈沙拉堪大学信息技术的重要核心，提供全面的计算机和信息技术服务，以支持教学和科研工作。拥有最先进的计算机实验室、高速互联网连接以及专业技术支持人员，该中心是数字学习和研究活动的重要枢纽。学生和教师可以使用现代软件应用程序、在线数据库和多媒体资源，这些资源有助于提升他们的教育体验。",
+                highlights: ["计算机实验室", "技术支持", "软件访问", "免费Wi-Fi"],
                 facilities: ["免费Wi-Fi", "空调", "停车场", "无障碍通道"],
-                services: ["图书借阅", "数据库检索", "文档复印", "文档打印", "研讨室"]
+                services: ["计算机使用", "技术支持", "软件培训", "数字资源", "IT咨询"]
               },
               registrar: {
                 name: "注册处",
-                description: "学生注册服务和学术文件",
-                detailedDescription: "注册与学术处理办公室提供课程注册服务、学术文件颁发、考试安排和学术成绩处理，配备便捷快速的在线系统，由专业人员在办公时间内提供咨询服务。",
-                highlights: ["课程注册", "学历证书", "成绩单", "信息变更"],
+                description: "学生注册服务和学术文件管理",
+                detailedDescription: "注册处作为玛哈沙拉堪大学所有学生学术事务的中央行政枢纽。我们敬业的工作人员提供全面服务，包括课程注册、学术成绩单管理、学位验证和学生记录维护。凭借现代数字系统和精简流程，我们确保所有学术文档的高效准确处理，同时保持最高标准的保密性和服务质量。",
+                highlights: ["课程注册", "学历证书", "成绩单", "数据管理"],
                 facilities: ["在线排队系统", "空调", "等候区", "无障碍通道"],
-                services: ["课程注册", "证书颁发", "信息修改", "缴费", "学术咨询"]
+                services: ["课程注册", "证书颁发", "信息修改", "付款处理", "学术咨询"]
               },
               studentAffairs: {
                 name: "学生事务处",
                 description: "学生活动、奖学金和学生福利服务",
-                detailedDescription: "学生事务处是课外学生关怀的中心枢纽，组织生活技能发展活动，提供奖学金、福利服务、个人咨询，并支持学生社团，配有专业顾问随时协助学生各个方面。",
-                highlights: ["奖学金", "学生活动", "福利", "咨询"],
-                facilities: ["咨询室", "社团会议室", "活动空间", "免费Wi-Fi"],
-                services: ["奖学金", "咨询", "活动组织", "福利", "社团支持"]
+                detailedDescription: "学生事务处致力于通过全面的支持服务和丰富的项目来加强课堂之外的学生生活。我们协调学生活动，管理奖学金项目，提供咨询服务，并促进学生组织发展。我们经验丰富的咨询师和活动协调员团队不懈努力，创造一个支持性环境，让学生能够发展领导技能，建立持久的友谊，并在整个大学旅程中实现个人成长。",
+                highlights: ["奖学金", "学生活动", "咨询", "领导力发展"],
+                facilities: ["咨询室", "活动空间", "会议室", "免费Wi-Fi"],
+                services: ["奖学金管理", "个人咨询", "活动协调", "学生福利", "组织支持"]
               },
               generalEducation: {
                 name: "通识教育中心",

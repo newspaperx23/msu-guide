@@ -34,7 +34,7 @@ function AnimatedModel() {
   );
 }
 
-// Audio Controller Component - Simplified
+// Enhanced Audio Controller Component
 function AudioController({ selectedPlace, currentLanguage, onAudioStateChange }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +42,7 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState(null);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
 
   // Debug logging
   console.log('AudioController render:', { 
@@ -55,17 +56,69 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
+      // Remove event listeners
+      audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      
       setAudio(null);
       setIsPlaying(false);
       setAudioProgress(0);
+      setAudioDuration(0);
       setError(null);
       setIsLoading(false);
     }
   };
 
+  // Event handlers
+  const handleCanPlay = () => {
+    console.log('Audio can play');
+    setIsLoading(false);
+  };
+
+  const handlePlay = () => {
+    console.log('Audio started playing');
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    console.log('Audio paused');
+    setIsPlaying(false);
+  };
+
+  const handleEnded = () => {
+    console.log('Audio ended');
+    setIsPlaying(false);
+    setAudioProgress(0);
+  };
+
+  const handleTimeUpdate = (e) => {
+    const audio = e.target;
+    if (audio.duration) {
+      setAudioProgress((audio.currentTime / audio.duration) * 100);
+    }
+  };
+
+  const handleError = (e) => {
+    console.error('Audio error:', e);
+    setError('ไม่สามารถเล่นไฟล์เสียงได้');
+    setIsLoading(false);
+    setIsPlaying(false);
+  };
+
+  const handleLoadedMetadata = (e) => {
+    const audio = e.target;
+    setAudioDuration(audio.duration);
+    console.log('Audio duration:', audio.duration);
+  };
+
   const playAudio = async () => {
     if (!selectedPlace?.audioUrls) {
-      console.log('No audio URLs available');
+      console.log('No audio URLs available for place:', selectedPlace?.id);
       return;
     }
 
@@ -76,6 +129,7 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
       // Clean up previous audio
       cleanupAudio();
 
+      // Get audio URL based on current language
       const audioUrl = selectedPlace.audioUrls[currentLanguage] || 
                       selectedPlace.audioUrls.th || 
                       selectedPlace.audioUrls.en;
@@ -91,30 +145,13 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
       const newAudio = new Audio(audioUrl);
       
       // Set up event listeners
-      const handleCanPlay = () => setIsLoading(false);
-      const handlePlay = () => setIsPlaying(true);
-      const handlePause = () => setIsPlaying(false);
-      const handleEnded = () => {
-        setIsPlaying(false);
-        setAudioProgress(0);
-      };
-      const handleTimeUpdate = () => {
-        if (newAudio.duration) {
-          setAudioProgress((newAudio.currentTime / newAudio.duration) * 100);
-        }
-      };
-      const handleError = () => {
-        setError('ไม่สามารถเล่นไฟล์เสียงได้');
-        setIsLoading(false);
-        setIsPlaying(false);
-      };
-
       newAudio.addEventListener('canplay', handleCanPlay);
       newAudio.addEventListener('play', handlePlay);
       newAudio.addEventListener('pause', handlePause);
       newAudio.addEventListener('ended', handleEnded);
       newAudio.addEventListener('timeupdate', handleTimeUpdate);
       newAudio.addEventListener('error', handleError);
+      newAudio.addEventListener('loadedmetadata', handleLoadedMetadata);
 
       setAudio(newAudio);
       
@@ -171,6 +208,8 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
           console.error('Replay error:', error);
         }
       }
+    } else {
+      await playAudio();
     }
   };
 
@@ -181,9 +220,17 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
     }
   };
 
-  // Effect when selectedPlace changes
+  // Format time for display
+  const formatTime = (seconds) => {
+    if (isNaN(seconds)) return '0:00';
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
+  // Effect when selectedPlace or language changes
   useEffect(() => {
-    console.log('Selected place changed:', selectedPlace?.id);
+    console.log('Selected place or language changed:', selectedPlace?.id, currentLanguage);
     
     if (selectedPlace?.audioUrls) {
       // Auto-play attempt (will fail on PC but that's ok)
@@ -207,28 +254,38 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
     }
   }, [isPlaying, selectedPlace, onAudioStateChange]);
 
-  // Force show controller when selectedPlace exists
-  if (!selectedPlace) {
-    console.log('No selected place, hiding controller');
+  // Don't show controller if no place is selected or no audio available
+  if (!selectedPlace || !selectedPlace.audioUrls) {
+    console.log('No selected place or no audio URLs, hiding controller');
     return null;
   }
 
   console.log('Rendering AudioController for place:', selectedPlace.id);
 
   return (
-    <div className="absolute top-[10%] left-[-40%] z-[9999]">
-      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 mb-4 border border-white/20">
-        {/* Debug Info */}
-        <div className="text-xs text-gray-500 mb-2">
-          Place: {selectedPlace.name} | Audio: {audio ? 'loaded' : 'none'}
+    <div className="absolute top-[5%] left-[-45%] z-[9999] w-72">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-5 border border-white/30">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="font-semibold text-gray-800 text-sm">กำลังเล่นเสียงบรรยาย</h3>
+            <p className="text-xs text-gray-500">{selectedPlace.nameKey}</p>
+          </div>
+          {/* Language Indicator */}
+          <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+            {currentLanguage === 'th' && '🇹🇭'}
+            {currentLanguage === 'en' && '🇬🇧'}
+            {currentLanguage === 'zh' && '🇨🇳'}
+          </div>
         </div>
         
-        <div className="flex items-center gap-3">
+        {/* Main Controls */}
+        <div className="flex items-center gap-3 mb-4">
           {/* Play/Pause Button */}
           <button
             onClick={handlePlayPause}
             disabled={isLoading}
-            className={`flex items-center justify-center w-12 h-12 rounded-full transition-all ${
+            className={`flex items-center justify-center w-12 h-12 rounded-full transition-all shadow-lg ${
               isLoading
                 ? 'bg-gray-300 cursor-not-allowed'
                 : isPlaying
@@ -245,72 +302,80 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
             )}
           </button>
 
-          {/* Stop Button */}
-          <button
-            onClick={handleStop}
-            disabled={!audio}
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-500 hover:bg-gray-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
-          >
-            <div className="w-3 h-3 bg-white rounded-sm"></div>
-          </button>
+          {/* Secondary Controls */}
+          <div className="flex gap-2">
+            <button
+              onClick={handleStop}
+              disabled={!audio}
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-500 hover:bg-gray-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all shadow-md"
+              title="หยุด"
+            >
+              <div className="w-3 h-3 bg-white rounded-sm"></div>
+            </button>
 
-          {/* Replay Button */}
-          <button
-            onClick={handleReplay}
-            disabled={!audio}
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
+            <button
+              onClick={handleReplay}
+              disabled={!audio && !selectedPlace?.audioUrls}
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-blue-500 hover:bg-blue-600 text-white disabled:bg-gray-300 disabled:cursor-not-allowed transition-all shadow-md"
+              title="เล่นใหม่"
+            >
+              <RotateCcw className="w-4 h-4" />
+            </button>
 
-          {/* Mute Button */}
-          <button
-            onClick={handleMute}
-            disabled={!audio}
-            className={`flex items-center justify-center w-8 h-8 rounded-full transition-all disabled:bg-gray-300 disabled:cursor-not-allowed ${
-              isMuted
-                ? 'bg-red-500 hover:bg-red-600 text-white'
-                : 'bg-gray-500 hover:bg-gray-600 text-white'
-            }`}
-          >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-          </button>
+            <button
+              onClick={handleMute}
+              disabled={!audio}
+              className={`flex items-center justify-center w-9 h-9 rounded-full transition-all shadow-md disabled:bg-gray-300 disabled:cursor-not-allowed ${
+                isMuted
+                  ? 'bg-red-500 hover:bg-red-600 text-white'
+                  : 'bg-gray-500 hover:bg-gray-600 text-white'
+              }`}
+              title={isMuted ? 'เปิดเสียง' : 'ปิดเสียง'}
+            >
+              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         {/* Progress Bar */}
         {audio && (
-          <div className="mt-3">
-            <div className="w-full bg-gray-200 rounded-full h-1.5">
+          <div className="mb-3">
+            <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+              <span>{formatTime(audio.currentTime)}</span>
+              <span>{formatTime(audioDuration)}</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
               <div
-                className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${audioProgress}%` }}
               ></div>
             </div>
           </div>
         )}
 
-        {/* Status Text */}
-        <div className="mt-2 text-center">
-          {isLoading && <p className="text-xs text-gray-600">กำลังโหลด...</p>}
-          {error && <p className="text-xs text-red-500">{error}</p>}
+        {/* Status Messages */}
+        <div className="text-center">
+          {isLoading && (
+            <p className="text-xs text-gray-600 flex items-center justify-center gap-2">
+              <div className="w-3 h-3 border border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              กำลังโหลดไฟล์เสียง...
+            </p>
+          )}
+          {error && (
+            <p className="text-xs text-red-500 bg-red-50 p-2 rounded-lg">{error}</p>
+          )}
           {isPlaying && !error && !isLoading && (
-            <p className="text-xs text-green-600 flex items-center justify-center gap-1">
+            <p className="text-xs text-green-600 flex items-center justify-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              กำลังเล่นเสียงแนะนำ
+              กำลังเล่นเสียงบรรยาย
             </p>
           )}
           {!isPlaying && !error && !isLoading && audio && (
-            <p className="text-xs text-gray-600">พร้อมเล่นเสียงแนะนำ</p>
+            <p className="text-xs text-gray-600">พร้อมเล่นเสียงบรรยาย</p>
           )}
-        </div>
-
-        {/* Language Indicator */}
-        <div className="mt-2 text-center">
-          <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-            {currentLanguage === 'th' && '🇹🇭 ไทย'}
-            {currentLanguage === 'en' && '🇬🇧 English'}
-            {currentLanguage === 'zh' && '🇨🇳 中文'}
-          </span>
+          {!audio && !isLoading && !error && selectedPlace?.audioUrls && (
+            <p className="text-xs text-blue-600">กดปุ่มเพื่อเล่นเสียงบรรยาย</p>
+          )}
         </div>
       </div>
     </div>
@@ -322,6 +387,7 @@ useGLTF.preload(model3d);
 export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStateChange, currentLanguage }) {
   const { t, i18n } = useTranslation();
   const [typewriterKey, setTypewriterKey] = useState(0);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   
   // ใช้ภาษาจาก props หรือ fallback ไป i18n
   const activeLanguage = currentLanguage || i18n.language;
@@ -330,42 +396,51 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
   console.log('My3DScene render:', { 
     selectedPlaceId: selectedPlace?.id, 
     activeLanguage,
-    typewriterKey 
+    typewriterKey,
+    hasAudioTranscripts: !!audioTranscripts,
+    isAudioPlaying
   });
 
   // กำหนด messages สำหรับ Typewriter
   const getTypewriterMessages = () => {
-    if (selectedPlace && audioTranscripts[selectedPlace.id]) {
+    if (selectedPlace && audioTranscripts && audioTranscripts[selectedPlace.id]) {
       const transcript = audioTranscripts[selectedPlace.id][activeLanguage];
       if (transcript) {
-        return transcript.split('\n').filter(line => line.trim().length > 0);
+        // Split transcript into sentences for better display
+        const sentences = transcript.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
+        return sentences.map(sentence => sentence.trim() + '.');
       }
     }
     
-    // Fallback messages
-    return location.pathname === "/places"
-      ? [t("placesPage.header"), t("placesPage.description")]
-      : [t("welcome"), t("welcome2")];
+    // Fallback messages for general pages
+    if (location.pathname === "/places") {
+      return [t("placesPage.header"), t("placesPage.description")];
+    }
+    
+    return [t("welcome"), t("welcome2")];
   };
 
   const messages = getTypewriterMessages();
 
-  // คำนวณความเร็ว Typewriter
+  // คำนวณความเร็ว Typewriter ตามเนื้อหา
   const getTypewriterSpeed = () => {
-    if (selectedPlace && audioTranscripts[selectedPlace.id]) {
+    if (selectedPlace && audioTranscripts && audioTranscripts[selectedPlace.id]) {
       const transcript = audioTranscripts[selectedPlace.id][activeLanguage];
       if (transcript) {
         const totalChars = transcript.length;
-        const estimatedDuration = 45;
-        const delay = Math.max(10, Math.min(100, (estimatedDuration * 1000) / totalChars));
+        // ประมาณเวลาเสียง 60-90 วินาที สำหรับเสียงบรรยาย
+        const estimatedDuration = Math.max(60, Math.min(90, totalChars / 10));
+        const delay = Math.max(15, Math.min(80, (estimatedDuration * 1000) / totalChars));
+        
         return {
           delay: delay,
-          deleteSpeed: delay * 2,
-          pauseFor: 2000
+          deleteSpeed: 0, // ไม่ลบข้อความ
+          pauseFor: 1000
         };
       }
     }
     
+    // ค่าเริ่มต้นสำหรับข้อความทั่วไป
     return {
       delay: 50,
       deleteSpeed: 30,
@@ -374,6 +449,14 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
   };
 
   const typewriterSpeed = getTypewriterSpeed();
+
+  // Handle audio state changes
+  const handleAudioStateChange = (audioPlace) => {
+    setIsAudioPlaying(!!audioPlace);
+    if (onAudioStateChange) {
+      onAudioStateChange(audioPlace);
+    }
+  };
 
   // Force typewriter update when selectedPlace or language changes
   useEffect(() => {
@@ -384,27 +467,40 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
   return (
     <div className="fixed bottom-[-10%] right-[0%] z-10">
       <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
-        {/* กล่องข้อความ - Force re-render with key */}
-        <div className="absolute top-[40%] left-[-30%] text-white shadow-sm text-sm md:text-base font-light p-2 md:p-3 rounded bg-black/70 backdrop-blur-sm w-[180px] md:w-[220px] z-[9999]">
-          <div key={typewriterKey}>
+        {/* กล่องข้อความ - Enhanced with audio integration */}
+        <div className="absolute top-[35%] left-[-35%] text-white shadow-lg text-sm md:text-base font-light p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm w-[200px] md:w-[240px] z-[9999] border border-white/20">
+          <div key={typewriterKey} className="min-h-[60px]">
             <Typewriter
               options={{
                 strings: messages,
                 autoStart: true,
-                loop: selectedPlace ? false : true,
+                loop: selectedPlace ? false : true, // ไม่ loop สำหรับเสียงบรรยาย
                 delay: typewriterSpeed.delay,
                 deleteSpeed: typewriterSpeed.deleteSpeed,
                 pauseFor: typewriterSpeed.pauseFor,
+                cursor: isAudioPlaying ? '♪' : '|', // เปลี่ยน cursor เมื่อมีเสียง
               }}
             />
           </div>
+          
+          {/* Audio indicator */}
+          {isAudioPlaying && (
+            <div className="mt-2 flex items-center justify-center">
+              <div className="flex items-center gap-1">
+                <div className="w-1 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="w-1 h-4 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '0.1s' }}></div>
+                <div className="w-1 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <span className="text-xs text-green-400 ml-2">กำลังเล่นเสียง</span>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Audio Controller */}
+        {/* Audio Controller - Enhanced */}
         <AudioController
           selectedPlace={selectedPlace}
           currentLanguage={activeLanguage}
-          onAudioStateChange={onAudioStateChange}
+          onAudioStateChange={handleAudioStateChange}
         />
 
         {/* โมเดล 3D */}

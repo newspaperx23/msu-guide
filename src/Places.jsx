@@ -3,6 +3,8 @@ import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, User
 import NavigationBar from './NavigationBar';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from "react-i18next";
+
+// Import images
 import place1a from './assets/place1-1.jpg';
 import place1b from './assets/place1-2.jpg';
 import place1c from './assets/place1-3.jpg';
@@ -17,14 +19,69 @@ import place3b from './assets/place3-2.jpg';
 import place3c from './assets/place3-3.jpg';
 import place3d from './assets/place3-4.jpg';
 
+// Import audio files
+// Thai audio
+import place1AudioTh from './assets/audio/th/place1-audio.wav';
+import place2AudioTh from './assets/audio/th/place2-audio.wav';
+import place3AudioTh from './assets/audio/th/place3-audio.wav';
+
+// English audio
+import place1AudioEn from './assets/audio/en/place1-audio.wav';
+import place2AudioEn from './assets/audio/en/place2-audio.wav';
+import place3AudioEn from './assets/audio/en/place3-audio.wav';
+
+// Chinese audio
+import place1AudioZh from './assets/audio/zh/place1-audio.wav';
+import place2AudioZh from './assets/audio/zh/place2-audio.wav';
+import place3AudioZh from './assets/audio/zh/place3-audio.wav';
+
 const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
+  const [currentAudioPlace, setCurrentAudioPlace] = useState(null);
   const { t, i18n } = useTranslation();
 
   // Get current language
   const currentLang = i18n.language || 'th';
+
+  // Create audio URLs mapping
+  const audioUrls = {
+    1: {
+      th: place1AudioTh,
+      en: place1AudioEn,
+      zh: place1AudioZh
+    },
+    2: {
+      th: place2AudioTh,
+      en: place2AudioEn,
+      zh: place2AudioZh
+    },
+    3: {
+      th: place3AudioTh,
+      en: place3AudioEn,
+      zh: place3AudioZh
+    }
+  };
+
+  // Create audio transcripts from existing translations
+  const audioTranscripts = {
+    1: {
+      th: t('placesPage.places.computerCenter.detailedDescription'),
+      en: t('placesPage.places.computerCenter.detailedDescription'),
+      zh: t('placesPage.places.computerCenter.detailedDescription')
+    },
+    2: {
+      th: t('placesPage.places.registrar.detailedDescription'),
+      en: t('placesPage.places.registrar.detailedDescription'),
+      zh: t('placesPage.places.registrar.detailedDescription')
+    },
+    3: {
+      th: t('placesPage.places.studentAffairs.detailedDescription'),
+      en: t('placesPage.places.studentAffairs.detailedDescription'),
+      zh: t('placesPage.places.studentAffairs.detailedDescription')
+    }
+  };
 
   const recommendedPlaces = [
     {
@@ -37,6 +94,7 @@ const Places = () => {
       coordinates: { lat: 17.3644, lng: 102.8194 },
       phone: "042-123-456",
       email: "library@msu.ac.th",
+      audioUrls: audioUrls[1], // Add audio URLs
       images: [
         { url: place1a, caption: "ห้องสมุดหลัก", type: "interior" },
         { url: place1b, caption: "ห้องศึกษาค้นคว้า", type: "study_room" },
@@ -57,6 +115,7 @@ const Places = () => {
       coordinates: { lat: 17.3640, lng: 102.8190 },
       phone: "042-123-457",
       email: "registrar@msu.ac.th",
+      audioUrls: audioUrls[2], // Add audio URLs
       images: [
         { url: place2a, caption: "ป้ายหน้าตึก", type: "entrance1" },
         { url: place2b, caption: "ทางเดินเข้า", type: "entrance2" },
@@ -76,6 +135,7 @@ const Places = () => {
       coordinates: { lat: 17.3638, lng: 102.8188 },
       phone: "042-123-459",
       email: "studentaffairs@msu.ac.th",
+      audioUrls: audioUrls[3], // Add audio URLs
       images: [
         { url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" },
         { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" },
@@ -189,6 +249,18 @@ const Places = () => {
     return t(`placesPage.openHours.${hours}`, { defaultValue: hours });
   };
 
+  // Handle place selection with audio
+  const handlePlaceSelection = (place) => {
+    console.log('Place selected:', place.id, place.nameKey);
+    setSelectedPlace(place);
+  };
+
+  // Handle audio state change
+  const handleAudioStateChange = (audioPlace) => {
+    setCurrentAudioPlace(audioPlace);
+    console.log('Audio state changed:', audioPlace?.id || 'stopped');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-20">
       {/* Header Section */}
@@ -203,17 +275,25 @@ const Places = () => {
           </p>
         </div>
 
-        {/* Places Grid */}
+        {/* 3D Scene with Audio System */}
         <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[999]">
-          <My3DScene />
+          <My3DScene 
+            selectedPlace={selectedPlace}
+            audioTranscripts={audioTranscripts}
+            onAudioStateChange={handleAudioStateChange}
+            currentLanguage={currentLang}
+          />
         </div>
         
+        {/* Places Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recommendedPlaces.map((place) => (
             <div
               key={place.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer"
-              onClick={() => setSelectedPlace(place)}
+              className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer ${
+                selectedPlace?.id === place.id ? 'ring-4 ring-blue-500 ring-opacity-50' : ''
+              }`}
+              onClick={() => handlePlaceSelection(place)}
             >
               {/* Image */}
               <div className="relative h-48 bg-gradient-to-r from-blue-400 to-purple-500">
@@ -223,6 +303,22 @@ const Places = () => {
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                
+                {/* Selected indicator */}
+                {selectedPlace?.id === place.id && (
+                  <div className="absolute top-4 right-4 bg-blue-500 text-white p-2 rounded-full">
+                    <span className="text-xs font-bold">เลือกแล้ว</span>
+                  </div>
+                )}
+                
+                {/* Audio playing indicator */}
+                {currentAudioPlace?.id === place.id && (
+                  <div className="absolute top-4 left-20 bg-green-500 text-white p-2 rounded-full flex items-center gap-1">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span className="text-xs font-bold">กำลังเล่น</span>
+                  </div>
+                )}
+
                 <div className="absolute top-4 left-4">
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(place.category)}`}>
                     {t(`placesPage.categories.${place.category}`)}
@@ -272,6 +368,14 @@ const Places = () => {
                     </span>
                   )}
                 </div>
+
+                {/* Audio availability indicator */}
+                {place.audioUrls && (
+                  <div className="mt-3 flex items-center text-sm text-blue-600">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                    <span>มีเสียงบรรยาย</span>
+                  </div>
+                )}
               </div>
             </div>
           ))}
