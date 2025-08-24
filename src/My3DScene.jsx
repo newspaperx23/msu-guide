@@ -189,7 +189,7 @@ function AudioController({ selectedPlace, audioTranscripts, onAudioStateChange, 
   if (!selectedPlace) return null;
 
   return (
-    <div className="absolute top-[10%] left-[-40%] z-[9999]">
+    <div className="absolute top-[-5%] left-[-40%] z-[9999]">
       {/* Audio Controls */}
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 mb-4 border border-white/20">
         <div className="flex items-center gap-3">
