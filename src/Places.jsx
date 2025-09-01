@@ -23,6 +23,7 @@ import place3d from './assets/place3-4.jpg';
 import place3e from './assets/place3-5.jpg';
 import place3f from './assets/place3-6.jpg';
 import place3g from './assets/place3-7.jpg';
+import logo2 from './assets/logo2.png';
 
 // Import audio files
 // Thai audio
@@ -155,7 +156,7 @@ const Places = () => {
     {
       id: 4,
       nameKey: "generalEducation",
-      image: "/api/placeholder/400/250",
+      image: logo2,
       category: "Academic",
       openHours: "08:30 - 16:30",
       location: "อาคารศึกษาทั่วไป ชั้น 1-2",
@@ -174,7 +175,7 @@ const Places = () => {
     {
       id: 5,
       nameKey: "dormitory",
-      image: "/api/placeholder/400/250",
+      image: logo2,
       category: "Accommodation",
       openHours: "24 ชั่วโมง",
       location: "อาคารหอพักนิสิต",
@@ -193,7 +194,7 @@ const Places = () => {
     {
       id: 6,
       nameKey: "boromrajkumari",
-      image: "/api/placeholder/400/250",
+      image: logo2,
       category: "Academic",
       openHours: "06:00 - 22:00",
       location: "อาคารบรมราชกุมารี",
