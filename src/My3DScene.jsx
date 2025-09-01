@@ -35,20 +35,38 @@ function AnimatedModel() {
 }
 
 // Simple Audio Controller Component - Bottom Right Position
-function AudioController({ selectedPlace, currentLanguage, onAudioStateChange }) {
+function AudioController({ selectedPlace, currentLanguage, onAudioStateChange, onLanguageChange }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState(null);
 
+  // Available languages
+  const availableLanguages = [
+    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
+    { code: 'en', label: 'EN', flag: '🇺🇸' },
+    { code: 'zh', label: '中文', flag: '🇨🇳' }
+  ];
+
   // Debug logging
   console.log('AudioController render:', { 
     selectedPlace: selectedPlace?.id, 
     currentLanguage, 
     hasAudio: !!audio,
-    isPlaying 
+    isPlaying,
+    hasOnLanguageChange: !!onLanguageChange
   });
+
+  // Handle language change
+  const handleLanguageChange = (langCode) => {
+    console.log('Language change clicked:', langCode);
+    if (onLanguageChange) {
+      onLanguageChange(langCode);
+    } else {
+      console.log('No onLanguageChange function provided');
+    }
+  };
 
   const cleanupAudio = () => {
     if (audio) {
@@ -203,8 +221,31 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
 
   // Don't show controller if no place is selected or no audio available
   if (!selectedPlace || !selectedPlace.audioUrls) {
-    console.log('No selected place or no audio URLs, hiding controller');
-    return null;
+    console.log('No selected place or no audio URLs, showing only language buttons');
+    // Show language buttons even when no audio is available
+    return (
+      <div className="fixed bottom-6 right-2 md:right-6 z-[9999]">
+        <div className="flex flex-col gap-2">
+          {/* Language Selector - Always visible */}
+          <div className="flex flex-col gap-1">
+            {availableLanguages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={`flex items-center justify-center w-10 h-8 md:w-12 md:h-10 rounded-lg transition-all shadow-md text-xs md:text-sm font-medium ${
+                  currentLanguage === lang.code
+                    ? 'bg-blue-500 text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 hover:bg-blue-50 hover:shadow-lg border border-gray-200'
+                }`}
+                title={`เปลี่ยนเป็นภาษา${lang.label}`}
+              >
+                <span className="text-xs md:text-sm">{lang.flag}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   console.log('Rendering AudioController for place:', selectedPlace.id);
@@ -212,6 +253,24 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
   return (
     <div className="fixed bottom-6 right-2 md:right-6 z-[9999]">
       <div className="flex flex-col gap-3">
+        {/* Language Selector */}
+        <div className="flex flex-col gap-1">
+          {availableLanguages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => handleLanguageChange(lang.code)}
+              className={`flex items-center justify-center w-10 h-8 md:w-12 md:h-10 rounded-lg transition-all shadow-md text-xs md:text-sm font-medium ${
+                currentLanguage === lang.code
+                  ? 'bg-blue-500 text-white shadow-lg transform scale-105'
+                  : 'bg-white text-gray-700 hover:bg-blue-50 hover:shadow-lg border border-gray-200'
+              }`}
+              title={`เปลี่ยนเป็นภาษา${lang.label}`}
+            >
+              <span className="text-xs md:text-sm">{lang.flag}</span>
+            </button>
+          ))}
+        </div>
+
         {/* Play/Pause Button */}
         <button
           onClick={handlePlayPause}
@@ -261,7 +320,7 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange })
 
 useGLTF.preload(model3d);
 
-export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStateChange, currentLanguage }) {
+export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStateChange, currentLanguage, onLanguageChange }) {
   const { t, i18n } = useTranslation();
   const [typewriterKey, setTypewriterKey] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -275,7 +334,8 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
     activeLanguage,
     typewriterKey,
     hasAudioTranscripts: !!audioTranscripts,
-    isAudioPlaying
+    isAudioPlaying,
+    hasOnLanguageChange: !!onLanguageChange
   });
 
   // กำหนด messages สำหรับ Typewriter
@@ -348,10 +408,11 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
         selectedPlace={selectedPlace}
         currentLanguage={activeLanguage}
         onAudioStateChange={handleAudioStateChange}
+        onLanguageChange={onLanguageChange}
       />
       
       {/* 3D Scene Container */}
-      <div className="fixed bottom-[-15%] right-[-15%] md:right-[-5%] z-10 ">
+      <div className="fixed bottom-[-15%] right-[10%] md:right-[0%] z-10 ">
         <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
           {/* กล่องข้อความ - Enhanced with audio integration */}
           <div className="absolute top-[20%] left-[-50%]  text-white shadow-lg text-sm md:text-base font-light p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm w-[200px] md:w-[240px] z-[9999] border border-white/20">
@@ -382,7 +443,7 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
             )}
           </div>
 
-          {/* โมเดล 3D */}
+          {/* โมเดル 3D */}
           <Canvas
             camera={{ position: [2, 2.5, 5], fov: 45 }}
             dpr={[1, 1.5]}

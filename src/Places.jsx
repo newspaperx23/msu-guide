@@ -10,14 +10,19 @@ import place1b from './assets/place1-2.jpg';
 import place1c from './assets/place1-3.jpg';
 import place1d from './assets/place1-4.jpg';
 import place1e from './assets/place1-5.jpg';
+import place1f from './assets/place1-7.jpg';
 import place2a from './assets/place2-1.jpg';
 import place2b from './assets/place2-2.jpg';
 import place2c from './assets/place2-3.jpg';
 import place2d from './assets/place2-4.jpg';
+import place2e from './assets/place2-5.jpg';
 import place3a from './assets/place3-1.jpg';
 import place3b from './assets/place3-2.jpg';
 import place3c from './assets/place3-3.jpg';
 import place3d from './assets/place3-4.jpg';
+import place3e from './assets/place3-5.jpg';
+import place3f from './assets/place3-6.jpg';
+import place3g from './assets/place3-7.jpg';
 
 // Import audio files
 // Thai audio
@@ -87,7 +92,7 @@ const Places = () => {
     {
       id: 1,
       nameKey: "computerCenter",
-      image: place1a,
+      image: place1f,
       category: "Academic",
       openHours: "08:00 - 20:00",
       location: "อาคาร A ชั้น 1-3",
@@ -108,7 +113,7 @@ const Places = () => {
     {
       id: 2,
       nameKey: "registrar",
-      image: place2a,
+      image: place2e,
       category: "Administrative",
       openHours: "08:30 - 16:30",
       location: "อาคารอำนวยการ ชั้น 1",
@@ -128,7 +133,7 @@ const Places = () => {
     {
       id: 3,
       nameKey: "studentAffairs",
-      image: place3b,
+      image: place3e,
       category: "Student Services",
       openHours: "08:30 - 16:30",
       location: "อาคารกิจการนิสิต ชั้น 1",
@@ -139,8 +144,10 @@ const Places = () => {
       images: [
         { url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" },
         { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" },
-        { url: place3c, caption: "ห้องประชุมชมรม", type: "club_meeting_room" },
-        { url: place3d, caption: "พื้นที่จัดกิจกรรม", type: "activity_space" }
+        { url: place3c, caption: "พื้นที่จัดกิจกรรม", type: "club_meeting_room" },
+        { url: place3d, caption: "งานสวัสดิภาพนิสิต", type: "activity_space" },
+        { url: place3f, caption: "งานสนับสนุนนิสิตพิการ", type: "disability_area" },
+        { url: place3g, caption: "สวัสดิภาพนิสิต", type: "student_welfare" }
       ],
       virtualTour: "/virtual-tour/studentaffairs",
       capacity: "150 คน"
@@ -261,6 +268,13 @@ const Places = () => {
     console.log('Audio state changed:', audioPlace?.id || 'stopped');
   };
 
+  // Handle language change
+  const handleLanguageChange = (langCode) => {
+    i18n.changeLanguage(langCode);
+    console.log('Language changed to:', langCode);
+  };
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-20">
       {/* Header Section */}
@@ -282,6 +296,7 @@ const Places = () => {
             audioTranscripts={audioTranscripts}
             onAudioStateChange={handleAudioStateChange}
             currentLanguage={currentLang}
+            onLanguageChange={handleLanguageChange}
           />
         </div>
         
