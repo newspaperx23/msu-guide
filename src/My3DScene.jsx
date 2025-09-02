@@ -13,6 +13,9 @@ import Typewriter from "typewriter-effect";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import model3d from "./assets/msuguiderv2.glb";
 import "./i18n.js";
+import thflag from "./assets/th.png";
+import enflag from "./assets/us.png"; 
+import cnflag from "./assets/cn.png";
 
 function AnimatedModel() {
   const { scene } = useGLTF(model3d, true);
@@ -44,9 +47,9 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange, o
 
   // Available languages
   const availableLanguages = [
-    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
-    { code: 'en', label: 'EN', flag: '🇺🇸' },
-    { code: 'zh', label: '中文', flag: '🇨🇳' }
+    { code: 'th', label: 'ไทย', flag: thflag },
+    { code: 'en', label: 'EN', flag: enflag },
+    { code: 'zh', label: '中文', flag: cnflag }
   ];
 
   // Debug logging
@@ -239,7 +242,12 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange, o
                 }`}
                 title={`เปลี่ยนเป็นภาษา${lang.label}`}
               >
-                <span className="text-xs md:text-sm">{lang.flag}</span>
+                <img
+                  src={lang.flag}
+                  alt={lang.label}
+                  className="w-5 h-5 md:w-6 md:h-6 object-contain"
+                  draggable={false}
+                />
               </button>
             ))}
           </div>
@@ -266,7 +274,12 @@ function AudioController({ selectedPlace, currentLanguage, onAudioStateChange, o
               }`}
               title={`เปลี่ยนเป็นภาษา${lang.label}`}
             >
-              <span className="text-xs md:text-sm">{lang.flag}</span>
+              <img
+                src={lang.flag}
+                alt={lang.label}
+                className="w-5 h-5 md:w-6 md:h-6 object-contain"
+                draggable={false}
+              />
             </button>
           ))}
         </div>
@@ -443,7 +456,7 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
             )}
           </div>
 
-          {/* โมเดル 3D */}
+          {/* โมเดล 3D */}
           <Canvas
             camera={{ position: [2, 2.5, 5], fov: 45 }}
             dpr={[1, 1.5]}
