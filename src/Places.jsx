@@ -11,6 +11,9 @@ import place1c from './assets/place1-3.jpg';
 import place1d from './assets/place1-4.jpg';
 import place1e from './assets/place1-5.jpg';
 import place1f from './assets/place1-7.jpg';
+import place1g from './assets/place1-8.jpg';
+import place1h from './assets/place1-9.jpg';
+import place1i from './assets/place1-10.jpg';
 import place2a from './assets/place2-1.jpg';
 import place2b from './assets/place2-2.jpg';
 import place2c from './assets/place2-3.jpg';
@@ -97,7 +100,7 @@ const Places = () => {
       category: "Academic",
       openHours: "08:00 - 20:00",
       location: "อาคาร A ชั้น 1-3",
-      coordinates: { lat: 17.3644, lng: 102.8194 },
+      coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, // 16.245697331723587, 103.25114362463549
       phone: "042-123-456",
       email: "library@msu.ac.th",
       audioUrls: audioUrls[1], // Add audio URLs
@@ -107,6 +110,9 @@ const Places = () => {
         { url: place1c, caption: "มุมอ่านหนังสือ", type: "reading_area" },
         { url: place1d, caption: "ห้องคอมพิวเตอร์", type: "computer_lab" },
         { url: place1e, caption: "คาราโอเกะ", type: "lounge" },
+        { url: place1g, caption: "โถงกลาง", type: "main_hall" },
+        { url: place1h, caption: "มุมอ่านหนังสือ", type: "relaxation_area" },
+        { url: place1i, caption: "มุมอ่านหนังสือ", type: "event_space" }
       ],
       virtualTour: "/virtual-tour/library",
       capacity: "500 คน"
@@ -118,7 +124,7 @@ const Places = () => {
       category: "Administrative",
       openHours: "08:30 - 16:30",
       location: "อาคารอำนวยการ ชั้น 1",
-      coordinates: { lat: 17.3640, lng: 102.8190 },
+      coordinates: { lat: 16.249137030602363, lng: 103.25072868259224  },
       phone: "042-123-457",
       email: "registrar@msu.ac.th",
       audioUrls: audioUrls[2], // Add audio URLs
@@ -138,7 +144,7 @@ const Places = () => {
       category: "Student Services",
       openHours: "08:30 - 16:30",
       location: "อาคารกิจการนิสิต ชั้น 1",
-      coordinates: { lat: 17.3638, lng: 102.8188 },
+      coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, // 16.252316203199562, 103.2468383835711
       phone: "042-123-459",
       email: "studentaffairs@msu.ac.th",
       audioUrls: audioUrls[3], // Add audio URLs
