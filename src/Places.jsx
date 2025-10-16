@@ -28,6 +28,23 @@ import place3f from './assets/place3-6.jpg';
 import place3g from './assets/place3-7.jpg';
 import logo2 from './assets/logo2.png';
 
+// เพิ่มการ import รูปสำหรับสถานที่ 4-6
+import place4a from './assets/place4-1.jpg';
+import place4b from './assets/place4-2.jpg';
+import place4c from './assets/place4-3.jpg';
+import place4d from './assets/place4-4.jpg';
+import place4e from './assets/place4-5.jpg';
+
+import place5a from './assets/place5-1.jpg';
+import place5b from './assets/place5-2.jpg';
+import place5c from './assets/place5-3.jpg';
+import place5d from './assets/place5-4.jpg';
+
+import place6a from './assets/place6-1.jpg';
+import place6b from './assets/place6-2.jpg';
+import place6c from './assets/place6-3.jpg';
+import place6d from './assets/place6-4.jpg';
+
 // Import audio files
 // Thai audio
 import place1AudioTh from './assets/audio/th/place1-audio.wav';
@@ -162,7 +179,7 @@ const Places = () => {
     {
       id: 4,
       nameKey: "generalEducation",
-      image: logo2,
+      image: place4a,
       category: "Academic",
       openHours: "08:30 - 16:30",
       location: "อาคารศึกษาทั่วไป ชั้น 1-2",
@@ -170,10 +187,10 @@ const Places = () => {
       phone: "042-123-458",
       email: "gened@msu.ac.th",
       images: [
-        { url: "/api/placeholder/600/400", caption: "ห้องเรียนใหญ่", type: "classroom" },
-        { url: "/api/placeholder/600/400", caption: "ห้องประชุมสัมมนา", type: "seminar_room" },
-        { url: "/api/placeholder/600/400", caption: "ห้องปฏิบัติการคอมพิวเตอร์", type: "computer_lab" },
-        { url: "/api/placeholder/600/400", caption: "พื้นที่พักผ่อนนิสิต", type: "student_lounge" }
+        { url: place4a, caption: "ตึกสำนักศึกษาทั่วไป", type: "General Education" },
+        { url: place4b, caption: "โถงทางเดิน", type: "hallway" },
+        { url: place4c, caption: "โถงทางเดิน 2", type: "hallway2" },
+        { url: place4d, caption: "พื้นที่ทำงานของนิสิต", type: "Co-Woking Space" }
       ],
       virtualTour: "/virtual-tour/gened",
       capacity: "300 คน"
@@ -181,7 +198,7 @@ const Places = () => {
     {
       id: 5,
       nameKey: "dormitory",
-      image: logo2,
+      image: place5a,
       category: "Accommodation",
       openHours: "24 ชั่วโมง",
       location: "อาคารหอพักนิสิต",
@@ -189,10 +206,10 @@ const Places = () => {
       phone: "042-123-460",
       email: "dormitory@msu.ac.th",
       images: [
-        { url: "/api/placeholder/600/400", caption: "ห้องพักตัวอย่าง", type: "sample_room" },
-        { url: "/api/placeholder/600/400", caption: "ล็อบบี้หอพัก", type: "lobby" },
-        { url: "/api/placeholder/600/400", caption: "พื้นที่พักผ่อนส่วนกลาง", type: "common_area" },
-        { url: "/api/placeholder/600/400", caption: "ห้องซักรีด", type: "laundry_room" }
+        { url: place5a, caption: "หอพักภายใน", type: "On-Campus Dorm" },
+        { url: place5b, caption: "ภาพบรรยากาศ", type: "lobby" },
+        { url: place5c, caption: "ที่จอดรถ", type: "common_area" },
+        { url: place5d, caption: "บรรยากาศตึกหอพัก", type: "laundry_room" }
       ],
       virtualTour: "/virtual-tour/dormitory",
       capacity: "500 คน"
@@ -200,7 +217,7 @@ const Places = () => {
     {
       id: 6,
       nameKey: "boromrajkumari",
-      image: logo2,
+      image: place6a,
       category: "Academic",
       openHours: "06:00 - 22:00",
       location: "อาคารบรมราชกุมารี",
@@ -208,10 +225,10 @@ const Places = () => {
       phone: "042-123-461",
       email: "boromrajkumari@msu.ac.th",
       images: [
-        { url: "/api/placeholder/600/400", caption: "ห้องบรรยายใหญ่", type: "lecture_hall" },
-        { url: "/api/placeholder/600/400", caption: "ห้องปฏิบัติการวิทยาศาสตร์", type: "science_lab" },
-        { url: "/api/placeholder/600/400", caption: "ห้องประชุมใหญ่", type: "conference_room" },
-        { url: "/api/placeholder/600/400", caption: "ล็อบบี้ชั้น 1", type: "main_lobby" }
+        { url: place6a, caption: "ด้านหน้าตึก", type: "lecture_hall" },
+        { url: place6b, caption: "ภายในตึก", type: "science_lab" },
+        { url: place6c, caption: "ห้องการเงิน", type: "conference_room" },
+        { url: place6d, caption: "ล็อบบี้", type: "main_lobby" }
       ],
       virtualTour: "/virtual-tour/boromrajkumari",
       capacity: "1000 คน"
