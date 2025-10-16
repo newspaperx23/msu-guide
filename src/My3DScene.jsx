@@ -425,7 +425,7 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
       />
       
       {/* 3D Scene Container */}
-      <div className="fixed bottom-[-15%] right-[10%] md:right-[0%] z-10 ">
+      <div className="fixed bottom-[-15%] right-[10%] md:right-[0%] z-[999] ">
         <div className="relative w-[250px] h-[350px] md:w-[320px] md:h-[420px]">
           {/* กล่องข้อความ - Enhanced with audio integration */}
           <div className="absolute top-[12%] md:top-[20%] left-2 md:left-[-50%] text-white shadow-lg text-sm md:text-base font-light p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm w-[85vw] max-w-[420px] md:w-[240px] z-[9999] border border-white/20 overflow-auto max-h-[45vh] break-words whitespace-normal">
