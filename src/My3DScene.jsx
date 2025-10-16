@@ -450,7 +450,7 @@ export default function My3DScene({ selectedPlace, audioTranscripts, onAudioStat
                   <div className="w-1 h-3 bg-green-400 rounded-full animate-pulse"></div>
                   <div className="w-1 h-4 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '0.1s' }}></div>
                   <div className="w-1 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <span className="text-xs text-green-400 ml-2">กำลังเล่นเสียง</span>
+                  {/* <span className="text-xs text-green-400 ml-2">กำลังเล่นเสียง</span> */}
                 </div>
               </div>
             )}

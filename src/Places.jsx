@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, X } from 'lucide-react';
+// ✨ เพิ่ม View icon
+import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, X, View } from 'lucide-react';
 import NavigationBar from './NavigationBar';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from "react-i18next";
+import PanoViewer from './PanoViewer'; // ✨ Import PanoViewer component
 
 // Import images
 import place1a from './assets/place1-1.jpg';
@@ -26,38 +28,41 @@ import place3d from './assets/place3-4.jpg';
 import place3e from './assets/place3-5.jpg';
 import place3f from './assets/place3-6.jpg';
 import place3g from './assets/place3-7.jpg';
-
 import place4a from './assets/place4-1.jpg';
 import place4b from './assets/place4-2.jpg';
 import place4c from './assets/place4-3.jpg';
 import place4d from './assets/place4-4.jpg';
 import place4e from './assets/place4-5.jpg';
-
 import place5a from './assets/place5-1.jpg';
 import place5b from './assets/place5-3.jpg';
 import place5c from './assets/place5-3.jpg';
 import place5d from './assets/place5-4.jpg';
-
 import place6a from './assets/place6-1.jpg';
 import place6b from './assets/place6-2.jpg';
 import place6c from './assets/place6-3.jpg';
 import place6d from './assets/place6-4.jpg';
 
-// Import audio files - Thai
+// ✨ Import Panorama images from assets for all 6 places
+import pano1 from './assets/panoramas/place1-360.jpg';
+import pano2 from './assets/panoramas/place2-360.jpg';
+import pano3 from './assets/panoramas/place3-360.jpg';
+import pano4 from './assets/panoramas/place4-360.jpg';
+import pano5 from './assets/panoramas/place5-360.jpg';
+import pano6 from './assets/panoramas/place6-360.jpg';
+
+// Import audio files
 import place1AudioTh from './assets/audio/th/place1-audio.wav';
 import place2AudioTh from './assets/audio/th/place2-audio.wav';
 import place3AudioTh from './assets/audio/th/place3-audio.wav';
 import place4AudioTh from './assets/audio/th/place4-audio.wav';
 import place5AudioTh from './assets/audio/th/place5-audio.wav';
 import place6AudioTh from './assets/audio/th/place6-audio.wav';
-
 import place1AudioEn from './assets/audio/en/place1-audio.wav';
 import place2AudioEn from './assets/audio/en/place2-audio.wav';
 import place3AudioEn from './assets/audio/en/place3-audio.wav';
 import place4AudioEn from './assets/audio/en/place4-audio.wav';
 import place5AudioEn from './assets/audio/en/place5-audio.wav';
 import place6AudioEn from './assets/audio/en/place6-audio.wav';
-
 import place1AudioZh from './assets/audio/zh/place1-audio.wav';
 import place2AudioZh from './assets/audio/zh/place2-audio.wav';
 import place3AudioZh from './assets/audio/zh/place3-audio.wav';
@@ -65,11 +70,13 @@ import place4AudioZh from './assets/audio/zh/place4-audio.wav';
 import place5AudioZh from './assets/audio/zh/place5-audio.wav';
 import place6AudioZh from './assets/audio/zh/place6-audio.wav';
 
+
 const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [currentAudioPlace, setCurrentAudioPlace] = useState(null);
+  const [panoImage, setPanoImage] = useState(null); // State for Panorama
   const { t, i18n } = useTranslation();
 
   const currentLang = i18n.language || 'th';
@@ -93,12 +100,13 @@ const Places = () => {
   };
 
   const recommendedPlaces = [
-    { id: 1, nameKey: "computerCenter", image: place1f, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร A ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "042-123-456", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, caption: "ห้องสมุดหลัก", type: "interior" }, { url: place1b, caption: "ห้องศึกษาค้นคว้า", type: "study_room" }, { url: place1c, caption: "มุมอ่านหนังสือ", type: "reading_area" }, { url: place1d, caption: "ห้องคอมพิวเตอร์", type: "computer_lab" }, { url: place1e, caption: "คาราโอเกะ", type: "lounge" }, { url: place1g, caption: "โถงกลาง", type: "main_hall" }, { url: place1h, caption: "มุมอ่านหนังสือ", type: "relaxation_area" }, { url: place1i, caption: "มุมอ่านหนังสือ", type: "event_space" }], virtualTour: "/virtual-tour/library", capacity: "500 คน" },
-    { id: 2, nameKey: "registrar", image: place2e, category: "Administrative", openHours: "08:30 - 16:30", location: "อาคารอำนวยการ ชั้น 1", coordinates: { lat: 16.249137030602363, lng: 103.25072868259224 }, phone: "042-123-457", email: "registrar@msu.ac.th", audioUrls: audioUrls[2], images: [{ url: place2a, caption: "ป้ายหน้าตึก", type: "entrance1" }, { url: place2b, caption: "ทางเดินเข้า", type: "entrance2" }, { url: place2d, caption: "ห้องรอรับบริการ", type: "waiting_area" }, { url: place2c, caption: "จุดยื่นเอกสาร", type: "document_submission" }], virtualTour: "/virtual-tour/registrar", capacity: "100 คน" },
-    { id: 3, nameKey: "studentAffairs", image: place3e, category: "Student Services", openHours: "08:30 - 16:30", location: "อาคารกิจการนิสิต ชั้น 1", coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, phone: "042-123-459", email: "studentaffairs@msu.ac.th", audioUrls: audioUrls[3], images: [{ url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" }, { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" }, { url: place3c, caption: "พื้นที่จัดกิจกรรม", type: "club_meeting_room" }, { url: place3d, caption: "งานสวัสดิภาพนิสิต", type: "activity_space" }, { url: place3f, caption: "งานสนับสนุนนิสิตพิการ", type: "disability_area" }, { url: place3g, caption: "สวัสดิภาพนิสิต", type: "student_welfare" }], virtualTour: "/virtual-tour/studentaffairs", capacity: "150 คน" },
-    { id: 4, nameKey: "generalEducation", image: place4a, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 17.3642, lng: 102.8192 }, phone: "042-123-458", email: "gened@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, caption: "ตึกสำนักศึกษาทั่วไป", type: "General Education" }, { url: place4b, caption: "โถงทางเดิน", type: "hallway" }, { url: place4c, caption: "โถงทางเดิน 2", type: "hallway2" }, { url: place4d, caption: "พื้นที่ทำงานของนิสิต", type: "Co-Woking Space" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน" },
-    { id: 5, nameKey: "dormitory", image: place5a, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 17.3646, lng: 102.8196 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, caption: "หอพักภายใน", type: "On-Campus Dorm" }, { url: place5b, caption: "ภาพบรรยากาศ", type: "lobby" }, { url: place5c, caption: "ที่จอดรถ", type: "common_area" }, { url: place5d, caption: "บรรยากาศตึกหอพัก", type: "laundry_room" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน" },
-    { id: 6, nameKey: "boromrajkumari", image: place6a, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 17.3643, lng: 102.8191 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, caption: "ด้านหน้าตึก", type: "lecture_hall" }, { url: place6b, caption: "ภายในตึก", type: "science_lab" }, { url: place6c, caption: "ห้องการเงิน", type: "conference_room" }, { url: place6d, caption: "ล็อบบี้", type: "main_lobby" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน" }
+    // ✨ แก้ไข panoImage ให้ใช้ตัวแปรที่ import เข้ามาสำหรับทุกสถานที่
+    { id: 1, nameKey: "computerCenter", image: place1f, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร A ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "042-123-456", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, caption: "ห้องสมุดหลัก", type: "interior" }, { url: place1b, caption: "ห้องศึกษาค้นคว้า", type: "study_room" }, { url: place1c, caption: "มุมอ่านหนังสือ", type: "reading_area" }, { url: place1d, caption: "ห้องคอมพิวเตอร์", type: "computer_lab" }, { url: place1e, caption: "คาราโอเกะ", type: "lounge" }, { url: place1g, caption: "โถงกลาง", type: "main_hall" }, { url: place1h, caption: "มุมอ่านหนังสือ", type: "relaxation_area" }, { url: place1i, caption: "มุมอ่านหนังสือ", type: "event_space" }], virtualTour: "/virtual-tour/library", capacity: "500 คน", panoImage: pano1 },
+    { id: 2, nameKey: "registrar", image: place2e, category: "Administrative", openHours: "08:30 - 16:30", location: "อาคารอำนวยการ ชั้น 1", coordinates: { lat: 16.249137030602363, lng: 103.25072868259224 }, phone: "042-123-457", email: "registrar@msu.ac.th", audioUrls: audioUrls[2], images: [{ url: place2a, caption: "ป้ายหน้าตึก", type: "entrance1" }, { url: place2b, caption: "ทางเดินเข้า", type: "entrance2" }, { url: place2d, caption: "ห้องรอรับบริการ", type: "waiting_area" }, { url: place2c, caption: "จุดยื่นเอกสาร", type: "document_submission" }], virtualTour: "/virtual-tour/registrar", capacity: "100 คน", panoImage: pano2 },
+    { id: 3, nameKey: "studentAffairs", image: place3e, category: "Student Services", openHours: "08:30 - 16:30", location: "อาคารกิจการนิสิต ชั้น 1", coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, phone: "042-123-459", email: "studentaffairs@msu.ac.th", audioUrls: audioUrls[3], images: [{ url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" }, { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" }, { url: place3c, caption: "พื้นที่จัดกิจกรรม", type: "club_meeting_room" }, { url: place3d, caption: "งานสวัสดิภาพนิสิต", type: "activity_space" }, { url: place3f, caption: "งานสนับสนุนนิสิตพิการ", type: "disability_area" }, { url: place3g, caption: "สวัสดิภาพนิสิต", type: "student_welfare" }], virtualTour: "/virtual-tour/studentaffairs", capacity: "150 คน", panoImage: pano3 },
+    { id: 4, nameKey: "generalEducation", image: place4a, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 17.3642, lng: 102.8192 }, phone: "042-123-458", email: "gened@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, caption: "ตึกสำนักศึกษาทั่วไป", type: "General Education" }, { url: place4b, caption: "โถงทางเดิน", type: "hallway" }, { url: place4c, caption: "โถงทางเดิน 2", type: "hallway2" }, { url: place4d, caption: "พื้นที่ทำงานของนิสิต", type: "Co-Woking Space" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน", panoImage: pano4 },
+    { id: 5, nameKey: "dormitory", image: place5a, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 17.3646, lng: 102.8196 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, caption: "หอพักภายใน", type: "On-Campus Dorm" }, { url: place5b, caption: "ภาพบรรยากาศ", type: "lobby" }, { url: place5c, caption: "ที่จอดรถ", type: "common_area" }, { url: place5d, caption: "บรรยากาศตึกหอพัก", type: "laundry_room" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน", panoImage: pano5 },
+    { id: 6, nameKey: "boromrajkumari", image: place6a, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 17.3643, lng: 102.8191 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, caption: "ด้านหน้าตึก", type: "lecture_hall" }, { url: place6b, caption: "ภายในตึก", type: "science_lab" }, { url: place6c, caption: "ห้องการเงิน", type: "conference_room" }, { url: place6d, caption: "ล็อบบี้", type: "main_lobby" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน", panoImage: pano6 }
   ];
 
   const getCategoryColor = (category) => {
@@ -191,38 +199,28 @@ const Places = () => {
               style={{ animationDelay: `${idx * 100}ms` }}
               onClick={() => handlePlaceSelection(place)}
             >
-              {/* Glassmorphism Card */}
+              {/* Card */}
               <div className="relative h-80 rounded-2xl overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-4xl transition-all duration-500 hover:border-white/40">
-                
-                {/* Image with gradient overlay */}
                 <img
                   src={place.image}
                   alt={t(`placesPage.places.${place.nameKey}.name`)}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
-
-                {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-20">
                   <span className={`px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-md border border-white/20 ${getCategoryBadgeColor(place.category)}`}>
                     {t(`placesPage.categories.${place.category}`)}
                   </span>
                 </div>
-
-                {/* Audio Indicator */}
                 {currentAudioPlace?.id === place.id && (
                   <div className="absolute top-4 right-4 z-20 bg-green-500/80 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 border border-green-400/50">
                     <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                     กำลังเล่น
                   </div>
                 )}
-
-                {/* Selection Indicator */}
                 {selectedPlace?.id === place.id && (
                   <div className="absolute inset-0 border-2 border-blue-400 rounded-2xl opacity-100 z-30"></div>
                 )}
-
-                {/* Content Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
                     {t(`placesPage.places.${place.nameKey}.name`)}
@@ -230,8 +228,6 @@ const Places = () => {
                   <p className="text-slate-300 text-sm mb-4 line-clamp-2 group-hover:text-white transition-colors duration-300">
                     {t(`placesPage.places.${place.nameKey}.description`)}
                   </p>
-                  
-                  {/* Info Row */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 text-slate-400">
                       <div className="flex items-center gap-1 text-xs">
@@ -268,10 +264,9 @@ const Places = () => {
         </div>
       </div>
 
-      {/* Modal with Blur Background - Z-index: z-50 */}
+      {/* Modal */}
       {selectedPlace && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto pointer-events-none">
-          {/* Blur Background: นำ backdrop-blur-md ออก และใช้แค่ bg-black/40 */}
           <div 
             className="absolute inset-0 bg-black/40 transition-all duration-300 animate-fade-in pointer-events-auto"
             onClick={() => {
@@ -280,11 +275,7 @@ const Places = () => {
               setActiveTab('overview');
             }}
           ></div>
-
-          {/* Modal Content - เพิ่ม z-10 เพื่อให้มันอยู่เหนือพื้นหลัง */}
           <div className="relative z-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-y-auto shadow-2xl border border-white/20 backdrop-blur-xl animate-slide-up pointer-events-auto">
-            
-            {/* Close Button - เพิ่ม z-20 เพื่อให้ทับเนื้อหา Modal อื่นๆ */}
             <button
               onClick={() => {
                 setSelectedPlace(null);
@@ -295,8 +286,6 @@ const Places = () => {
             >
               <X className="w-6 h-6 text-white" />
             </button>
-
-            {/* Image Gallery */}
             <div className="relative h-80 bg-gradient-to-br from-blue-600/20 to-violet-600/20 overflow-hidden">
               {selectedPlace.images && selectedPlace.images.length > 0 && (
                 <>
@@ -307,8 +296,6 @@ const Places = () => {
                     }}
                   ></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-
-                  {/* Navigation */}
                   <button
                     onClick={prevImage}
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 rounded-full transition-all duration-300 border border-white/20"
@@ -321,8 +308,6 @@ const Places = () => {
                   >
                     →
                   </button>
-
-                  {/* Caption */}
                   <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg border border-white/20">
                     <p className="text-sm">{selectedPlace.images[currentImageIndex].caption}</p>
                     <p className="text-xs text-slate-400">{currentImageIndex + 1} / {selectedPlace.images.length}</p>
@@ -330,10 +315,7 @@ const Places = () => {
                 </>
               )}
             </div>
-
-            {/* Content */}
             <div className="p-8">
-              {/* Header */}
               <div className="mb-8">
                 <div className="mb-4">
                   <h1 className="text-4xl font-bold text-white mb-2">
@@ -343,9 +325,8 @@ const Places = () => {
                     {t(`placesPage.categories.${selectedPlace.category}`)}
                   </span>
                 </div>
-
-                {/* Quick Actions */}
-                <div className="flex gap-3 mt-6">
+                {/* ✨ Quick Actions - แก้ไขส่วนนี้ */}
+                <div className="flex flex-wrap gap-3 mt-6">
                   <button
                     onClick={() => openGoogleMaps(selectedPlace.coordinates, t(`placesPage.places.${selectedPlace.nameKey}.name`))}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-300"
@@ -353,6 +334,18 @@ const Places = () => {
                     <Navigation className="w-5 h-5" />
                     {t('placesPage.modal.navigation')}
                   </button>
+
+                  {/* ✨ ปุ่ม 360 View (จะแสดงก็ต่อเมื่อมี panoImage) */}
+                  {selectedPlace.panoImage && (
+                    <button
+                      onClick={() => setPanoImage(selectedPlace.panoImage)}
+                      className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-violet-600 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/50 transition-all duration-300"
+                    >
+                      <View className="w-5 h-5" />
+                      360° View
+                    </button>
+                  )}
+
                   <button
                     onClick={() => window.open(`tel:${selectedPlace.phone}`)}
                     className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-semibold border border-white/20 hover:border-blue-400/50 hover:bg-blue-500/20 transition-all duration-300"
@@ -362,8 +355,6 @@ const Places = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Tabs */}
               <div className="flex border-b border-white/10 mb-8 overflow-x-auto">
                 {[
                   { id: 'overview', label: t('placesPage.modal.overview'), icon: Info },
@@ -385,8 +376,6 @@ const Places = () => {
                   </button>
                 ))}
               </div>
-
-              {/* Tab Content */}
               <div className="min-h-[300px] text-slate-200">
                 {activeTab === 'overview' && (
                   <div className="space-y-6">
@@ -396,7 +385,6 @@ const Places = () => {
                         {t(`placesPage.places.${selectedPlace.nameKey}.detailedDescription`)}
                       </p>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-blue-500/50 transition-all duration-300">
                         <div className="flex items-center mb-3">
@@ -405,7 +393,6 @@ const Places = () => {
                         </div>
                         <p className="text-slate-300">{getTranslatedOpenHours(selectedPlace.openHours)}</p>
                       </div>
-                      
                       <div className="p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-teal-500/50 transition-all duration-300">
                         <div className="flex items-center mb-3">
                           <MapPin className="w-5 h-5 mr-3 text-teal-400" />
@@ -413,7 +400,6 @@ const Places = () => {
                         </div>
                         <p className="text-slate-300">{getTranslatedLocation(selectedPlace.location)}</p>
                       </div>
-
                       <div className="p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-violet-500/50 transition-all duration-300">
                         <div className="flex items-center mb-3">
                           <Users className="w-5 h-5 mr-3 text-violet-400" />
@@ -422,7 +408,6 @@ const Places = () => {
                         <p className="text-slate-300">{selectedPlace.capacity}</p>
                       </div>
                     </div>
-
                     <div>
                       <h4 className="text-lg font-bold text-white mb-4">{t('placesPage.modal.facilities')}</h4>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -436,7 +421,6 @@ const Places = () => {
                     </div>
                   </div>
                 )}
-
                 {activeTab === 'gallery' && (
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-4">{t('placesPage.modal.galleryTitle')}</h3>
@@ -460,7 +444,6 @@ const Places = () => {
                     </div>
                   </div>
                 )}
-
                 {activeTab === 'services' && (
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-4">{t('placesPage.modal.servicesProvided')}</h3>
@@ -472,7 +455,6 @@ const Places = () => {
                         </div>
                       ))}
                     </div>
-
                     <div className="p-6 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
                       <h4 className="text-lg font-bold text-white mb-4">{t('placesPage.modal.highlights')}</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -488,11 +470,9 @@ const Places = () => {
                     </div>
                   </div>
                 )}
-
                 {activeTab === 'contact' && (
                   <div className="space-y-6">
                     <h3 className="text-2xl font-bold text-white">{t('placesPage.modal.contactInfo')}</h3>
-                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div className="flex items-start p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-blue-500/50 transition-all duration-300">
@@ -502,7 +482,6 @@ const Places = () => {
                             <p className="font-semibold text-white">{selectedPlace.phone}</p>
                           </div>
                         </div>
-                        
                         <div className="flex items-start p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-teal-500/50 transition-all duration-300">
                           <Globe className="w-6 h-6 mr-4 text-teal-400 flex-shrink-0 mt-1" />
                           <div>
@@ -510,7 +489,6 @@ const Places = () => {
                             <p className="font-semibold text-white">{selectedPlace.email}</p>
                           </div>
                         </div>
-                        
                         <div className="flex items-start p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-violet-500/50 transition-all duration-300">
                           <MapPin className="w-6 h-6 mr-4 text-violet-400 flex-shrink-0 mt-1" />
                           <div>
@@ -519,7 +497,6 @@ const Places = () => {
                           </div>
                         </div>
                       </div>
-
                       <div className="p-6 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
                         <h4 className="font-bold text-white mb-4">{t('placesPage.modal.transportation')}</h4>
                         <p className="text-slate-300 mb-4 text-sm">
@@ -532,7 +509,6 @@ const Places = () => {
                           <Navigation className="w-5 h-5" />
                           {t('placesPage.modal.openGoogleMaps')}
                         </button>
-                        
                         <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/10">
                           <p className="text-xs text-slate-400 mb-1">{t('placesPage.modal.gpsCoordinates')}</p>
                           <p className="text-sm font-mono text-slate-300">
@@ -548,10 +524,11 @@ const Places = () => {
           </div>
         </div>
       )}
+      
+      {/* ✨ แสดง PanoViewer component ที่นี่ */}
+      <PanoViewer image={panoImage} onClose={() => setPanoImage(null)} />
 
-      {/* Moved My3DScene here and adjusted z-index to be higher than the modal (z-50)
-        This ensures it renders on top of everything else.
-      */}
+      {/* Moved My3DScene here */}
       <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[100] pointer-events-auto">
         <My3DScene 
           selectedPlace={selectedPlace}
