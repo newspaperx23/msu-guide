@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-// ✨ เพิ่ม View icon
 import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, X, View } from 'lucide-react';
 import NavigationBar from './NavigationBar';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from "react-i18next";
-import PanoViewer from './PanoViewer'; // ✨ Import PanoViewer component
+import PanoViewer from './PanoViewer';
 
 // Import images
+import place1cover from './assets/place1-cover.jpg';
+import place2cover from './assets/place2-cover.jpg';
+import place3cover from './assets/place3-cover.jpg';
+import place4cover from './assets/place4-cover.jpg';
+import place5cover from './assets/place5-cover.jpg';
+import place6cover from './assets/place6-cover.jpg';
 import place1a from './assets/place1-1.jpg';
 import place1b from './assets/place1-2.jpg';
 import place1c from './assets/place1-3.jpg';
@@ -16,11 +21,21 @@ import place1f from './assets/place1-7.jpg';
 import place1g from './assets/place1-8.jpg';
 import place1h from './assets/place1-9.jpg';
 import place1i from './assets/place1-10.jpg';
+import place1j from './assets/place1-11.jpg';
+import place1k from './assets/place1-12.jpg';
+import place1l from './assets/place1-13.jpg';
+import place1m from './assets/place1-14.jpg';
 import place2a from './assets/place2-1.jpg';
 import place2b from './assets/place2-2.jpg';
 import place2c from './assets/place2-3.jpg';
 import place2d from './assets/place2-4.jpg';
 import place2e from './assets/place2-5.jpg';
+import place2f from './assets/place2-6.jpg';
+import place2g from './assets/place2-7.jpg';
+import place2h from './assets/place2-8.jpg';
+import place2i from './assets/place2-9.jpg';
+import place2j from './assets/place2-10.jpg';
+import place2k from './assets/place2-10.jpg';
 import place3a from './assets/place3-1.jpg';
 import place3b from './assets/place3-2.jpg';
 import place3c from './assets/place3-3.jpg';
@@ -28,21 +43,32 @@ import place3d from './assets/place3-4.jpg';
 import place3e from './assets/place3-5.jpg';
 import place3f from './assets/place3-6.jpg';
 import place3g from './assets/place3-7.jpg';
+import place3h from './assets/place3-8.jpg';
+import place3i from './assets/place3-9.jpg';
+import place3j from './assets/place3-10.jpg';
 import place4a from './assets/place4-1.jpg';
 import place4b from './assets/place4-2.jpg';
 import place4c from './assets/place4-3.jpg';
 import place4d from './assets/place4-4.jpg';
 import place4e from './assets/place4-5.jpg';
+import place4f from './assets/place4-6.jpg';
+import place4g from './assets/place4-7.jpg';
 import place5a from './assets/place5-1.jpg';
 import place5b from './assets/place5-3.jpg';
 import place5c from './assets/place5-3.jpg';
 import place5d from './assets/place5-4.jpg';
+import place5e from './assets/place5-5.jpg';
+import place5f from './assets/place5-6.jpg';
+import place5g from './assets/place5-7.jpg';
+import place5h from './assets/place5-8.jpg';
+import place5i from './assets/place5-9.jpg';
+import place5j from './assets/place5-10.jpg';
 import place6a from './assets/place6-1.jpg';
 import place6b from './assets/place6-2.jpg';
 import place6c from './assets/place6-3.jpg';
 import place6d from './assets/place6-4.jpg';
 
-// ✨ Import Panorama images from assets for all 6 places
+// Import Panorama images
 import pano1 from './assets/panoramas/place1-360.jpg';
 import pano2 from './assets/panoramas/place2-360.jpg';
 import pano3 from './assets/panoramas/place3-360.jpg';
@@ -70,13 +96,14 @@ import place4AudioZh from './assets/audio/zh/place4-audio.wav';
 import place5AudioZh from './assets/audio/zh/place5-audio.wav';
 import place6AudioZh from './assets/audio/zh/place6-audio.wav';
 
-
 const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [currentAudioPlace, setCurrentAudioPlace] = useState(null);
-  const [panoImage, setPanoImage] = useState(null); // State for Panorama
+  const [panoImage, setPanoImage] = useState(null);
+  const [popupImage, setPopupImage] = useState(null);
+  const [popupImageIndex, setPopupImageIndex] = useState(0);
   const { t, i18n } = useTranslation();
 
   const currentLang = i18n.language || 'th';
@@ -91,7 +118,7 @@ const Places = () => {
   };
 
   const audioTranscripts = {
-    1: { th: t('placesPage.places.computerCenter.detailedDescription'), en: t('placesPage.places.computerCenter.detailedDescription'), zh: t('placesPage.places.computerCenter.detailedDescription') },
+    1: { th: t('placesPage.places.libraryService.detailedDescription'), en: t('placesPage.places.libraryService.detailedDescription'), zh: t('placesPage.places.libraryService.detailedDescription') },
     2: { th: t('placesPage.places.registrar.detailedDescription'), en: t('placesPage.places.registrar.detailedDescription'), zh: t('placesPage.places.registrar.detailedDescription') },
     3: { th: t('placesPage.places.studentAffairs.detailedDescription'), en: t('placesPage.places.studentAffairs.detailedDescription'), zh: t('placesPage.places.studentAffairs.detailedDescription') },
     4: { th: t('placesPage.places.generalEducation.detailedDescription'), en: t('placesPage.places.generalEducation.detailedDescription'), zh: t('placesPage.places.generalEducation.detailedDescription') },
@@ -100,13 +127,12 @@ const Places = () => {
   };
 
   const recommendedPlaces = [
-    // ✨ แก้ไข panoImage ให้ใช้ตัวแปรที่ import เข้ามาสำหรับทุกสถานที่
-    { id: 1, nameKey: "computerCenter", image: place1f, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร A ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "042-123-456", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, caption: "ห้องสมุดหลัก", type: "interior" }, { url: place1b, caption: "ห้องศึกษาค้นคว้า", type: "study_room" }, { url: place1c, caption: "มุมอ่านหนังสือ", type: "reading_area" }, { url: place1d, caption: "ห้องคอมพิวเตอร์", type: "computer_lab" }, { url: place1e, caption: "คาราโอเกะ", type: "lounge" }, { url: place1g, caption: "โถงกลาง", type: "main_hall" }, { url: place1h, caption: "มุมอ่านหนังสือ", type: "relaxation_area" }, { url: place1i, caption: "มุมอ่านหนังสือ", type: "event_space" }], virtualTour: "/virtual-tour/library", capacity: "500 คน", panoImage: pano1 },
-    { id: 2, nameKey: "registrar", image: place2e, category: "Administrative", openHours: "08:30 - 16:30", location: "อาคารอำนวยการ ชั้น 1", coordinates: { lat: 16.249137030602363, lng: 103.25072868259224 }, phone: "042-123-457", email: "registrar@msu.ac.th", audioUrls: audioUrls[2], images: [{ url: place2a, caption: "ป้ายหน้าตึก", type: "entrance1" }, { url: place2b, caption: "ทางเดินเข้า", type: "entrance2" }, { url: place2d, caption: "ห้องรอรับบริการ", type: "waiting_area" }, { url: place2c, caption: "จุดยื่นเอกสาร", type: "document_submission" }], virtualTour: "/virtual-tour/registrar", capacity: "100 คน", panoImage: pano2 },
-    { id: 3, nameKey: "studentAffairs", image: place3e, category: "Student Services", openHours: "08:30 - 16:30", location: "อาคารกิจการนิสิต ชั้น 1", coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, phone: "042-123-459", email: "studentaffairs@msu.ac.th", audioUrls: audioUrls[3], images: [{ url: place3a, caption: "จุดให้บริการหลัก", type: "service_area" }, { url: place3b, caption: "ห้องให้คำปรึกษา", type: "counseling_room" }, { url: place3c, caption: "พื้นที่จัดกิจกรรม", type: "club_meeting_room" }, { url: place3d, caption: "งานสวัสดิภาพนิสิต", type: "activity_space" }, { url: place3f, caption: "งานสนับสนุนนิสิตพิการ", type: "disability_area" }, { url: place3g, caption: "สวัสดิภาพนิสิต", type: "student_welfare" }], virtualTour: "/virtual-tour/studentaffairs", capacity: "150 คน", panoImage: pano3 },
-    { id: 4, nameKey: "generalEducation", image: place4a, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 17.3642, lng: 102.8192 }, phone: "042-123-458", email: "gened@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, caption: "ตึกสำนักศึกษาทั่วไป", type: "General Education" }, { url: place4b, caption: "โถงทางเดิน", type: "hallway" }, { url: place4c, caption: "โถงทางเดิน 2", type: "hallway2" }, { url: place4d, caption: "พื้นที่ทำงานของนิสิต", type: "Co-Woking Space" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน", panoImage: pano4 },
-    { id: 5, nameKey: "dormitory", image: place5a, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 17.3646, lng: 102.8196 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, caption: "หอพักภายใน", type: "On-Campus Dorm" }, { url: place5b, caption: "ภาพบรรยากาศ", type: "lobby" }, { url: place5c, caption: "ที่จอดรถ", type: "common_area" }, { url: place5d, caption: "บรรยากาศตึกหอพัก", type: "laundry_room" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน", panoImage: pano5 },
-    { id: 6, nameKey: "boromrajkumari", image: place6a, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 17.3643, lng: 102.8191 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, caption: "ด้านหน้าตึก", type: "lecture_hall" }, { url: place6b, caption: "ภายในตึก", type: "science_lab" }, { url: place6c, caption: "ห้องการเงิน", type: "conference_room" }, { url: place6d, caption: "ล็อบบี้", type: "main_lobby" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน", panoImage: pano6 }
+    { id: 1, nameKey: "libraryService", image: place1cover, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร A ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "042-123-456", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, captionKey: "libraryMainHall", type: "interior" }, { url: place1b, captionKey: "libraryStudyRoom", type: "study_room" }, { url: place1c, captionKey: "libraryReadingArea", type: "reading_area" }, { url: place1d, captionKey: "libraryComputerLab", type: "computer_lab" }, { url: place1e, captionKey: "libraryLounge", type: "lounge" }, { url: place1g, captionKey: "libraryMainLobby", type: "main_hall" }, { url: place1h, captionKey: "libraryRelaxationArea", type: "relaxation_area" }, { url: place1i, captionKey: "libraryEventSpace", type: "event_space" }, { url: place1j, captionKey: "libraryEntrance2", type: "entrance" }, { url: place1k, captionKey: "libraryHallway", type: "hallway" }, { url: place1l, captionKey: "libraryInterior", type: "interior_2" }, { url: place1m, captionKey: "libraryMSU", type: "library_sign" }], virtualTour: "/virtual-tour/library", capacity: "500 คน", panoImage: pano1 },
+    { id: 2, nameKey: "registrar", image: place2cover, category: "Administrative", openHours: "08:30 - 16:30", location: "อาคารอำนวยการ ชั้น 1", coordinates: { lat: 16.249137030602363, lng: 103.25072868259224 }, phone: "042-123-457", email: "registrar@msu.ac.th", audioUrls: audioUrls[2], images: [{ url: place2a, captionKey: "registrarEntrance1", type: "entrance1" }, { url: place2b, captionKey: "registrarEntrance2", type: "entrance2" }, { url: place2d, captionKey: "registrarWaitingArea", type: "waiting_area" }, { url: place2c, captionKey: "registrarDocumentSubmission", type: "document_submission" }, { url: place2f, captionKey: "registrarOfficeInterior", type: "office_interior" }, { url: place2g, captionKey: "registrarSupportArea", type: "support_area" }, { url: place2h, captionKey: "registrarComputerArea", type: "computer_area" }, { url: place2i, captionKey: "registrarServiceCounter", type: "service_counter" }, { url: place2j, captionKey: "registrarQueueTicket", type: "queue_ticket" }, { url: place2k, captionKey: "registrarInfoSign", type: "info_sign" }], virtualTour: "/virtual-tour/registrar", capacity: "100 คน", panoImage: pano2 },
+    { id: 3, nameKey: "studentAffairs", image: place3cover, category: "Student Services", openHours: "08:30 - 16:30", location: "อาคารกิจการนิสิต ชั้น 1", coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, phone: "042-123-459", email: "studentaffairs@msu.ac.th", audioUrls: audioUrls[3], images: [{ url: place3a, captionKey: "studentAffairsServiceArea", type: "service_area" }, { url: place3b, captionKey: "studentAffairsCounselingRoom", type: "counseling_room" }, { url: place3c, captionKey: "studentAffairsClubMeeting", type: "club_meeting_room" }, { url: place3d, captionKey: "studentAffairsActivitySpace", type: "activity_space" }, { url: place3f, captionKey: "studentAffairsDisabilityArea", type: "disability_area" }, { url: place3g, captionKey: "studentAffairsWelfare", type: "student_welfare" }, { url: place3h, captionKey: "studentAffairsBuildingSide", type: "building_side" }, { url: place3i, captionKey: "studentAffairsFrontService", type: "front_service" }, { url: place3j, captionKey: "studentAffairsRelaxationArea2", type: "relaxation_area_2" }], virtualTour: "/virtual-tour/studentaffairs", capacity: "150 คน", panoImage: pano3 },
+    { id: 4, nameKey: "generalEducation", image: place4cover, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 16.24681, lng: 103.24760 }, phone: "042-123-458", email: "gened@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, captionKey: "geneEducationBuilding", type: "General Education" }, { url: place4b, captionKey: "geneEducationHallway1", type: "hallway" }, { url: place4c, captionKey: "geneEducationHallway2", type: "hallway2" }, { url: place4d, captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }, { url: place4f, captionKey: "geneEducationBackside", type: "backside" }, { url: place4g, captionKey: "geneEducationFrontService", type: "front_service" }, { url: place4e, captionKey: "geneEducationHallway3", type: "hallway3" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน", panoImage: pano4 },
+    { id: 5, nameKey: "dormitory", image: place5cover, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 16.25045, lng: 103.24887 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" }, { url: place5b, captionKey: "dormitoryLobby", type: "lobby" }, { url: place5c, captionKey: "dormitoryParking", type: "common_area" }, { url: place5d, captionKey: "dormitoryBuilding", type: "laundry_room" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน", panoImage: pano5 },
+    { id: 6, nameKey: "boromrajkumari", image: place6cover, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 16.24405, lng: 103.24906 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, captionKey: "boromrajkumariBuilding", type: "lecture_hall" }, { url: place6b, captionKey: "boromrajkumariInterior", type: "science_lab" }, { url: place6c, captionKey: "boromrajkumariFinanceRoom", type: "conference_room" }, { url: place6d, captionKey: "boromrajkumariLobby", type: "main_lobby" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน", panoImage: pano6 }
   ];
 
   const getCategoryColor = (category) => {
@@ -146,12 +172,28 @@ const Places = () => {
     }
   };
 
+  const nextPopupImage = () => {
+    if (selectedPlace && selectedPlace.images) {
+      setPopupImageIndex((prev) => prev === selectedPlace.images.length - 1 ? 0 : prev + 1);
+    }
+  };
+
+  const prevPopupImage = () => {
+    if (selectedPlace && selectedPlace.images) {
+      setPopupImageIndex((prev) => prev === 0 ? selectedPlace.images.length - 1 : prev - 1);
+    }
+  };
+
   const getTranslatedLocation = (location) => {
     return t(`placesPage.locations.${location}`, { defaultValue: location });
   };
 
   const getTranslatedOpenHours = (hours) => {
     return t(`placesPage.openHours.${hours}`, { defaultValue: hours });
+  };
+
+  const getImageCaption = (captionKey) => {
+    return t(`placesPage.imageDescriptions.${captionKey}`, { defaultValue: captionKey });
   };
 
   const handlePlaceSelection = (place) => {
@@ -191,7 +233,7 @@ const Places = () => {
         </div>
 
         {/* Places Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {recommendedPlaces.map((place, idx) => (
             <div
               key={place.id}
@@ -249,16 +291,16 @@ const Places = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="relative p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/20 shadow-2xl text-center hover:bg-white/10 transition-all duration-500">
-          <Info className="w-12 h-12 text-teal-400 mx-auto mb-4" />
-          <h3 className="text-3xl font-bold text-white mb-2">
+        {/* CTA Section - Smaller Footer */}
+        <div className="relative p-4 md:p-6 rounded-xl backdrop-blur-xl bg-white/5 border border-white/20 shadow-lg text-center hover:bg-white/10 transition-all duration-500">
+          <Info className="w-8 h-8 text-teal-400 mx-auto mb-2" />
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
             {t('placesPage.moreinfo')}
           </h3>
-          <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+          <p className="text-slate-300 mb-3 max-w-2xl mx-auto text-sm">
             {t('placesPage.moreInfoDesc')}
           </p>
-          <button className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r from-blue-500 to-violet-500 text-white hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105">
+          <button className="px-6 py-2 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r from-blue-500 to-violet-500 text-white hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 text-sm">
             {t('placesPage.contact')}
           </button>
         </div>
@@ -309,7 +351,7 @@ const Places = () => {
                     →
                   </button>
                   <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg border border-white/20">
-                    <p className="text-sm">{selectedPlace.images[currentImageIndex].caption}</p>
+                    <p className="text-sm">{getImageCaption(selectedPlace.images[currentImageIndex].captionKey)}</p>
                     <p className="text-xs text-slate-400">{currentImageIndex + 1} / {selectedPlace.images.length}</p>
                   </div>
                 </>
@@ -325,7 +367,6 @@ const Places = () => {
                     {t(`placesPage.categories.${selectedPlace.category}`)}
                   </span>
                 </div>
-                {/* ✨ Quick Actions - แก้ไขส่วนนี้ */}
                 <div className="flex flex-wrap gap-3 mt-6">
                   <button
                     onClick={() => openGoogleMaps(selectedPlace.coordinates, t(`placesPage.places.${selectedPlace.nameKey}.name`))}
@@ -335,7 +376,6 @@ const Places = () => {
                     {t('placesPage.modal.navigation')}
                   </button>
 
-                  {/* ✨ ปุ่ม 360 View (จะแสดงก็ต่อเมื่อมี panoImage) */}
                   {selectedPlace.panoImage && (
                     <button
                       onClick={() => setPanoImage(selectedPlace.panoImage)}
@@ -429,7 +469,10 @@ const Places = () => {
                         <div
                           key={index}
                           className="relative group overflow-hidden rounded-xl cursor-pointer bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all duration-300 h-48"
-                          onClick={() => setCurrentImageIndex(index)}
+                          onClick={() => {
+                            setPopupImage(image);
+                            setPopupImageIndex(index);
+                          }}
                         >
                           <div 
                             className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -437,7 +480,7 @@ const Places = () => {
                           ></div>
                           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-300"></div>
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 to-transparent p-4">
-                            <p className="text-white text-sm font-medium">{image.caption}</p>
+                            <p className="text-white text-sm font-medium">{getImageCaption(image.captionKey)}</p>
                           </div>
                         </div>
                       ))}
@@ -524,11 +567,57 @@ const Places = () => {
           </div>
         </div>
       )}
+
+      {/* Image Popup Modal */}
+      {popupImage && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
+          <div 
+            className="absolute inset-0 bg-black/70 transition-all duration-300 animate-fade-in pointer-events-auto"
+            onClick={() => setPopupImage(null)}
+          ></div>
+          <div className="relative z-10 bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl animate-slide-up pointer-events-auto">
+            <button
+              onClick={() => setPopupImage(null)}
+              className="absolute top-4 right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-3 transition-all duration-300 border border-white/20"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+            
+            <div className="relative h-[70vh] bg-black flex items-center justify-center overflow-hidden">
+              <img 
+                src={selectedPlace.images[popupImageIndex].url}
+                alt={getImageCaption(selectedPlace.images[popupImageIndex].captionKey)}
+                className="max-w-full max-h-full object-contain"
+              />
+              
+              <button
+                onClick={prevPopupImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300 border border-white/20"
+              >
+                ←
+              </button>
+              <button
+                onClick={nextPopupImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-4 rounded-full transition-all duration-300 border border-white/20"
+              >
+                →
+              </button>
+            </div>
+            
+            <div className="p-6 bg-gradient-to-t from-slate-900 to-slate-800">
+              <p className="text-white text-lg font-semibold mb-2">
+                {getImageCaption(selectedPlace.images[popupImageIndex].captionKey)}
+              </p>
+              <p className="text-slate-400 text-sm">
+                {popupImageIndex + 1} / {selectedPlace.images.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       
-      {/* ✨ แสดง PanoViewer component ที่นี่ */}
       <PanoViewer image={panoImage} onClose={() => setPanoImage(null)} />
 
-      {/* Moved My3DScene here */}
       <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed z-[100] pointer-events-auto">
         <My3DScene 
           selectedPlace={selectedPlace}
