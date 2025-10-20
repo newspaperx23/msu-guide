@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.gltf', '**/*.glb'],
-  build: {
-    chunkSizeWarningLimit: 1500, // ✅ เพิ่ม limit เป็น 1.5MB (ปรับได้ตามต้องการ)
-  },
+  // build: {
+  //   chunkSizeWarningLimit: 1500, // ✅ เพิ่ม limit เป็น 1.5MB (ปรับได้ตามต้องการ)
+  // },
 })
