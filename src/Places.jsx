@@ -224,7 +224,7 @@ const Places = () => {
           <div className="mb-6 inline-block">
             <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-6 rounded-full"></div>
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-violet-400 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-violet-400 bg-clip-text text-transparent mb-4 pt-4">
             {t('placesPage.header')}
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
