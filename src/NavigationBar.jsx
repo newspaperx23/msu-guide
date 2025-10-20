@@ -57,9 +57,9 @@ const NavigationBar = () => {
         <a href="/places" className="text-white text-lg font-thin hover:scale-110 transition-all">
           Places
         </a>
-        <a href="https://www.msu.ac.th/th/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%95%E0%B9%88%E0%B8%AD/" className="text-white text-lg font-thin hover:scale-110 transition-all">
+        {/* <a href="https://www.msu.ac.th/th/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%95%E0%B9%88%E0%B8%AD/" className="text-white text-lg font-thin hover:scale-110 transition-all">
           Apply
-        </a>
+        </a> */}
         <a href="/evtime" className="hidden md:flex text-white text-lg font-thin hover:scale-110 transition-all">
           EV Time
         </a>
