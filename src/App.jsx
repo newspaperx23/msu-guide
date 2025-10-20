@@ -13,6 +13,7 @@ import Welcome from "./welcome.jsx";
 import Footer from "./Footer.jsx";
 import Student from "./Student.jsx";
 import Places from "./Places.jsx";
+import EVTime from "./EVTime.jsx";
 import My3DScene from "./My3DScene.jsx";
 import { useTranslation } from "react-i18next";
 import "./i18n.js";
@@ -110,6 +111,7 @@ function App() {
         {/* ✅ เส้นทางอื่น */}
         <Route path="/student" element={<Student />} />
         <Route path="/places" element={<Places />} />
+        <Route path="/evtime" element={<EVTime />} />
       </Routes>
     </Router>
   );
