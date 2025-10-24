@@ -393,13 +393,13 @@ const Places = () => {
                     <Phone className="w-5 h-5" />
                     {t('placesPage.modal.call')}
                   </button>
-                </div>
+                </div>8
               </div>
               <div className="flex border-b border-white/10 mb-8 overflow-x-auto">
                 {[
                   { id: 'overview', label: t('placesPage.modal.overview'), icon: Info },
                   { id: 'gallery', label: t('placesPage.modal.gallery'), icon: Camera },
-                  { id: 'services', label: 'บริการ', icon: Users },
+                  { id: 'services', label: t('placesPage.modal.services'), icon: Users },
                   { id: 'contact', label: t('placesPage.modal.contact'), icon: Phone }
                 ].map((tab) => (
                   <button
