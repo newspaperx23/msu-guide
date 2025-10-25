@@ -28,9 +28,9 @@ i18n
             contact: "Contact Us",
             places: {
               libraryService: {
-                name: "Library and Information Service",
+                name: "MSU Library, Building B",
                 description: "Learning resource center with books, journals, and online databases",
-                detailedDescription: "The Library and Information Service is the educational heart of Mahasarakham University, providing comprehensive library and information resources to support academic excellence. With extensive collections of books, academic journals, online databases, and digital resources, the library serves as a crucial hub for learning and research activities. Students and faculty have access to modern study facilities, computer laboratories, multimedia resources, and expert reference services that enhance their educational experience and research capabilities.",
+                detailedDescription: "Building B is part of the Mahasarakham University Library and serves students, faculty, and staff, supporting learning, research, and the development of information technology skills. Inside this building, a wide range of services meet the needs of modern learners, from state-of-the-art computer labs to open learning spaces known as the Digital Learning Park (DLP), designed for group work, research, and creative projects. The Digital Learning Park integrates technology with learning, allowing everyone easy access to digital resources, complete with high-speed Wi-Fi, quality computers, and relaxing areas to refresh the mind. Here, it is not just a library or a learning building, but a center of inspiration that nurtures the knowledge, ideas, and dreams of Mahasarakham University students. MSU Library, Building B Mahasarakham University — A place of opportunity, a place of learning, for the future of everyone.",
                 highlights: ["Extensive book collections", "Online databases", "Study spaces", "Free Wi-Fi"],
                 facilities: ["Free Wi-Fi", "Air conditioning", "Parking", "Wheelchair accessible", "Computer labs", "Study rooms"],
                 services: ["Book borrowing", "Reference services", "Database access", "Digital resources", "Library consultation"],
@@ -210,7 +210,7 @@ i18n
               "06:00 - 22:00": "06:00 - 22:00"
             },
             locations: {
-              "อาคาร A ชั้น 1-3": "Building A, Floors 1-3",
+              "อาคาร B ชั้น 1-3": "Building B, Floors 1-3",
               "อาคารอำนวยการ ชั้น 1": "Administration Building, Floor 1",
               "อาคารกิจการนิสิต ชั้น 1": "Student Affairs Building, Floor 1",
               "อาคารศึกษาทั่วไป ชั้น 1-2": "General Education Building, Floors 1-2",
@@ -234,9 +234,9 @@ i18n
             contact: "ติดต่อเรา",
             places: {
               libraryService: {
-                name: "สำนักวิทยบริการ",
+                name: "สำนักวิทยบริการ B",
                 description: "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
-                detailedDescription: "สำนักวิทยบริการเป็นหัวใจสำคัญด้านการศึกษาของมหาวิทยาลัยมหาสารคาม ให้บริการด้านวิทยบริการและทรัพยากรสารสนเทศอย่างครอบคลุม เพื่อสนับสนุนการเรียนการสอนและการวิจัย มีคอลเลกชันหนังสือที่ครอบคลุม วารสารวิชาการ ฐานข้อมูลออนไลน์ และทรัพยากรดิจิทัลที่ทันสมัย นิสิตและอาจารย์สามารถใช้ห้องศึกษาที่เป็นไปตามสมัยใหม่ ห้องปฏิบัติการคอมพิวเตอร์ ทรัพยากรมัลติมีเดีย และบริการวิทยากรผู้เชี่ยวชาญที่ช่วยเสริมประสบการณ์และความสามารถทางการศึกษาและวิจัย",
+                detailedDescription: "สำนักวิทยบริการ อาคาร B เป็นส่วนหนึ่งของสำนักวิทยบริการ มหาวิทยาลัยมหาสารคาม ที่เปิดให้บริการแก่นิสิต อาจารย์ และบุคลากร เพื่อสนับสนุนการเรียนรู้ การวิจัย และการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ ภายในอาคารแห่งนี้ มีบริการมากมายที่ตอบโจทย์การเรียนรู้ของคนรุ่นใหม่ ตั้งแต่ห้องปฏิบัติการคอมพิวเตอร์ที่ทันสมัย ไปจนถึงพื้นที่เรียนรู้แบบเปิด ที่เรียกว่า Digital Learning Park หรือ DLP ซึ่งถูกออกแบบให้เหมาะกับการทำงานกลุ่ม การค้นคว้า และการสร้างสรรค์ผลงาน Digital Learning Park คือพื้นที่ที่รวมเทคโนโลยีเข้ากับการเรียนรู้ ให้ทุกคนสามารถเข้าถึงสื่อดิจิทัลได้อย่างสะดวก พร้อมสิ่งอำนวยความสะดวกครบครัน — Wi-Fi ความเร็วสูง เครื่องคอมพิวเตอร์คุณภาพ และมุมพักผ่อนเพื่อผ่อนคลายความคิด ที่นี่... ไม่ได้เป็นแค่ห้องสมุด หรืออาคารเรียนรู้เท่านั้น แต่คือศูนย์กลางแห่งแรงบันดาลใจ ที่หล่อหลอมความรู้ ความคิด และความฝันของนิสิตมหาสารคามให้เติบโต สำนักวิทยบริการ อาคาร B มหาวิทยาลัยมหาสารคาม — พื้นที่แห่งโอกาส พื้นที่แห่งการเรียนรู้ เพื่ออนาคตของทุกคน",
                 highlights: ["คอลเลกชันหนังสือที่ครอบคลุม", "ฐานข้อมูลออนไลน์", "ห้องศึกษา", "Wi-Fi ฟรี"],
                 facilities: ["Wi-Fi ฟรี", "ปรับอากาศ", "ที่จอดรถ", "เข้าถึงได้สำหรับผู้พิการ", "ห้องปฏิบัติการคอมพิวเตอร์", "ห้องศึกษา"],
                 services: ["ยืมหนังสือ", "บริการวิทยากร", "เข้าถึงฐานข้อมูล", "ทรัพยากรดิจิทัล", "ปรึกษาวิทยบริการ"],
@@ -440,9 +440,9 @@ i18n
             contact: "联系我们",
             places: {
               libraryService: {
-                name: "图书馆与信息服务",
+                name: "马哈沙拉堪大学图书馆 B 栋",
                 description: "学习资源中心，拥有书籍、期刊和在线数据库",
-                detailedDescription: "图书馆与信息服务是玛哈沙拉堪大学教育的重要核心，提供全面的图书馆和信息资源，以支持教学卓越。拥有大量的图书、学术期刊、在线数据库和数字资源，图书馆是学习和研究活动的重要枢纽。学生和教师可以使用现代化学习设施、计算机实验室、多媒体资源和专业参考服务，这些服务有助于提升他们的教育经历和研究能力。",
+                detailedDescription: "B 栋是马哈沙拉堪大学图书馆的一部分， 为学生、教师和工作人员提供服务， 支持学习、科研以及信息技术技能的发展。 在这栋楼内，有多种服务满足现代学习者的需求， 从最先进的计算机实验室， 到称为**数字学习园（Digital Learning Park, DLP）**的开放学习空间， 专为小组工作、研究和创意项目而设计。 数字学习园将技术与学习结合起来， 让每个人都能方便地访问数字资源， 配备高速 Wi-Fi、高质量计算机， 以及供放松思维的休息区。 这里不仅仅是一座图书馆或学习楼， 更是一个激发灵感的中心， 培养马哈沙拉堪大学学生的知识、思想和梦想。 马哈沙拉堪大学图书馆 B 栋 马哈沙拉堪大学 — 一个充满机遇的地方，一个学习的地方，为每个人的未来而存在。",
                 highlights: ["广泛的图书收藏", "在线数据库", "学习空间", "免费Wi-Fi"],
                 facilities: ["免费Wi-Fi", "空调", "停车场", "无障碍通道", "计算机实验室", "学习室"],
                 services: ["图书借阅", "参考服务", "数据库访问", "数字资源", "图书馆咨询"],
@@ -622,7 +622,7 @@ i18n
               "06:00 - 22:00": "06:00 - 22:00"
             },
             locations: {
-              "อาคาร A ชั้น 1-3": "A楼，1-3层",
+              "อาคาร B ชั้น 1-3": "B楼，1-3层",
               "อาคารอำนวยการ ชั้น 1": "行政楼，1层",
               "อาคารกิจการนิสิต ชั้น 1": "学生事务楼，1层",
               "อาคารศึกษาทั่วไป ชั้น 1-2": "通识教育楼，1-2层",
