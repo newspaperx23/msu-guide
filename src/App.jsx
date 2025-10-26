@@ -104,6 +104,12 @@ function App() {
               <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed">
                 <My3DScene />
               </div>
+              <div className="right-[20%] bottom-[10%] md:right-[10%] md:bottom-[15%] fixed">
+                <My3DScene
+                  currentLanguage={i18n.language || "th"}
+                  onLanguageChange={changeLanguage}
+                />
+              </div>
             </div>
           }
         />
