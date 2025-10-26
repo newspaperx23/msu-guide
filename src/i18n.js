@@ -1,14 +1,14 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import Backend from "i18next-http-backend";
 
 i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'th',
+    fallbackLng: "th",
     debug: true,
     interpolation: {
       escapeValue: false,
@@ -22,18 +22,56 @@ i18n
           loading: "Loading...",
           placesPage: {
             header: "Recommended Places",
-            description: "Tour Mahasarakham University: learn, eat, travel, and relax around campus.",
+            description:
+              "Tour Mahasarakham University: learn, eat, travel, and relax around campus.",
             moreinfo: "Want more information?",
-            moreInfoDesc: "Click on any location to see more details or contact our public relations department.",
+            moreInfoDesc:
+              "Click on any location to see more details or contact our public relations department.",
             contact: "Contact Us",
+            msuLinks: "MSU Quick Links",
+            msuLinksDesc:
+              "Explore more services and resources at Mahasarakham University",
+            contactInfo: "Contact Information",
+            links: {
+              website: "MSU Website",
+              registration: "Registration System",
+              admissions: "Admissions Guide",
+              libraryGuide: "Library Guide",
+              onlineLibrary: "Online Library",
+            },
+            contact: {
+              phone: "Phone",
+              email: "Email",
+              followUs: "Follow Us",
+            },
             places: {
               libraryService: {
                 name: "MSU Library, Building B",
-                description: "Learning resource center with books, journals, and online databases",
-                detailedDescription: "Building B is part of the Mahasarakham University Library and serves students, faculty, and staff, supporting learning, research, and the development of information technology skills. Inside this building, a wide range of services meet the needs of modern learners, from state-of-the-art computer labs to open learning spaces known as the Digital Learning Park (DLP), designed for group work, research, and creative projects. The Digital Learning Park integrates technology with learning, allowing everyone easy access to digital resources, complete with high-speed Wi-Fi, quality computers, and relaxing areas to refresh the mind. Here, it is not just a library or a learning building, but a center of inspiration that nurtures the knowledge, ideas, and dreams of Mahasarakham University students. MSU Library, Building B Mahasarakham University — A place of opportunity, a place of learning, for the future of everyone.",
-                highlights: ["Extensive book collections", "Online databases", "Study spaces", "Free Wi-Fi"],
-                facilities: ["Free Wi-Fi", "Air conditioning", "Parking", "Wheelchair accessible", "Computer labs", "Study rooms"],
-                services: ["Book borrowing", "Reference services", "Database access", "Digital resources", "Library consultation"],
+                description:
+                  "Learning resource center with books, journals, and online databases",
+                detailedDescription:
+                  "Building B is part of the Mahasarakham University Library and serves students, faculty, and staff, supporting learning, research, and the development of information technology skills. Inside this building, a wide range of services meet the needs of modern learners, from state-of-the-art computer labs to open learning spaces known as the Digital Learning Park (DLP), designed for group work, research, and creative projects. The Digital Learning Park integrates technology with learning, allowing everyone easy access to digital resources, complete with high-speed Wi-Fi, quality computers, and relaxing areas to refresh the mind. Here, it is not just a library or a learning building, but a center of inspiration that nurtures the knowledge, ideas, and dreams of Mahasarakham University students. MSU Library, Building B Mahasarakham University — A place of opportunity, a place of learning, for the future of everyone.",
+                highlights: [
+                  "Extensive book collections",
+                  "Online databases",
+                  "Study spaces",
+                  "Free Wi-Fi",
+                ],
+                facilities: [
+                  "Free Wi-Fi",
+                  "Air conditioning",
+                  "Parking",
+                  "Wheelchair accessible",
+                  "Computer labs",
+                  "Study rooms",
+                ],
+                services: [
+                  "Book borrowing",
+                  "Reference services",
+                  "Database access",
+                  "Digital resources",
+                  "Library consultation",
+                ],
                 images: [
                   { captionKey: "libraryMainHall", type: "interior" },
                   { captionKey: "libraryStudyRoom", type: "study_room" },
@@ -41,82 +79,210 @@ i18n
                   { captionKey: "libraryComputerLab", type: "computer_lab" },
                   { captionKey: "libraryLounge", type: "lounge" },
                   { captionKey: "libraryMainLobby", type: "main_hall" },
-                  { captionKey: "libraryRelaxationArea", type: "relaxation_area" },
-                  { captionKey: "libraryEventSpace", type: "event_space" }
-                ]
+                  {
+                    captionKey: "libraryRelaxationArea",
+                    type: "relaxation_area",
+                  },
+                  { captionKey: "libraryEventSpace", type: "event_space" },
+                ],
               },
               registrar: {
                 name: "Registrar Office",
-                description: "Student registration services and academic documents",
-                detailedDescription: "The Registrar Office serves as the central administrative hub for all student academic affairs at Mahasarakham University. Our dedicated staff provides comprehensive services including course registration, academic transcript management, degree verification, and student record maintenance. With modern digital systems and streamlined processes, we ensure efficient and accurate handling of all academic documentation while maintaining the highest standards of confidentiality and service quality.",
-                highlights: ["Course registration", "Academic certificates", "Transcripts", "Data management"],
-                facilities: ["Online queue system", "Air conditioning", "Waiting area", "Wheelchair accessible"],
-                services: ["Course registration", "Certificate issuance", "Data modification", "Payment processing", "Academic consultation"],
+                description:
+                  "Student registration services and academic documents",
+                detailedDescription:
+                  "The Registrar Office serves as the central administrative hub for all student academic affairs at Mahasarakham University. Our dedicated staff provides comprehensive services including course registration, academic transcript management, degree verification, and student record maintenance. With modern digital systems and streamlined processes, we ensure efficient and accurate handling of all academic documentation while maintaining the highest standards of confidentiality and service quality.",
+                highlights: [
+                  "Course registration",
+                  "Academic certificates",
+                  "Transcripts",
+                  "Data management",
+                ],
+                facilities: [
+                  "Online queue system",
+                  "Air conditioning",
+                  "Waiting area",
+                  "Wheelchair accessible",
+                ],
+                services: [
+                  "Course registration",
+                  "Certificate issuance",
+                  "Data modification",
+                  "Payment processing",
+                  "Academic consultation",
+                ],
                 images: [
                   { captionKey: "registrarEntrance1", type: "entrance1" },
                   { captionKey: "registrarEntrance2", type: "entrance2" },
                   { captionKey: "registrarWaitingArea", type: "waiting_area" },
-                  { captionKey: "registrarDocumentSubmission", type: "document_submission" }
-                ]
+                  {
+                    captionKey: "registrarDocumentSubmission",
+                    type: "document_submission",
+                  },
+                ],
               },
               studentAffairs: {
                 name: "Student Affairs Division",
-                description: "Student activities, scholarships, and student welfare services",
-                detailedDescription: "The Student Affairs Division is dedicated to enhancing student life beyond the classroom through comprehensive support services and enriching programs. We coordinate student activities, manage scholarship programs, provide counseling services, and facilitate student organization development. Our team of experienced counselors and activity coordinators work tirelessly to create a supportive environment where students can develop leadership skills, build lasting friendships, and achieve personal growth throughout their university journey.",
-                highlights: ["Scholarships", "Student activities", "Counseling", "Leadership development"],
-                facilities: ["Counseling rooms", "Activity spaces", "Meeting rooms", "Free Wi-Fi"],
-                services: ["Scholarship management", "Personal counseling", "Activity coordination", "Student welfare", "Organization support"],
+                description:
+                  "Student activities, scholarships, and student welfare services",
+                detailedDescription:
+                  "The Student Affairs Division is dedicated to enhancing student life beyond the classroom through comprehensive support services and enriching programs. We coordinate student activities, manage scholarship programs, provide counseling services, and facilitate student organization development. Our team of experienced counselors and activity coordinators work tirelessly to create a supportive environment where students can develop leadership skills, build lasting friendships, and achieve personal growth throughout their university journey.",
+                highlights: [
+                  "Scholarships",
+                  "Student activities",
+                  "Counseling",
+                  "Leadership development",
+                ],
+                facilities: [
+                  "Counseling rooms",
+                  "Activity spaces",
+                  "Meeting rooms",
+                  "Free Wi-Fi",
+                ],
+                services: [
+                  "Scholarship management",
+                  "Personal counseling",
+                  "Activity coordination",
+                  "Student welfare",
+                  "Organization support",
+                ],
                 images: [
-                  { captionKey: "studentAffairsServiceArea", type: "service_area" },
-                  { captionKey: "studentAffairsCounselingRoom", type: "counseling_room" },
-                  { captionKey: "studentAffairsClubMeeting", type: "club_meeting_room" },
-                  { captionKey: "studentAffairsActivitySpace", type: "activity_space" },
-                  { captionKey: "studentAffairsDisabilityArea", type: "disability_area" },
-                  { captionKey: "studentAffairsWelfare", type: "student_welfare" }
-                ]
+                  {
+                    captionKey: "studentAffairsServiceArea",
+                    type: "service_area",
+                  },
+                  {
+                    captionKey: "studentAffairsCounselingRoom",
+                    type: "counseling_room",
+                  },
+                  {
+                    captionKey: "studentAffairsClubMeeting",
+                    type: "club_meeting_room",
+                  },
+                  {
+                    captionKey: "studentAffairsActivitySpace",
+                    type: "activity_space",
+                  },
+                  {
+                    captionKey: "studentAffairsDisabilityArea",
+                    type: "disability_area",
+                  },
+                  {
+                    captionKey: "studentAffairsWelfare",
+                    type: "student_welfare",
+                  },
+                ],
               },
               generalEducation: {
                 name: "General Education Center",
-                description: "Department responsible for general education courses",
-                detailedDescription: "The General Education Center is responsible for organizing general education courses for students from all faculties, featuring modern classrooms, computer laboratories, seminar rooms, and expert faculty teams in various fields ready to provide academic consultation.",
-                highlights: ["General education courses", "Academic consultation", "Classrooms", "Meeting rooms"],
-                facilities: ["Multimedia classrooms", "Free Wi-Fi", "Air conditioning", "Parking"],
-                services: ["Teaching and learning", "Academic consultation", "Classroom booking", "Special activities", "Academic seminars"],
+                description:
+                  "Department responsible for general education courses",
+                detailedDescription:
+                  "The General Education Center is responsible for organizing general education courses for students from all faculties, featuring modern classrooms, computer laboratories, seminar rooms, and expert faculty teams in various fields ready to provide academic consultation.",
+                highlights: [
+                  "General education courses",
+                  "Academic consultation",
+                  "Classrooms",
+                  "Meeting rooms",
+                ],
+                facilities: [
+                  "Multimedia classrooms",
+                  "Free Wi-Fi",
+                  "Air conditioning",
+                  "Parking",
+                ],
+                services: [
+                  "Teaching and learning",
+                  "Academic consultation",
+                  "Classroom booking",
+                  "Special activities",
+                  "Academic seminars",
+                ],
                 images: [
-                  { captionKey: "geneEducationBuilding", type: "General Education" },
+                  {
+                    captionKey: "geneEducationBuilding",
+                    type: "General Education",
+                  },
                   { captionKey: "geneEducationHallway1", type: "hallway" },
                   { captionKey: "geneEducationHallway2", type: "hallway2" },
-                  { captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }
-                ]
+                  {
+                    captionKey: "geneEducationCoworkingSpace",
+                    type: "Co-Woking Space",
+                  },
+                ],
               },
               dormitory: {
                 name: "On-Campus Dormitory",
-                description: "On-campus accommodation for students - convenient and safe",
-                detailedDescription: "The on-campus university dormitory provides accommodation for male and female students in separate buildings. Rooms are fully equipped with electrical appliances, free Wi-Fi, 24-hour security system, laundry rooms, recreation areas, convenience stores, and close proximity to all academic buildings.",
-                highlights: ["Near academic buildings", "Security", "Facilities", "Student community"],
-                facilities: ["Security system", "Free Wi-Fi", "Laundry room", "Convenience store", "Parking"],
-                services: ["Accommodation", "Security", "Laundry", "Convenience store", "Dormitory activities"],
+                description:
+                  "On-campus accommodation for students - convenient and safe",
+                detailedDescription:
+                  "The on-campus university dormitory provides accommodation for male and female students in separate buildings. Rooms are fully equipped with electrical appliances, free Wi-Fi, 24-hour security system, laundry rooms, recreation areas, convenience stores, and close proximity to all academic buildings.",
+                highlights: [
+                  "Near academic buildings",
+                  "Security",
+                  "Facilities",
+                  "Student community",
+                ],
+                facilities: [
+                  "Security system",
+                  "Free Wi-Fi",
+                  "Laundry room",
+                  "Convenience store",
+                  "Parking",
+                ],
+                services: [
+                  "Accommodation",
+                  "Security",
+                  "Laundry",
+                  "Convenience store",
+                  "Dormitory activities",
+                ],
                 images: [
                   { captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" },
                   { captionKey: "dormitoryLobby", type: "lobby" },
                   { captionKey: "dormitoryParking", type: "common_area" },
-                  { captionKey: "dormitoryBuilding", type: "laundry_room" }
-                ]
+                  { captionKey: "dormitoryBuilding", type: "laundry_room" },
+                ],
               },
               boromrajkumari: {
                 name: "Boromrajkumari Building",
-                description: "Main building with classrooms, laboratories, and various offices",
-                detailedDescription: "The Boromrajkumari Building is the university's main building, featuring modern large classrooms, science laboratories, large meeting rooms, elevators for disabled access, and air conditioning throughout the building. It serves as an important teaching and learning center of the university.",
-                highlights: ["Large classrooms", "Laboratories", "Meeting rooms", "Faculty offices"],
-                facilities: ["Elevators", "Air conditioning", "Sound system", "Projectors", "Free Wi-Fi"],
-                services: ["Teaching and learning", "Laboratories", "Meeting arrangements", "Faculty offices", "Elevator service"],
+                description:
+                  "Main building with classrooms, laboratories, and various offices",
+                detailedDescription:
+                  "The Boromrajkumari Building is the university's main building, featuring modern large classrooms, science laboratories, large meeting rooms, elevators for disabled access, and air conditioning throughout the building. It serves as an important teaching and learning center of the university.",
+                highlights: [
+                  "Large classrooms",
+                  "Laboratories",
+                  "Meeting rooms",
+                  "Faculty offices",
+                ],
+                facilities: [
+                  "Elevators",
+                  "Air conditioning",
+                  "Sound system",
+                  "Projectors",
+                  "Free Wi-Fi",
+                ],
+                services: [
+                  "Teaching and learning",
+                  "Laboratories",
+                  "Meeting arrangements",
+                  "Faculty offices",
+                  "Elevator service",
+                ],
                 images: [
-                  { captionKey: "boromrajkumariBuilding", type: "lecture_hall" },
+                  {
+                    captionKey: "boromrajkumariBuilding",
+                    type: "lecture_hall",
+                  },
                   { captionKey: "boromrajkumariInterior", type: "science_lab" },
-                  { captionKey: "boromrajkumariFinanceRoom", type: "conference_room" },
-                  { captionKey: "boromrajkumariLobby", type: "main_lobby" }
-                ]
-              }
+                  {
+                    captionKey: "boromrajkumariFinanceRoom",
+                    type: "conference_room",
+                  },
+                  { captionKey: "boromrajkumariLobby", type: "main_lobby" },
+                ],
+              },
             },
             modal: {
               overview: "Overview",
@@ -139,9 +305,10 @@ i18n
               email: "Email",
               address: "Address",
               transportation: "Transportation",
-              transportationDesc: "Click the navigation button to open Google Maps and view travel routes",
+              transportationDesc:
+                "Click the navigation button to open Google Maps and view travel routes",
               openGoogleMaps: "Open Google Maps",
-              gpsCoordinates: "GPS Coordinates"
+              gpsCoordinates: "GPS Coordinates",
             },
             imageDescriptions: {
               libraryMainHall: "Library Main Hall",
@@ -182,6 +349,9 @@ i18n
               geneEducationBackside: "Building Backside",
               geneEducationFrontService: "Front Service Area",
               geneEducationHallway3: "Hallway 3",
+              geneEducationLectureHall: "Lecture Hall",
+              geneEducationLectureHall2: "Lecture Hall 2",
+              geneEducationLectureHall3: "Lecture Hall 3",
               dormitoryOnCampus: "On-Campus Dormitory",
               dormitoryLobby: "Dormitory Lobby",
               dormitoryParking: "Parking Area",
@@ -195,30 +365,33 @@ i18n
               boromrajkumariBuilding: "Building Front View",
               boromrajkumariInterior: "Building Interior",
               boromrajkumariFinanceRoom: "Finance Room",
-              boromrajkumariLobby: "Main Lobby"
+              boromrajkumariLobby: "Main Lobby",
+              boromrajkumariBuildingView: "Boromrajkumari Building",
+              boromrajkumariCoffeeShop: "Coffee Shop in Front of Building",
             },
             categories: {
               Academic: "Academic",
               Administrative: "Administrative",
               "Student Services": "Student Services",
-              Accommodation: "Accommodation"
+              Accommodation: "Accommodation",
             },
             openHours: {
               "08:00 - 20:00": "08:00 - 20:00",
               "08:30 - 16:30": "08:30 - 16:30",
               "24 ชั่วโมง": "24 hours",
-              "06:00 - 22:00": "06:00 - 22:00"
+              "06:00 - 22:00": "06:00 - 22:00",
             },
             locations: {
               "อาคาร B ชั้น 1-3": "Building B, Floors 1-3",
               "อาคารอำนวยการ ชั้น 1": "Administration Building, Floor 1",
               "อาคารกิจการนิสิต ชั้น 1": "Student Affairs Building, Floor 1",
-              "อาคารศึกษาทั่วไป ชั้น 1-2": "General Education Building, Floors 1-2",
-              "อาคารหอพักนิสิต": "Student Dormitory Building",
-              "อาคารบรมราชกุมารี": "Boromrajkumari Building"
-            }
-          }
-        }
+              "อาคารศึกษาทั่วไป ชั้น 1-2":
+                "General Education Building, Floors 1-2",
+              อาคารหอพักนิสิต: "Student Dormitory Building",
+              อาคารบรมราชกุมารี: "Boromrajkumari Building",
+            },
+          },
+        },
       },
       th: {
         translation: {
@@ -228,18 +401,56 @@ i18n
           loading: "กำลังโหลด...",
           placesPage: {
             header: "สถานที่แนะนำ",
-            description: "พาทัวร์มหาวิทยาลัยมหาสารคาม แนะนำสถานที่เรียน กิน เที่ยว และพักผ่อนในรั้ว มหาวิทยาลัยมหาสารคาม",
+            description:
+              "พาทัวร์มหาวิทยาลัยมหาสารคาม แนะนำสถานที่เรียน กิน เที่ยว และพักผ่อนในรั้ว มหาวิทยาลัยมหาสารคาม",
             moreinfo: "ต้องการข้อมูลเพิ่มเติม?",
-            moreInfoDesc: "คลิกที่สถานที่ใดสถานที่หนึ่งเพื่อดูรายละเอียดเพิ่มเติม หรือติดต่อฝ่ายประชาสัมพันธ์",
+            moreInfoDesc:
+              "คลิกที่สถานที่ใดสถานที่หนึ่งเพื่อดูรายละเอียดเพิ่มเติม หรือติดต่อฝ่ายประชาสัมพันธ์",
             contact: "ติดต่อเรา",
+            msuLinks: "ลิงก์ด่วน มมส",
+            msuLinksDesc:
+              "สำรวจบริการและทรัพยากรเพิ่มเติมของมหาวิทยาลัยมหาสารคาม",
+            contactInfo: "ข้อมูลติดต่อ",
+            links: {
+              website: "เว็บไซต์ มมส",
+              registration: "ระบบทะเบียน",
+              admissions: "แนวทางการเข้าศึกษาต่อ",
+              libraryGuide: "คู่มือการใช้งานห้องสมุด",
+              onlineLibrary: "ห้องสมุดออนไลน์",
+            },
+            contact: {
+              phone: "โทรศัพท์",
+              email: "อีเมล",
+              followUs: "ติดตามเรา",
+            },
             places: {
               libraryService: {
                 name: "สำนักวิทยบริการ B",
-                description: "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
-                detailedDescription: "สำนักวิทยบริการ อาคาร B เป็นส่วนหนึ่งของสำนักวิทยบริการ มหาวิทยาลัยมหาสารคาม ที่เปิดให้บริการแก่นิสิต อาจารย์ และบุคลากร เพื่อสนับสนุนการเรียนรู้ การวิจัย และการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ ภายในอาคารแห่งนี้ มีบริการมากมายที่ตอบโจทย์การเรียนรู้ของคนรุ่นใหม่ ตั้งแต่ห้องปฏิบัติการคอมพิวเตอร์ที่ทันสมัย ไปจนถึงพื้นที่เรียนรู้แบบเปิด ที่เรียกว่า Digital Learning Park หรือ DLP ซึ่งถูกออกแบบให้เหมาะกับการทำงานกลุ่ม การค้นคว้า และการสร้างสรรค์ผลงาน Digital Learning Park คือพื้นที่ที่รวมเทคโนโลยีเข้ากับการเรียนรู้ ให้ทุกคนสามารถเข้าถึงสื่อดิจิทัลได้อย่างสะดวก พร้อมสิ่งอำนวยความสะดวกครบครัน — Wi-Fi ความเร็วสูง เครื่องคอมพิวเตอร์คุณภาพ และมุมพักผ่อนเพื่อผ่อนคลายความคิด ที่นี่... ไม่ได้เป็นแค่ห้องสมุด หรืออาคารเรียนรู้เท่านั้น แต่คือศูนย์กลางแห่งแรงบันดาลใจ ที่หล่อหลอมความรู้ ความคิด และความฝันของนิสิตมหาสารคามให้เติบโต สำนักวิทยบริการ อาคาร B มหาวิทยาลัยมหาสารคาม — พื้นที่แห่งโอกาส พื้นที่แห่งการเรียนรู้ เพื่ออนาคตของทุกคน",
-                highlights: ["คอลเลกชันหนังสือที่ครอบคลุม", "ฐานข้อมูลออนไลน์", "ห้องศึกษา", "Wi-Fi ฟรี"],
-                facilities: ["Wi-Fi ฟรี", "ปรับอากาศ", "ที่จอดรถ", "เข้าถึงได้สำหรับผู้พิการ", "ห้องปฏิบัติการคอมพิวเตอร์", "ห้องศึกษา"],
-                services: ["ยืมหนังสือ", "บริการวิทยากร", "เข้าถึงฐานข้อมูล", "ทรัพยากรดิจิทัล", "ปรึกษาวิทยบริการ"],
+                description:
+                  "ศูนย์รวมทรัพยากรการเรียนรู้ หนังสือ วารสาร และฐานข้อมูลออนไลน์",
+                detailedDescription:
+                  "สำนักวิทยบริการ อาคาร B เป็นส่วนหนึ่งของสำนักวิทยบริการ มหาวิทยาลัยมหาสารคาม ที่เปิดให้บริการแก่นิสิต อาจารย์ และบุคลากร เพื่อสนับสนุนการเรียนรู้ การวิจัย และการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ ภายในอาคารแห่งนี้ มีบริการมากมายที่ตอบโจทย์การเรียนรู้ของคนรุ่นใหม่ ตั้งแต่ห้องปฏิบัติการคอมพิวเตอร์ที่ทันสมัย ไปจนถึงพื้นที่เรียนรู้แบบเปิด ที่เรียกว่า Digital Learning Park หรือ DLP ซึ่งถูกออกแบบให้เหมาะกับการทำงานกลุ่ม การค้นคว้า และการสร้างสรรค์ผลงาน Digital Learning Park คือพื้นที่ที่รวมเทคโนโลยีเข้ากับการเรียนรู้ ให้ทุกคนสามารถเข้าถึงสื่อดิจิทัลได้อย่างสะดวก พร้อมสิ่งอำนวยความสะดวกครบครัน — Wi-Fi ความเร็วสูง เครื่องคอมพิวเตอร์คุณภาพ และมุมพักผ่อนเพื่อผ่อนคลายความคิด ที่นี่... ไม่ได้เป็นแค่ห้องสมุด หรืออาคารเรียนรู้เท่านั้น แต่คือศูนย์กลางแห่งแรงบันดาลใจ ที่หล่อหลอมความรู้ ความคิด และความฝันของนิสิตมหาสารคามให้เติบโต สำนักวิทยบริการ อาคาร B มหาวิทยาลัยมหาสารคาม — พื้นที่แห่งโอกาส พื้นที่แห่งการเรียนรู้ เพื่ออนาคตของทุกคน",
+                highlights: [
+                  "คอลเลกชันหนังสือที่ครอบคลุม",
+                  "ฐานข้อมูลออนไลน์",
+                  "ห้องศึกษา",
+                  "Wi-Fi ฟรี",
+                ],
+                facilities: [
+                  "Wi-Fi ฟรี",
+                  "ปรับอากาศ",
+                  "ที่จอดรถ",
+                  "เข้าถึงได้สำหรับผู้พิการ",
+                  "ห้องปฏิบัติการคอมพิวเตอร์",
+                  "ห้องศึกษา",
+                ],
+                services: [
+                  "ยืมหนังสือ",
+                  "บริการวิทยากร",
+                  "เข้าถึงฐานข้อมูล",
+                  "ทรัพยากรดิจิทัล",
+                  "ปรึกษาวิทยบริการ",
+                ],
                 images: [
                   { captionKey: "libraryMainHall", type: "interior" },
                   { captionKey: "libraryStudyRoom", type: "study_room" },
@@ -247,82 +458,209 @@ i18n
                   { captionKey: "libraryComputerLab", type: "computer_lab" },
                   { captionKey: "libraryLounge", type: "lounge" },
                   { captionKey: "libraryMainLobby", type: "main_hall" },
-                  { captionKey: "libraryRelaxationArea", type: "relaxation_area" },
-                  { captionKey: "libraryEventSpace", type: "event_space" }
-                ]
+                  {
+                    captionKey: "libraryRelaxationArea",
+                    type: "relaxation_area",
+                  },
+                  { captionKey: "libraryEventSpace", type: "event_space" },
+                ],
               },
               registrar: {
                 name: "กองทะเบียนและประมวลผล",
-                description: "บริการด้านทะเบียนนิสิต การลงทะเบียน และเอกสารทางการศึกษา",
-                detailedDescription: "กองทะเบียนและประมวลผลทำหน้าที่เป็นศูนย์กลางการบริหารงานวิชาการของนิสิตทุกคนในมหาวิทยาลัยมหาสารคาม เจ้าหน้าที่ผู้ทุ่มเทของเราให้บริการอย่างครอบคลุม ตั้งแต่การลงทะเบียนเรียน การจัดการใบแสดงผลการเรียน การตรวจสอบปริญญา และการดูแลรักษาข้อมูลประวัตินิสิต ด้วยระบบดิจิทัลที่ทันสมัยและกระบวนการที่มีประสิทธิภาพ เรามั่นใจว่าจะจัดการเอกสารทางการศึกษาทุกประเภทได้อย่างรวดเร็วและแม่นยำ พร้อมรักษามาตรฐานสูงสุดในเรื่องความลับและคุณภาพการบริการ",
-                highlights: ["ลงทะเบียนเรียน", "ใบรับรองการศึกษา", "ใบแสดงผลการเรียน", "จัดการข้อมูล"],
-                facilities: ["ระบบคิวออนไลน์", "ปรับอากาศ", "ที่นั่งรอ", "เข้าถึงได้สำหรับผู้พิการ"],
-                services: ["ลงทะเบียนเรียน", "ออกใบรับรอง", "แก้ไขข้อมูล", "ประมวลผลการชำระเงิน", "ปรึกษาการเรียน"],
+                description:
+                  "บริการด้านทะเบียนนิสิต การลงทะเบียน และเอกสารทางการศึกษา",
+                detailedDescription:
+                  "กองทะเบียนและประมวลผลทำหน้าที่เป็นศูนย์กลางการบริหารงานวิชาการของนิสิตทุกคนในมหาวิทยาลัยมหาสารคาม เจ้าหน้าที่ผู้ทุ่มเทของเราให้บริการอย่างครอบคลุม ตั้งแต่การลงทะเบียนเรียน การจัดการใบแสดงผลการเรียน การตรวจสอบปริญญา และการดูแลรักษาข้อมูลประวัตินิสิต ด้วยระบบดิจิทัลที่ทันสมัยและกระบวนการที่มีประสิทธิภาพ เรามั่นใจว่าจะจัดการเอกสารทางการศึกษาทุกประเภทได้อย่างรวดเร็วและแม่นยำ พร้อมรักษามาตรฐานสูงสุดในเรื่องความลับและคุณภาพการบริการ",
+                highlights: [
+                  "ลงทะเบียนเรียน",
+                  "ใบรับรองการศึกษา",
+                  "ใบแสดงผลการเรียน",
+                  "จัดการข้อมูล",
+                ],
+                facilities: [
+                  "ระบบคิวออนไลน์",
+                  "ปรับอากาศ",
+                  "ที่นั่งรอ",
+                  "เข้าถึงได้สำหรับผู้พิการ",
+                ],
+                services: [
+                  "ลงทะเบียนเรียน",
+                  "ออกใบรับรอง",
+                  "แก้ไขข้อมูล",
+                  "ประมวลผลการชำระเงิน",
+                  "ปรึกษาการเรียน",
+                ],
                 images: [
                   { captionKey: "registrarEntrance1", type: "entrance1" },
                   { captionKey: "registrarEntrance2", type: "entrance2" },
                   { captionKey: "registrarWaitingArea", type: "waiting_area" },
-                  { captionKey: "registrarDocumentSubmission", type: "document_submission" }
-                ]
+                  {
+                    captionKey: "registrarDocumentSubmission",
+                    type: "document_submission",
+                  },
+                ],
               },
               studentAffairs: {
                 name: "กองกิจการนิสิต",
-                description: "บริการด้านกิจกรรมนิสิต ทุนการศึกษา และสวัสดิการนิสิต",
-                detailedDescription: "กองกิจการนิสิตทุ่มเทเพื่อส่งเสริมชีวิตการเรียนของนิสิตนอกเหนือจากห้องเรียน ผ่านบริการสนับสนุนที่ครอบคลุมและโปรแกรมที่เสริมสร้างประสบการณ์ เราประสานงานกิจกรรมนิสิต บริหารโปรแกรมทุนการศึกษา ให้บริการให้คำปรึกษา และสนับสนุนการพัฒนาองค์กรนิสิต ทีมที่ปรึกษาและผู้ประสานงานกิจกรรมที่มีประสบการณ์ของเราทำงานอย่างไม่รู้จักเหน็ดเหนื่อยเพื่อสร้างสภาพแวดล้อมที่สนับสนุน ที่ซึ่งนิสิตสามารถพัฒนาทักษะความเป็นผู้นำ สร้างมิตรภาพที่ยั่งยืน และบรรลุการเติบโตส่วนบุคคลตลอดการเดินทางในมหาวิทยาลัย",
-                highlights: ["ทุนการศึกษา", "กิจกรรมนิสิต", "คำปรึกษา", "พัฒนาความเป็นผู้นำ"],
-                facilities: ["ห้องให้คำปรึกษา", "พื้นที่จัดกิจกรรม", "ห้องประชุม", "Wi-Fi ฟรี"],
-                services: ["บริหารทุนการศึกษา", "คำปรึกษาส่วนบุคคล", "ประสานงานกิจกรรม", "สวัสดิการนิสิต", "สนับสนุนองค์กร"],
+                description:
+                  "บริการด้านกิจกรรมนิสิต ทุนการศึกษา และสวัสดิการนิสิต",
+                detailedDescription:
+                  "กองกิจการนิสิตทุ่มเทเพื่อส่งเสริมชีวิตการเรียนของนิสิตนอกเหนือจากห้องเรียน ผ่านบริการสนับสนุนที่ครอบคลุมและโปรแกรมที่เสริมสร้างประสบการณ์ เราประสานงานกิจกรรมนิสิต บริหารโปรแกรมทุนการศึกษา ให้บริการให้คำปรึกษา และสนับสนุนการพัฒนาองค์กรนิสิต ทีมที่ปรึกษาและผู้ประสานงานกิจกรรมที่มีประสบการณ์ของเราทำงานอย่างไม่รู้จักเหน็ดเหนื่อยเพื่อสร้างสภาพแวดล้อมที่สนับสนุน ที่ซึ่งนิสิตสามารถพัฒนาทักษะความเป็นผู้นำ สร้างมิตรภาพที่ยั่งยืน และบรรลุการเติบโตส่วนบุคคลตลอดการเดินทางในมหาวิทยาลัย",
+                highlights: [
+                  "ทุนการศึกษา",
+                  "กิจกรรมนิสิต",
+                  "คำปรึกษา",
+                  "พัฒนาความเป็นผู้นำ",
+                ],
+                facilities: [
+                  "ห้องให้คำปรึกษา",
+                  "พื้นที่จัดกิจกรรม",
+                  "ห้องประชุม",
+                  "Wi-Fi ฟรี",
+                ],
+                services: [
+                  "บริหารทุนการศึกษา",
+                  "คำปรึกษาส่วนบุคคล",
+                  "ประสานงานกิจกรรม",
+                  "สวัสดิการนิสิต",
+                  "สนับสนุนองค์กร",
+                ],
                 images: [
-                  { captionKey: "studentAffairsServiceArea", type: "service_area" },
-                  { captionKey: "studentAffairsCounselingRoom", type: "counseling_room" },
-                  { captionKey: "studentAffairsClubMeeting", type: "club_meeting_room" },
-                  { captionKey: "studentAffairsActivitySpace", type: "activity_space" },
-                  { captionKey: "studentAffairsDisabilityArea", type: "disability_area" },
-                  { captionKey: "studentAffairsWelfare", type: "student_welfare" }
-                ]
+                  {
+                    captionKey: "studentAffairsServiceArea",
+                    type: "service_area",
+                  },
+                  {
+                    captionKey: "studentAffairsCounselingRoom",
+                    type: "counseling_room",
+                  },
+                  {
+                    captionKey: "studentAffairsClubMeeting",
+                    type: "club_meeting_room",
+                  },
+                  {
+                    captionKey: "studentAffairsActivitySpace",
+                    type: "activity_space",
+                  },
+                  {
+                    captionKey: "studentAffairsDisabilityArea",
+                    type: "disability_area",
+                  },
+                  {
+                    captionKey: "studentAffairsWelfare",
+                    type: "student_welfare",
+                  },
+                ],
               },
               generalEducation: {
                 name: "สำนักศึกษาทั่วไป",
-                description: "หน่วยงานที่รับผิดชอบการจัดการเรียนการสอนวิชาศึกษาทั่วไป",
-                detailedDescription: "สำนักศึกษาทั่วไปมีภารกิจในการจัดการเรียนการสอนวิชาศึกษาทั่วไปให้กับนิสิตทุกคณะ มีห้องเรียนที่ทันสมัย ห้องปฏิบัติการคอมพิวเตอร์ ห้องประชุมสัมมนา และทีมอาจารย์ผู้เชี่ยวชาญในสาขาต่างๆ พร้อมให้คำปรึกษาด้านการเรียน",
-                highlights: ["วิชาศึกษาทั่วไป", "ปรึกษาวิชาเรียน", "ห้องเรียน", "ห้องประชุม"],
-                facilities: ["ห้องเรียนมัลติมีเดีย", "Wi-Fi ฟรี", "ปรับอากาศ", "ที่จอดรถ"],
-                services: ["การเรียนการสอน", "ปรึกษาวิชาเรียน", "จองห้องเรียน", "กิจกรรมพิเศษ", "สัมมนาวิชาการ"],
+                description:
+                  "หน่วยงานที่รับผิดชอบการจัดการเรียนการสอนวิชาศึกษาทั่วไป",
+                detailedDescription:
+                  "สำนักศึกษาทั่วไปมีภารกิจในการจัดการเรียนการสอนวิชาศึกษาทั่วไปให้กับนิสิตทุกคณะ มีห้องเรียนที่ทันสมัย ห้องปฏิบัติการคอมพิวเตอร์ ห้องประชุมสัมมนา และทีมอาจารย์ผู้เชี่ยวชาญในสาขาต่างๆ พร้อมให้คำปรึกษาด้านการเรียน",
+                highlights: [
+                  "วิชาศึกษาทั่วไป",
+                  "ปรึกษาวิชาเรียน",
+                  "ห้องเรียน",
+                  "ห้องประชุม",
+                ],
+                facilities: [
+                  "ห้องเรียนมัลติมีเดีย",
+                  "Wi-Fi ฟรี",
+                  "ปรับอากาศ",
+                  "ที่จอดรถ",
+                ],
+                services: [
+                  "การเรียนการสอน",
+                  "ปรึกษาวิชาเรียน",
+                  "จองห้องเรียน",
+                  "กิจกรรมพิเศษ",
+                  "สัมมนาวิชาการ",
+                ],
                 images: [
-                  { captionKey: "geneEducationBuilding", type: "General Education" },
+                  {
+                    captionKey: "geneEducationBuilding",
+                    type: "General Education",
+                  },
                   { captionKey: "geneEducationHallway1", type: "hallway" },
                   { captionKey: "geneEducationHallway2", type: "hallway2" },
-                  { captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }
-                ]
+                  {
+                    captionKey: "geneEducationCoworkingSpace",
+                    type: "Co-Woking Space",
+                  },
+                ],
               },
               dormitory: {
                 name: "หอพักภายใน",
                 description: "หอพักสำหรับนิสิตภายในมหาวิทยาลัย สะดวก ปลอดภัย",
-                detailedDescription: "หอพักภายในมหาวิทยาลัยมีห้องพักสำหรับนิสิตชาย-หญิงแยกอาคาร ห้องพักมีเครื่องใช้ไฟฟ้าครบครัน Wi-Fi ฟรี ระบบรักษาความปลอดภัย 24 ชั่วโมง ห้องซักรีด พื้นที่พักผ่อน ร้านสะดวกซื้อ และใกล้กับอาคารเรียนทุกแห่ง",
-                highlights: ["ที่พักใกล้เรียน", "ความปลอดภัย", "สิ่งอำนวยความสะดวก", "ชุมชนนิสิต"],
-                facilities: ["ระบบรักษาความปลอดภัย", "Wi-Fi ฟรี", "ห้องซักรีด", "ร้านสะดวกซื้อ", "ที่จอดรถ"],
-                services: ["ที่พัก", "รักษาความปลอดภัย", "ซักรีด", "ร้านสะดวกซื้อ", "กิจกรรมหอพัก"],
+                detailedDescription:
+                  "หอพักภายในมหาวิทยาลัยมีห้องพักสำหรับนิสิตชาย-หญิงแยกอาคาร ห้องพักมีเครื่องใช้ไฟฟ้าครบครัน Wi-Fi ฟรี ระบบรักษาความปลอดภัย 24 ชั่วโมง ห้องซักรีด พื้นที่พักผ่อน ร้านสะดวกซื้อ และใกล้กับอาคารเรียนทุกแห่ง",
+                highlights: [
+                  "ที่พักใกล้เรียน",
+                  "ความปลอดภัย",
+                  "สิ่งอำนวยความสะดวก",
+                  "ชุมชนนิสิต",
+                ],
+                facilities: [
+                  "ระบบรักษาความปลอดภัย",
+                  "Wi-Fi ฟรี",
+                  "ห้องซักรีด",
+                  "ร้านสะดวกซื้อ",
+                  "ที่จอดรถ",
+                ],
+                services: [
+                  "ที่พัก",
+                  "รักษาความปลอดภัย",
+                  "ซักรีด",
+                  "ร้านสะดวกซื้อ",
+                  "กิจกรรมหอพัก",
+                ],
                 images: [
                   { captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" },
                   { captionKey: "dormitoryLobby", type: "lobby" },
                   { captionKey: "dormitoryParking", type: "common_area" },
-                  { captionKey: "dormitoryBuilding", type: "laundry_room" }
-                ]
+                  { captionKey: "dormitoryBuilding", type: "laundry_room" },
+                ],
               },
               boromrajkumari: {
                 name: "อาคารบรมราชกุมารี",
-                description: "อาคารหลักที่มีห้องเรียน ห้องปฏิบัติการ และสำนักงานต่างๆ",
-                detailedDescription: "อาคารบรมราชกุมารีเป็นอาคารหลักของมหาวิทยาลัย มีห้องเรียนใหญ่ที่ทันสมัย ห้องปฏิบัติการวิทยาศาสตร์ ห้องประชุมขนาดใหญ่ ลิฟต์สำหรับผู้พิการ และระบบปรับอากาศตลอดอาคาร เป็นศูนย์กลางการเรียนการสอนที่สำคัญของมหาวิทยาลัย",
-                highlights: ["ห้องเรียนใหญ่", "ห้องปฏิบัติการ", "ห้องประชุม", "สำนักงานคณะ"],
-                facilities: ["ลิฟต์", "ปรับอากาศ", "ระบบเสียง", "โปรเจคเตอร์", "Wi-Fi ฟรี"],
-                services: ["การเรียนการสอน", "ห้องปฏิบัติการ", "จัดประชุม", "สำนักงานคณะ", "บริการลิฟต์"],
+                description:
+                  "อาคารหลักที่มีห้องเรียน ห้องปฏิบัติการ และสำนักงานต่างๆ",
+                detailedDescription:
+                  "อาคารบรมราชกุมารีเป็นอาคารหลักของมหาวิทยาลัย มีห้องเรียนใหญ่ที่ทันสมัย ห้องปฏิบัติการวิทยาศาสตร์ ห้องประชุมขนาดใหญ่ ลิฟต์สำหรับผู้พิการ และระบบปรับอากาศตลอดอาคาร เป็นศูนย์กลางการเรียนการสอนที่สำคัญของมหาวิทยาลัย",
+                highlights: [
+                  "ห้องเรียนใหญ่",
+                  "ห้องปฏิบัติการ",
+                  "ห้องประชุม",
+                  "สำนักงานคณะ",
+                ],
+                facilities: [
+                  "ลิฟต์",
+                  "ปรับอากาศ",
+                  "ระบบเสียง",
+                  "โปรเจคเตอร์",
+                  "Wi-Fi ฟรี",
+                ],
+                services: [
+                  "การเรียนการสอน",
+                  "ห้องปฏิบัติการ",
+                  "จัดประชุม",
+                  "สำนักงานคณะ",
+                  "บริการลิฟต์",
+                ],
                 images: [
-                  { captionKey: "boromrajkumariBuilding", type: "lecture_hall" },
+                  {
+                    captionKey: "boromrajkumariBuilding",
+                    type: "lecture_hall",
+                  },
                   { captionKey: "boromrajkumariInterior", type: "science_lab" },
-                  { captionKey: "boromrajkumariFinanceRoom", type: "conference_room" },
-                  { captionKey: "boromrajkumariLobby", type: "main_lobby" }
-                ]
-              }
+                  {
+                    captionKey: "boromrajkumariFinanceRoom",
+                    type: "conference_room",
+                  },
+                  { captionKey: "boromrajkumariLobby", type: "main_lobby" },
+                ],
+              },
             },
             modal: {
               overview: "ภาพรวม",
@@ -345,9 +683,10 @@ i18n
               email: "อีเมล",
               address: "ที่อยู่",
               transportation: "การเดินทาง",
-              transportationDesc: "คลิกปุ่มนำทางเพื่อเปิด Google Maps และดูเส้นทางการเดินทาง",
+              transportationDesc:
+                "คลิกปุ่มนำทางเพื่อเปิด Google Maps และดูเส้นทางการเดินทาง",
               openGoogleMaps: "เปิด Google Maps",
-              gpsCoordinates: "พิกัด GPS"
+              gpsCoordinates: "พิกัด GPS",
             },
             imageDescriptions: {
               libraryMainHall: "โถงห้องสมุดหลัก",
@@ -388,43 +727,48 @@ i18n
               geneEducationBackside: "ด้านหลังอาคาร",
               geneEducationFrontService: "บริการด้านหน้า",
               geneEducationHallway3: "โถงทางเดิน",
+              geneEducationLectureHall: "ห้องเรียนรวม",
+              geneEducationLectureHall2: "ห้องเรียนรวม 2",
+              geneEducationLectureHall3: "ห้องเรียนรวม 3",
               dormitoryOnCampus: "หอพักภายใน",
               dormitoryLobby: "ภาพบรรยากาศ",
               dormitoryParking: "ที่จอดรถ",
               dormitoryBuilding: "บรรยากาศตึกหอพัก",
-              dormitoryGantrivichaiDorm: "หอพักกันทรวิชัย",
-              dormitoryGantrivichaiAtmosphere: "บรรยากาศรอบหอพักกันทรวิชัย",
+              ddormitoryGantrivichaiDorm: "หอพักกันทรวิชัย",
+              dormitoryGantrivichaiAtmosphere: "บรรยากาศหอพักกันทรวิชัย",
               dormitoryDirectionSign: "ป้ายบอกทางหอพัก",
-              dormitoryAtmosphere2: "บรรยากาศรอบหอพัก",
+              dormitoryAtmosphere2: "ภาพบรรยากาศ",
               dormitoryBorribeoDorm: "หอพักบรบือ",
               dormitoryKudrangDorm: "หอพักกุดรัง",
               boromrajkumariBuilding: "ด้านหน้าตึก",
               boromrajkumariInterior: "ภายในตึก",
               boromrajkumariFinanceRoom: "ห้องการเงิน",
-              boromrajkumariLobby: "ล็อบบี้"
+              boromrajkumariLobby: "ล็อบบี้",
+              boromrajkumariBuildingView: "ตึกบรมราชกุมารี",
+              boromrajkumariCoffeeShop: "ร้านกาแฟหน้าตึก",
             },
             categories: {
               Academic: "วิชาการ",
               Administrative: "บริหาร",
               "Student Services": "บริการนิสิต",
-              Accommodation: "ที่พัก"
+              Accommodation: "ที่พัก",
             },
             openHours: {
               "08:00 - 20:00": "08:00 - 20:00",
               "08:30 - 16:30": "08:30 - 16:30",
               "24 ชั่วโมง": "24 ชั่วโมง",
-              "06:00 - 22:00": "06:00 - 22:00"
+              "06:00 - 22:00": "06:00 - 22:00",
             },
             locations: {
               "อาคาร B ชั้น 1-3": "อาคาร B ชั้น 1-3",
               "อาคารอำนวยการ ชั้น 1": "อาคารอำนวยการ ชั้น 1",
               "อาคารกิจการนิสิต ชั้น 1": "อาคารกิจการนิสิต ชั้น 1",
               "อาคารศึกษาทั่วไป ชั้น 1-2": "อาคารศึกษาทั่วไป ชั้น 1-2",
-              "อาคารหอพักนิสิต": "อาคารหอพักนิสิต",
-              "อาคารบรมราชกุมารี": "อาคารบรมราชกุมารี"
-            }
-          }
-        }
+              อาคารหอพักนิสิต: "อาคารหอพักนิสิต",
+              อาคารบรมราชกุมารี: "อาคารบรมราชกุมารี",
+            },
+          },
+        },
       },
       zh: {
         translation: {
@@ -434,18 +778,53 @@ i18n
           loading: "加载中...",
           placesPage: {
             header: "推荐地点",
-            description: "游览玛哈沙拉堪大学：学习、美食、旅行和校园内的休闲放松场所。",
+            description:
+              "游览玛哈沙拉堪大学：学习、美食、旅行和校园内的休闲放松场所。",
             moreinfo: "需要更多信息吗？",
             moreInfoDesc: "点击任何地点查看详细信息或联系我们的公共关系部门。",
             contact: "联系我们",
+            msuLinks: "MSU 快速链接",
+            msuLinksDesc: "探索玛哈萨拉堪大学的更多服务和资源",
+            contactInfo: "联系信息",
+            links: {
+              website: "MSU 网站",
+              registration: "注册系统",
+              admissions: "招生指南",
+              libraryGuide: "图书馆指南",
+              onlineLibrary: "在线图书馆",
+            },
+            contact: {
+              phone: "电话",
+              email: "电子邮件",
+              followUs: "关注我们",
+            },
             places: {
               libraryService: {
                 name: "马哈沙拉堪大学图书馆 B 栋",
                 description: "学习资源中心，拥有书籍、期刊和在线数据库",
-                detailedDescription: "B 栋是马哈沙拉堪大学图书馆的一部分， 为学生、教师和工作人员提供服务， 支持学习、科研以及信息技术技能的发展。 在这栋楼内，有多种服务满足现代学习者的需求， 从最先进的计算机实验室， 到称为**数字学习园（Digital Learning Park, DLP）**的开放学习空间， 专为小组工作、研究和创意项目而设计。 数字学习园将技术与学习结合起来， 让每个人都能方便地访问数字资源， 配备高速 Wi-Fi、高质量计算机， 以及供放松思维的休息区。 这里不仅仅是一座图书馆或学习楼， 更是一个激发灵感的中心， 培养马哈沙拉堪大学学生的知识、思想和梦想。 马哈沙拉堪大学图书馆 B 栋 马哈沙拉堪大学 — 一个充满机遇的地方，一个学习的地方，为每个人的未来而存在。",
-                highlights: ["广泛的图书收藏", "在线数据库", "学习空间", "免费Wi-Fi"],
-                facilities: ["免费Wi-Fi", "空调", "停车场", "无障碍通道", "计算机实验室", "学习室"],
-                services: ["图书借阅", "参考服务", "数据库访问", "数字资源", "图书馆咨询"],
+                detailedDescription:
+                  "B 栋是马哈沙拉堪大学图书馆的一部分， 为学生、教师和工作人员提供服务， 支持学习、科研以及信息技术技能的发展。 在这栋楼内，有多种服务满足现代学习者的需求， 从最先进的计算机实验室， 到称为**数字学习园（Digital Learning Park, DLP）**的开放学习空间， 专为小组工作、研究和创意项目而设计。 数字学习园将技术与学习结合起来， 让每个人都能方便地访问数字资源， 配备高速 Wi-Fi、高质量计算机， 以及供放松思维的休息区。 这里不仅仅是一座图书馆或学习楼， 更是一个激发灵感的中心， 培养马哈沙拉堪大学学生的知识、思想和梦想。 马哈沙拉堪大学图书馆 B 栋 马哈沙拉堪大学 — 一个充满机遇的地方，一个学习的地方，为每个人的未来而存在。",
+                highlights: [
+                  "广泛的图书收藏",
+                  "在线数据库",
+                  "学习空间",
+                  "免费Wi-Fi",
+                ],
+                facilities: [
+                  "免费Wi-Fi",
+                  "空调",
+                  "停车场",
+                  "无障碍通道",
+                  "计算机实验室",
+                  "学习室",
+                ],
+                services: [
+                  "图书借阅",
+                  "参考服务",
+                  "数据库访问",
+                  "数字资源",
+                  "图书馆咨询",
+                ],
                 images: [
                   { captionKey: "libraryMainHall", type: "interior" },
                   { captionKey: "libraryStudyRoom", type: "study_room" },
@@ -453,82 +832,153 @@ i18n
                   { captionKey: "libraryComputerLab", type: "computer_lab" },
                   { captionKey: "libraryLounge", type: "lounge" },
                   { captionKey: "libraryMainLobby", type: "main_hall" },
-                  { captionKey: "libraryRelaxationArea", type: "relaxation_area" },
-                  { captionKey: "libraryEventSpace", type: "event_space" }
-                ]
+                  {
+                    captionKey: "libraryRelaxationArea",
+                    type: "relaxation_area",
+                  },
+                  { captionKey: "libraryEventSpace", type: "event_space" },
+                ],
               },
               registrar: {
                 name: "注册处",
                 description: "学生注册服务和学术文件管理",
-                detailedDescription: "注册处作为玛哈沙拉堪大学所有学生学术事务的中央行政枢纽。我们敬业的工作人员提供全面服务，包括课程注册、学术成绩单管理、学位验证和学生记录维护。凭借现代数字系统和精简流程，我们确保所有学术文档的高效准确处理，同时保持最高标准的保密性和服务质量。",
+                detailedDescription:
+                  "注册处作为玛哈沙拉堪大学所有学生学术事务的中央行政枢纽。我们敬业的工作人员提供全面服务，包括课程注册、学术成绩单管理、学位验证和学生记录维护。凭借现代数字系统和精简流程，我们确保所有学术文档的高效准确处理，同时保持最高标准的保密性和服务质量。",
                 highlights: ["课程注册", "学历证书", "成绩单", "数据管理"],
                 facilities: ["在线排队系统", "空调", "等候区", "无障碍通道"],
-                services: ["课程注册", "证书颁发", "信息修改", "付款处理", "学术咨询"],
+                services: [
+                  "课程注册",
+                  "证书颁发",
+                  "信息修改",
+                  "付款处理",
+                  "学术咨询",
+                ],
                 images: [
                   { captionKey: "registrarEntrance1", type: "entrance1" },
                   { captionKey: "registrarEntrance2", type: "entrance2" },
                   { captionKey: "registrarWaitingArea", type: "waiting_area" },
-                  { captionKey: "registrarDocumentSubmission", type: "document_submission" }
-                ]
+                  {
+                    captionKey: "registrarDocumentSubmission",
+                    type: "document_submission",
+                  },
+                ],
               },
               studentAffairs: {
                 name: "学生事务处",
                 description: "学生活动、奖学金和学生福利服务",
-                detailedDescription: "学生事务处致力于通过全面的支持服务和丰富的项目来加强课堂之外的学生生活。我们协调学生活动，管理奖学金项目，提供咨询服务，并促进学生组织发展。我们经验丰富的咨询师和活动协调员团队不懈努力，创造一个支持性环境，让学生能够发展领导技能，建立持久的友谊，并在整个大学旅程中实现个人成长。",
+                detailedDescription:
+                  "学生事务处致力于通过全面的支持服务和丰富的项目来加强课堂之外的学生生活。我们协调学生活动，管理奖学金项目，提供咨询服务，并促进学生组织发展。我们经验丰富的咨询师和活动协调员团队不懈努力，创造一个支持性环境，让学生能够发展领导技能，建立持久的友谊，并在整个大学旅程中实现个人成长。",
                 highlights: ["奖学金", "学生活动", "咨询", "领导力发展"],
                 facilities: ["咨询室", "活动空间", "会议室", "免费Wi-Fi"],
-                services: ["奖学金管理", "个人咨询", "活动协调", "学生福利", "组织支持"],
+                services: [
+                  "奖学金管理",
+                  "个人咨询",
+                  "活动协调",
+                  "学生福利",
+                  "组织支持",
+                ],
                 images: [
-                  { captionKey: "studentAffairsServiceArea", type: "service_area" },
-                  { captionKey: "studentAffairsCounselingRoom", type: "counseling_room" },
-                  { captionKey: "studentAffairsClubMeeting", type: "club_meeting_room" },
-                  { captionKey: "studentAffairsActivitySpace", type: "activity_space" },
-                  { captionKey: "studentAffairsDisabilityArea", type: "disability_area" },
-                  { captionKey: "studentAffairsWelfare", type: "student_welfare" }
-                ]
+                  {
+                    captionKey: "studentAffairsServiceArea",
+                    type: "service_area",
+                  },
+                  {
+                    captionKey: "studentAffairsCounselingRoom",
+                    type: "counseling_room",
+                  },
+                  {
+                    captionKey: "studentAffairsClubMeeting",
+                    type: "club_meeting_room",
+                  },
+                  {
+                    captionKey: "studentAffairsActivitySpace",
+                    type: "activity_space",
+                  },
+                  {
+                    captionKey: "studentAffairsDisabilityArea",
+                    type: "disability_area",
+                  },
+                  {
+                    captionKey: "studentAffairsWelfare",
+                    type: "student_welfare",
+                  },
+                ],
               },
               generalEducation: {
                 name: "通识教育中心",
                 description: "负责通识教育课程的部门",
-                detailedDescription: "通识教育中心负责为所有院系学生组织通识教育课程，配备现代化教室、计算机实验室、研讨室以及各领域专业教师团队，随时提供学术咨询。",
+                detailedDescription:
+                  "通识教育中心负责为所有院系学生组织通识教育课程，配备现代化教室、计算机实验室、研讨室以及各领域专业教师团队，随时提供学术咨询。",
                 highlights: ["通识教育课程", "学术咨询", "教室", "会议室"],
                 facilities: ["多媒体教室", "免费Wi-Fi", "空调", "停车场"],
-                services: ["教学", "学术咨询", "教室预约", "特殊活动", "学术研讨会"],
+                services: [
+                  "教学",
+                  "学术咨询",
+                  "教室预约",
+                  "特殊活动",
+                  "学术研讨会",
+                ],
                 images: [
-                  { captionKey: "geneEducationBuilding", type: "General Education" },
+                  {
+                    captionKey: "geneEducationBuilding",
+                    type: "General Education",
+                  },
                   { captionKey: "geneEducationHallway1", type: "hallway" },
                   { captionKey: "geneEducationHallway2", type: "hallway2" },
-                  { captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }
-                ]
+                  {
+                    captionKey: "geneEducationCoworkingSpace",
+                    type: "Co-Woking Space",
+                  },
+                ],
               },
               dormitory: {
                 name: "校内宿舍",
                 description: "校内学生住宿 - 便利安全",
-                detailedDescription: "校内大学宿舍为男女学生提供分楼住宿，房间配备齐全的电器设备、免费Wi-Fi、24小时安保系统、洗衣房、休闲区、便利店，并靠近所有教学楼。",
+                detailedDescription:
+                  "校内大学宿舍为男女学生提供分楼住宿，房间配备齐全的电器设备、免费Wi-Fi、24小时安保系统、洗衣房、休闲区、便利店，并靠近所有教学楼。",
                 highlights: ["靠近教学楼", "安全", "设施", "学生社区"],
-                facilities: ["安保系统", "免费Wi-Fi", "洗衣房", "便利店", "停车场"],
+                facilities: [
+                  "安保系统",
+                  "免费Wi-Fi",
+                  "洗衣房",
+                  "便利店",
+                  "停车场",
+                ],
                 services: ["住宿", "安保", "洗衣", "便利店", "宿舍活动"],
                 images: [
                   { captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" },
                   { captionKey: "dormitoryLobby", type: "lobby" },
                   { captionKey: "dormitoryParking", type: "common_area" },
-                  { captionKey: "dormitoryBuilding", type: "laundry_room" }
-                ]
+                  { captionKey: "dormitoryBuilding", type: "laundry_room" },
+                ],
               },
               boromrajkumari: {
                 name: "博罗玛拉琪库玛丽大楼",
                 description: "主楼，设有教室、实验室和各种办公室",
-                detailedDescription: "博罗玛拉琪库玛丽大楼是大学的主楼，配备现代化大教室、科学实验室、大会议室、残疾人电梯和全楼空调系统。它是大学重要的教学中心。",
+                detailedDescription:
+                  "博罗玛拉琪库玛丽大楼是大学的主楼，配备现代化大教室、科学实验室、大会议室、残疾人电梯和全楼空调系统。它是大学重要的教学中心。",
                 highlights: ["大教室", "实验室", "会议室", "院系办公室"],
                 facilities: ["电梯", "空调", "音响系统", "投影仪", "免费Wi-Fi"],
-                services: ["教学", "实验室", "会议安排", "院系办公室", "电梯服务"],
+                services: [
+                  "教学",
+                  "实验室",
+                  "会议安排",
+                  "院系办公室",
+                  "电梯服务",
+                ],
                 images: [
-                  { captionKey: "boromrajkumariBuilding", type: "lecture_hall" },
+                  {
+                    captionKey: "boromrajkumariBuilding",
+                    type: "lecture_hall",
+                  },
                   { captionKey: "boromrajkumariInterior", type: "science_lab" },
-                  { captionKey: "boromrajkumariFinanceRoom", type: "conference_room" },
-                  { captionKey: "boromrajkumariLobby", type: "main_lobby" }
-                ]
-              }
+                  {
+                    captionKey: "boromrajkumariFinanceRoom",
+                    type: "conference_room",
+                  },
+                  { captionKey: "boromrajkumariLobby", type: "main_lobby" },
+                ],
+              },
             },
             modal: {
               overview: "概览",
@@ -553,7 +1003,7 @@ i18n
               transportation: "交通",
               transportationDesc: "点击导航按钮打开谷歌地图查看行进路线",
               openGoogleMaps: "打开谷歌地图",
-              gpsCoordinates: "GPS坐标"
+              gpsCoordinates: "GPS坐标",
             },
             imageDescriptions: {
               libraryMainHall: "图书馆主大厅",
@@ -594,6 +1044,9 @@ i18n
               geneEducationBackside: "建筑背面",
               geneEducationFrontService: "前台服务区",
               geneEducationHallway3: "走廊3",
+              geneEducationLectureHall: "综合教室",
+              geneEducationLectureHall2: "综合教室 2",
+              geneEducationLectureHall3: "综合教室 3",
               dormitoryOnCampus: "校内宿舍",
               dormitoryLobby: "宿舍大厅",
               dormitoryParking: "停车区",
@@ -607,31 +1060,33 @@ i18n
               boromrajkumariBuilding: "建筑前景",
               boromrajkumariInterior: "建筑内部",
               boromrajkumariFinanceRoom: "财务室",
-              boromrajkumariLobby: "大厅"
+              boromrajkumariLobby: "大厅",
+              boromrajkumariBuildingView: "博罗玛拉琪库玛丽大楼",
+              boromrajkumariCoffeeShop: "大楼前咖啡店",
             },
             categories: {
               Academic: "学术",
               Administrative: "行政",
               "Student Services": "学生服务",
-              Accommodation: "住宿"
+              Accommodation: "住宿",
             },
             openHours: {
               "08:00 - 20:00": "08:00 - 20:00",
               "08:30 - 16:30": "08:30 - 16:30",
               "24 ชั่วโมง": "24小时",
-              "06:00 - 22:00": "06:00 - 22:00"
+              "06:00 - 22:00": "06:00 - 22:00",
             },
             locations: {
               "อาคาร B ชั้น 1-3": "B楼，1-3层",
               "อาคารอำนวยการ ชั้น 1": "行政楼，1层",
               "อาคารกิจการนิสิต ชั้น 1": "学生事务楼，1层",
               "อาคารศึกษาทั่วไป ชั้น 1-2": "通识教育楼，1-2层",
-              "อาคารหอพักนิสิต": "学生宿舍楼",
-              "อาคารบรมราชกุมารี": "博罗玛拉琪库玛丽大楼"
-            }
-          }
-        }
-      }
+              อาคารหอพักนิสิต: "学生宿舍楼",
+              อาคารบรมราชกุมารี: "博罗玛拉琪库玛丽大楼",
+            },
+          },
+        },
+      },
     },
   });
 

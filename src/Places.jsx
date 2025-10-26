@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, X, View } from 'lucide-react';
+import { MapPin, Clock, Info, ArrowRight, Camera, Navigation, Phone, Globe, Users, X, View, BookOpen, GraduationCap, Facebook, Instagram, Youtube } from 'lucide-react';
 import NavigationBar from './NavigationBar';
 import My3DScene from './My3DScene.jsx';
 import { useTranslation } from "react-i18next";
@@ -32,9 +32,9 @@ import place2d from './assets/place2-4.jpg';
 import place2e from './assets/place2-5.jpg';
 import place2f from './assets/place2-6.jpg';
 import place2g from './assets/place2-7.jpg';
-import place2h from './assets/place2-8.jpg';
-import place2i from './assets/place2-9.jpg';
-import place2j from './assets/place2-10.jpg';
+import place2h from './assets/place2-5.jpg';
+import place2i from './assets/place2-8.jpg';
+import place2j from './assets/place2-9.jpg';
 import place2k from './assets/place2-10.jpg';
 import place3a from './assets/place3-1.jpg';
 import place3b from './assets/place3-2.jpg';
@@ -53,8 +53,12 @@ import place4d from './assets/place4-4.jpg';
 import place4e from './assets/place4-5.jpg';
 import place4f from './assets/place4-6.jpg';
 import place4g from './assets/place4-7.jpg';
+import place4h from './assets/place4-8.jpg';
+import place4i from './assets/place4-9.jpg';
+import place4j from './assets/place4-10.jpg';
+
 import place5a from './assets/place5-1.jpg';
-import place5b from './assets/place5-3.jpg';
+import place5b from './assets/place5-2.jpg';
 import place5c from './assets/place5-3.jpg';
 import place5d from './assets/place5-4.jpg';
 import place5e from './assets/place5-5.jpg';
@@ -67,6 +71,8 @@ import place6a from './assets/place6-1.jpg';
 import place6b from './assets/place6-2.jpg';
 import place6c from './assets/place6-3.jpg';
 import place6d from './assets/place6-4.jpg';
+import place6e from './assets/place6-5.jpg';
+import place6f from './assets/place6-6.jpg';
 
 // Import Panorama images
 import pano1 from './assets/panoramas/place1-360.jpg';
@@ -127,12 +133,12 @@ const Places = () => {
   };
 
   const recommendedPlaces = [
-    { id: 1, nameKey: "libraryService", image: place1cover, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร B ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "042-123-456", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, captionKey: "libraryMainHall", type: "interior" }, { url: place1b, captionKey: "libraryStudyRoom", type: "study_room" }, { url: place1c, captionKey: "libraryReadingArea", type: "reading_area" }, { url: place1d, captionKey: "libraryComputerLab", type: "computer_lab" }, { url: place1e, captionKey: "libraryLounge", type: "lounge" }, { url: place1g, captionKey: "libraryMainLobby", type: "main_hall" }, { url: place1h, captionKey: "libraryRelaxationArea", type: "relaxation_area" }, { url: place1i, captionKey: "libraryEventSpace", type: "event_space" }, { url: place1j, captionKey: "libraryEntrance2", type: "entrance" }, { url: place1k, captionKey: "libraryHallway", type: "hallway" }, { url: place1l, captionKey: "libraryInterior", type: "interior_2" }, { url: place1m, captionKey: "libraryMSU", type: "library_sign" }], virtualTour: "/virtual-tour/library", capacity: "500 คน", panoImage: pano1 },
+    { id: 1, nameKey: "libraryService", image: place1cover, category: "Academic", openHours: "08:00 - 20:00", location: "อาคาร B ชั้น 1-3", coordinates: { lat: 16.245697331723587, lng: 103.25114362463549 }, phone: "0-4375-4322-40", email: "library@msu.ac.th", audioUrls: audioUrls[1], images: [{ url: place1a, captionKey: "libraryMainHall", type: "interior" }, { url: place1b, captionKey: "libraryStudyRoom", type: "study_room" }, { url: place1c, captionKey: "libraryReadingArea", type: "reading_area" }, { url: place1d, captionKey: "libraryComputerLab", type: "computer_lab" }, { url: place1e, captionKey: "libraryLounge", type: "lounge" }, { url: place1g, captionKey: "libraryMainLobby", type: "main_hall" }, { url: place1h, captionKey: "libraryRelaxationArea", type: "relaxation_area" }, { url: place1i, captionKey: "libraryEventSpace", type: "event_space" }, { url: place1j, captionKey: "libraryEntrance2", type: "entrance" }, { url: place1k, captionKey: "libraryHallway", type: "hallway" }, { url: place1l, captionKey: "libraryInterior", type: "interior_2" }, { url: place1m, captionKey: "libraryMSU", type: "library_sign" }], virtualTour: "/virtual-tour/library", capacity: "500 คน", panoImage: pano1 },
     { id: 2, nameKey: "registrar", image: place2cover, category: "Administrative", openHours: "08:30 - 16:30", location: "อาคารอำนวยการ ชั้น 1", coordinates: { lat: 16.249137030602363, lng: 103.25072868259224 }, phone: "042-123-457", email: "registrar@msu.ac.th", audioUrls: audioUrls[2], images: [{ url: place2a, captionKey: "registrarEntrance1", type: "entrance1" }, { url: place2b, captionKey: "registrarEntrance2", type: "entrance2" }, { url: place2d, captionKey: "registrarWaitingArea", type: "waiting_area" }, { url: place2c, captionKey: "registrarDocumentSubmission", type: "document_submission" }, { url: place2f, captionKey: "registrarOfficeInterior", type: "office_interior" }, { url: place2g, captionKey: "registrarSupportArea", type: "support_area" }, { url: place2h, captionKey: "registrarComputerArea", type: "computer_area" }, { url: place2i, captionKey: "registrarServiceCounter", type: "service_counter" }, { url: place2j, captionKey: "registrarQueueTicket", type: "queue_ticket" }, { url: place2k, captionKey: "registrarInfoSign", type: "info_sign" }], virtualTour: "/virtual-tour/registrar", capacity: "100 คน", panoImage: pano2 },
     { id: 3, nameKey: "studentAffairs", image: place3cover, category: "Student Services", openHours: "08:30 - 16:30", location: "อาคารกิจการนิสิต ชั้น 1", coordinates: { lat: 16.252316203199562, lng: 103.2468383835711 }, phone: "042-123-459", email: "studentaffairs@msu.ac.th", audioUrls: audioUrls[3], images: [{ url: place3a, captionKey: "studentAffairsServiceArea", type: "service_area" }, { url: place3b, captionKey: "studentAffairsCounselingRoom", type: "counseling_room" }, { url: place3c, captionKey: "studentAffairsClubMeeting", type: "club_meeting_room" }, { url: place3d, captionKey: "studentAffairsActivitySpace", type: "activity_space" }, { url: place3f, captionKey: "studentAffairsDisabilityArea", type: "disability_area" }, { url: place3g, captionKey: "studentAffairsWelfare", type: "student_welfare" }, { url: place3h, captionKey: "studentAffairsBuildingSide", type: "building_side" }, { url: place3i, captionKey: "studentAffairsFrontService", type: "front_service" }, { url: place3j, captionKey: "studentAffairsRelaxationArea2", type: "relaxation_area_2" }], virtualTour: "/virtual-tour/studentaffairs", capacity: "150 คน", panoImage: pano3 },
-    { id: 4, nameKey: "generalEducation", image: place4cover, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 16.24681, lng: 103.24760 }, phone: "042-123-458", email: "geinnovation@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, captionKey: "geneEducationBuilding", type: "General Education" }, { url: place4b, captionKey: "geneEducationHallway1", type: "hallway" }, { url: place4c, captionKey: "geneEducationHallway2", type: "hallway2" }, { url: place4d, captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }, { url: place4f, captionKey: "geneEducationBackside", type: "backside" }, { url: place4g, captionKey: "geneEducationFrontService", type: "front_service" }, { url: place4e, captionKey: "geneEducationHallway3", type: "hallway3" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน", panoImage: pano4 },
-    { id: 5, nameKey: "dormitory", image: place5cover, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 16.25045, lng: 103.24887 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" }, { url: place5b, captionKey: "dormitoryLobby", type: "lobby" }, { url: place5c, captionKey: "dormitoryParking", type: "common_area" }, { url: place5d, captionKey: "dormitoryBuilding", type: "laundry_room" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน", panoImage: pano5 },
-    { id: 6, nameKey: "boromrajkumari", image: place6cover, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 16.24405, lng: 103.24906 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, captionKey: "boromrajkumariBuilding", type: "lecture_hall" }, { url: place6b, captionKey: "boromrajkumariInterior", type: "science_lab" }, { url: place6c, captionKey: "boromrajkumariFinanceRoom", type: "conference_room" }, { url: place6d, captionKey: "boromrajkumariLobby", type: "main_lobby" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน", panoImage: pano6 }
+    { id: 4, nameKey: "generalEducation", image: place4cover, category: "Academic", openHours: "08:30 - 16:30", location: "อาคารศึกษาทั่วไป ชั้น 1-2", coordinates: { lat: 16.24681, lng: 103.24760 }, phone: "042-123-458", email: "geinnovation@msu.ac.th", audioUrls: audioUrls[4], images: [{ url: place4a, captionKey: "geneEducationBuilding", type: "General Education" }, { url: place4b, captionKey: "geneEducationHallway1", type: "hallway" }, { url: place4c, captionKey: "geneEducationHallway2", type: "hallway2" }, { url: place4d, captionKey: "geneEducationCoworkingSpace", type: "Co-Woking Space" }, { url: place4f, captionKey: "geneEducationBackside", type: "backside" }, { url: place4g, captionKey: "geneEducationFrontService", type: "front_service" }, { url: place4e, captionKey: "geneEducationHallway3", type: "hallway3" }, { url: place4h, captionKey: "geneEducationLectureHall", type: "lecture_hall" }, { url: place4i, captionKey: "geneEducationLectureHall2", type: "lecture_hall2" }, { url: place4j, captionKey: "geneEducationLectureHall3", type: "lecture_hall3" }], virtualTour: "/virtual-tour/gened", capacity: "300 คน", panoImage: pano4 },
+    { id: 5, nameKey: "dormitory", image: place5cover, category: "Accommodation", openHours: "24 ชั่วโมง", location: "อาคารหอพักนิสิต", coordinates: { lat: 16.25045, lng: 103.24887 }, phone: "042-123-460", email: "dormitory@msu.ac.th", audioUrls: audioUrls[5], images: [{ url: place5a, captionKey: "dormitoryOnCampus", type: "On-Campus Dorm" }, { url: place5b, captionKey: "dormitoryLobby", type: "lobby" }, { url: place5c, captionKey: "dormitoryParking", type: "common_area" }, { url: place5d, captionKey: "dormitoryBuilding", type: "laundry_room" }, { url: place5e, captionKey: "dormitoryGantrivichaiDorm", type: "gantrivichai_dorm" }, { url: place5f, captionKey: "dormitoryGantrivichaiAtmosphere", type: "gantrivichai_atmosphere" }, { url: place5g, captionKey: "dormitoryDirectionSign", type: "direction_sign" }, { url: place5h, captionKey: "dormitoryAtmosphere2", type: "atmosphere_2" }, { url: place5i, captionKey: "dormitoryBorribeoDorm", type: "borribeo_dorm" }, { url: place5j, captionKey: "dormitoryKudrangDorm", type: "kudrang_dorm" }], virtualTour: "/virtual-tour/dormitory", capacity: "500 คน", panoImage: pano5 },
+    { id: 6, nameKey: "boromrajkumari", image: place6cover, category: "Academic", openHours: "06:00 - 22:00", location: "อาคารบรมราชกุมารี", coordinates: { lat: 16.24405, lng: 103.24906 }, phone: "042-123-461", email: "boromrajkumari@msu.ac.th", audioUrls: audioUrls[6], images: [{ url: place6a, captionKey: "boromrajkumariBuilding", type: "lecture_hall" }, { url: place6b, captionKey: "boromrajkumariInterior", type: "science_lab" }, { url: place6c, captionKey: "boromrajkumariFinanceRoom", type: "conference_room" }, { url: place6d, captionKey: "boromrajkumariLobby", type: "main_lobby" }, { url: place6e, captionKey: "boromrajkumariBuildingView", type: "building_view" }, { url: place6f, captionKey: "boromrajkumariCoffeeShop", type: "coffee_shop" }], virtualTour: "/virtual-tour/boromrajkumari", capacity: "1000 คน", panoImage: pano6 }
   ];
 
   const getCategoryColor = (category) => {
@@ -292,17 +298,152 @@ const Places = () => {
         </div>
 
         {/* CTA Section - Smaller Footer */}
-        <div className="relative p-4 md:p-6 rounded-xl backdrop-blur-xl bg-white/5 border border-white/20 shadow-lg text-center hover:bg-white/10 transition-all duration-500">
-          <Info className="w-8 h-8 text-teal-400 mx-auto mb-2" />
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
-            {t('placesPage.moreinfo')}
-          </h3>
-          <p className="text-slate-300 mb-3 max-w-2xl mx-auto text-sm">
-            {t('placesPage.moreInfoDesc')}
-          </p>
-          <button className="px-6 py-2 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r from-blue-500 to-violet-500 text-white hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 text-sm">
-            {t('placesPage.contact')}
-          </button>
+        {/* Footer - MSU Links */}
+        <div className="relative p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/20 shadow-lg hover:bg-white/10 transition-all duration-500">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Column - Logo & Contact */}
+            <div className="flex flex-col items-center md:items-start">
+              <div className="w-32 h-32 mb-4 bg-white rounded-full flex items-center justify-center shadow-xl p-6">
+                <img 
+                  src="https://cdn.discordapp.com/attachments/1085775272445489172/1431818409137410148/MSU-LOGO.png?ex=68fecc4e&is=68fd7ace&hm=7fef69f84762326eb95120a50296a934a351f5d762d1dfbb83a5871ef924a1de&" 
+                  alt="MSU Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {t('placesPage.contactInfo')}
+              </h3>
+              
+              {/* Contact Details */}
+              <div className="space-y-3 w-full">
+                <div className="flex items-start gap-3 text-slate-300">
+                  <Phone className="w-5 h-5 text-blue-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="text-sm text-slate-400">{t('placesPage.contact.phone')}</p>
+                    <p className="font-medium">043 719 800 - 1225, 1226, 1227, 1233</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 text-slate-300">
+                  <Globe className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="text-sm text-slate-400">{t('placesPage.contact.email')}</p>
+                    <a href="mailto:sarabun@msc.ac.th" className="font-medium hover:text-blue-400 transition-colors">
+                      sarabun@msc.ac.th
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="mt-6 w-full">
+                <p className="text-sm text-slate-400 mb-3">{t('placesPage.contact.followUs')}</p>
+                <div className="flex gap-3">
+                  <a 
+                    href="https://www.facebook.com/MahasarakhamUniversity.MSU" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-500/20 border border-white/20 hover:border-blue-400/50 flex items-center justify-center transition-all duration-300"
+                  >
+                    <Facebook className="w-5 h-5 text-white" />
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/mahasarakhamuniversity/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-pink-500/20 border border-white/20 hover:border-pink-400/50 flex items-center justify-center transition-all duration-300"
+                  >
+                    <Instagram className="w-5 h-5 text-white" />
+                  </a>
+                  <a 
+                    href="https://www.youtube.com/c/msutubeThailand" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-red-500/20 border border-white/20 hover:border-red-400/50 flex items-center justify-center transition-all duration-300"
+                  >
+                    <Youtube className="w-5 h-5 text-white" />
+                  </a>
+                  <a 
+                    href="https://www.tiktok.com/@msu.thailand" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-violet-500/20 border border-white/20 hover:border-violet-400/50 flex items-center justify-center transition-all duration-300"
+                  >
+                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Quick Links */}
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {t('placesPage.msuLinks')}
+              </h3>
+              <p className="text-slate-300 mb-6 text-sm">
+                {t('placesPage.msuLinksDesc')}
+              </p>
+              
+              <div className="grid grid-cols-1 gap-3">
+                <a 
+                  href="https://www.msu.ac.th" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-white/10 hover:bg-blue-500/20 border border-white/10 hover:border-blue-400/50 transition-all duration-300 group"
+                >
+                  <Globe className="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-white font-medium">{t('placesPage.links.website')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a 
+                  href="https://reg.msu.ac.th" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-white/10 hover:bg-teal-500/20 border border-white/10 hover:border-teal-400/50 transition-all duration-300 group"
+                >
+                  <BookOpen className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-white font-medium">{t('placesPage.links.registration')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a 
+                  href="https://www.msu.ac.th/th/การเข้าศึกษาต่อ/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-white/10 hover:bg-violet-500/20 border border-white/10 hover:border-violet-400/50 transition-all duration-300 group"
+                >
+                  <GraduationCap className="w-5 h-5 text-violet-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-white font-medium">{t('placesPage.links.admissions')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a 
+                  href="https://libroom.msu.ac.th" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-white/10 hover:bg-orange-500/20 border border-white/10 hover:border-orange-400/50 transition-all duration-300 group"
+                >
+                  <BookOpen className="w-5 h-5 text-orange-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-white font-medium">{t('placesPage.links.libraryGuide')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a 
+                  href="https://bookdosepath.com/MSU" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-white/10 hover:bg-green-500/20 border border-white/10 hover:border-green-400/50 transition-all duration-300 group"
+                >
+                  <Globe className="w-5 h-5 text-green-400 group-hover:scale-110 transition-transform" />
+                  <span className="text-white font-medium">{t('placesPage.links.onlineLibrary')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
